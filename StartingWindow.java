@@ -57,7 +57,7 @@ public class StartingWindow implements ActionListener {
         frame.add(logOutButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 450);
+        frame.setSize(1750, 750);
         frame.setTitle("Anmeldung");
         frame.setLayout(null);
         frame.setVisible(true);
