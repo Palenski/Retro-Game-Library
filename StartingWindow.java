@@ -57,11 +57,9 @@ public class StartingWindow implements ActionListener {
         frame.add(logOutButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-<<<<<<< HEAD
+
         frame.setSize(1000, 650);
-=======
-        frame.setSize(1750, 750);
->>>>>>> 684294528f8ae2994f1c444099c307cd1e432364
+
         frame.setTitle("Anmeldung");
         frame.setLayout(null);
         frame.setVisible(true);
@@ -71,26 +69,26 @@ public class StartingWindow implements ActionListener {
 
     public void actionPerformed(ActionEvent e) { // einfache Weiterleitung an die verschiedenen Fenster
         if (e.getSource() == einzahlButton) {
-            //frame.dispose();
-            //Main.einzahlen();
+            // frame.dispose();
+            // Main.einzahlen();
             System.out.println("Test 1");
 
         }
         if (e.getSource() == auszahlButton) {
-            //frame.dispose();
-            //Main.auszahlen();
+            // frame.dispose();
+            // Main.auszahlen();
             System.out.println("Test 2");
 
         }
         if (e.getSource() == transaktionButton) {
-            //frame.dispose();
-            //Main.transaktionen();
+            // frame.dispose();
+            // Main.transaktionen();
             System.out.println("Test 3");
 
         }
         if (e.getSource() == kontoauszugButton) {
-            //frame.dispose();
-            //Main.kontoauszug();
+            // frame.dispose();
+            // Main.kontoauszug();
             System.out.println("Test 4");
 
         }
