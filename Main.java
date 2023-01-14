@@ -1,4 +1,3 @@
-import Pong.Pong;
 import Pong.Pong; 
 
 public class Main {
