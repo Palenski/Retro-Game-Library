@@ -1,4 +1,4 @@
-import Pong.Pong; 
+import Pong.PongWindow; 
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +16,6 @@ public class Main {
     }
 
     public static void pong(){
-        Pong pong = new Pong();
+        PongWindow pong = new PongWindow();
     }
 }
