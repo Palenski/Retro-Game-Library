@@ -36,12 +36,12 @@ public class PongWindow implements ActionListener {
         
        
         redPanel.setBackground(Color.red);
-        redPanel.setBounds(0, 0, 250, 250);
+        redPanel.setBounds(0, 0, 50, 613);
 
         bluePanel.setBackground(Color.blue);
-        bluePanel.setBounds(600, 0, 250, 250);
+        bluePanel.setBounds(935, 0, 50, 613);
 
-        ball.setBounds(300, 300, 2500, 2500);
+        ball.setBounds(300, 300, 25, 25);
 
         frame.add(ball);
         frame.add(redPanel);
