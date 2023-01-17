@@ -1,12 +1,12 @@
-import Pong.Pong;
+import Pong.PongWindow; 
 import SpaceInvaders.SpaceInvader; 
 
 public class Main {
     public static void main(String[] args) {
 
        //startingWindow();
-       //pong();
-       SpaceInvader();
+       pong();
+       //SpaceInvader();
 
     }
 
@@ -17,7 +17,7 @@ public class Main {
     }
 
     public static void pong(){
-        Pong pong = new Pong();
+        PongWindow pong = new PongWindow();
     }
 
     public static void SpaceInvader(){
