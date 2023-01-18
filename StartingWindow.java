@@ -21,11 +21,13 @@ public class StartingWindow implements ActionListener {
 
         typingButton.addActionListener(this);
         typingButton.setBounds(255, 50, 500, 55);
+        typingButton.setFont(new Font("Serif", Font.PLAIN, 30));
         frame.add(typingButton);
 
 
         pongButton.addActionListener(this);
         pongButton.setBounds(255, 125, 500, 55);
+        pongButton.setFont(new Font("Serif", Font.PLAIN, 30));
         frame.add(pongButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

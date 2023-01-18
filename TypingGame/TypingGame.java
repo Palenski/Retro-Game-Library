@@ -6,24 +6,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Component;
+
 
 public class TypingGame implements ActionListener {
     JFrame frame = new JFrame();
 
-    JButton button1 = new JButton("Start the Game");
+    JButton startButton = new JButton("Start the Game");
+    JButton backButton = new JButton("Back to menu");
 
     public TypingGame() {
 
-        button1.setBounds(345, 200, 300, 200);
-        button1.setFont(new Font("Serif", Font.PLAIN, 30));
-        button1.setFocusable(false);
-        button1.setBackground(Color.red);
-        button1.setForeground(Color.white);
-        button1.addActionListener(this);
+        startButton.setBounds(345, 200, 300, 200);
+        startButton.setFont(new Font("Serif", Font.PLAIN, 30));
+        startButton.setFocusable(false);
+        startButton.setBackground(Color.red);
+        startButton.setForeground(Color.white);
+        startButton.addActionListener(this);
+        frame.add(startButton);
 
-        frame.add(button1);
+        backButton.setBounds(345,500,300,100);
+        backButton.setFont(new Font("Serif", Font.PLAIN, 30));
+        backButton.setFocusable(false);
+        backButton.addActionListener(this);
+        frame.add(backButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,9 +42,13 @@ public class TypingGame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button1) {
+        if (e.getSource() == startButton) {
             frame.dispose();
             GameScreen gameScreen = new GameScreen();
+        }
+        if(e.getSource() == backButton){
+            frame.dispose();
+            
         }
     }
 
