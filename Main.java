@@ -5,10 +5,10 @@ import TypingGame.TypingGame;
 public class Main {
     public static void main(String[] args) {
 
-       //startingWindow();
+       startingWindow();
        //pong();
        //SpaceInvader();
-       TypingGame();
+       //TypingGame();
 
     }
 
