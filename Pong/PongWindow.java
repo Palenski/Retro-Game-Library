@@ -69,17 +69,26 @@ public class PongWindow implements KeyListener {
         frame.setVisible(true);
         frame.setResizable(false);
 
+        
+
     }
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        int y1 = player1Panel.getY();
+        int y1 = player1Panel.getY() - 5;
         int y2 = player2Panel.getY();
+
+      
+
+
+        ball.setBounds(ball.getX() + 5, ball.getY() + 5, 100, 100);
+
+
 
         if (key == KeyEvent.VK_W) {
             if (y1 > 0) {
                 y1 = y1 - 5;
-                player1Panel.setBounds(80, y1, 25, 175);
+                player1Panel.setBounds(80, player1Panel.getY() - 5, 25, 175);
             }
 
         }
@@ -87,7 +96,7 @@ public class PongWindow implements KeyListener {
         if (key == KeyEvent.VK_S) {
             if (y1 < 440) {
                 y1 = y1 + 5;
-                player1Panel.setBounds(80, y1, 25, 175);
+                player1Panel.setBounds(80, player1Panel.getY() + 5, 25, 175);
             }
 
         }
