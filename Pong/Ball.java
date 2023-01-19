@@ -14,7 +14,7 @@ public class Ball extends JPanel {
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
             
-        ImageIcon icon = new ImageIcon("Pong/Images/pngtree-football-championship-realistic-soccer-ball-isolated-png-image_2138589.jpg");
+        ImageIcon icon = new ImageIcon("Pong/Images/Red-Ball.png");
 
         icon.paintIcon(this, g, 50, 50);
 

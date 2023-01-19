@@ -25,9 +25,11 @@ public class PongWindow implements ActionListener {
 
     Ball ball = new Ball();
 
-   JPanel redPanel = new JPanel();
+    JPanel player1Panel = new JPanel();
+    JPanel player2Panel = new JPanel();
 
-   JPanel bluePanel = new JPanel();
+   JPanel end1Panel = new JPanel();
+   JPanel end2Panel = new JPanel();
 
     
 
@@ -35,17 +37,26 @@ public class PongWindow implements ActionListener {
     public PongWindow() {
         
        
-        redPanel.setBackground(Color.red);
-        redPanel.setBounds(0, 0, 50, 613);
+        end1Panel.setBackground(Color.GRAY);
+        end1Panel.setBounds(0, 0, 25, 613);
 
-        bluePanel.setBackground(Color.blue);
-        bluePanel.setBounds(935, 0, 50, 613);
+        end2Panel.setBackground(Color.GRAY);
+        end2Panel.setBounds(960, 0, 25, 613);
 
-        ball.setBounds(300, 300, 25, 25);
+        player1Panel.setBackground(Color.GREEN);
+        player1Panel.setBounds(80, 200, 25, 175);
 
+        player2Panel.setBackground(Color.BLUE);
+        player2Panel.setBounds(880, 200, 25, 175);
+
+        ball.setBounds(393, 220, 100, 100);
+
+        
+        frame.add(end1Panel);
+        frame.add(end2Panel);
+        frame.add(player1Panel);
+        frame.add(player2Panel);
         frame.add(ball);
-        frame.add(redPanel);
-        frame.add(bluePanel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
