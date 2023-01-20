@@ -49,7 +49,7 @@ public class TypingGame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startButton) {
             frame.dispose();
-            GameScreen gameScreen = new GameScreen();
+            Screen screen = new Screen();
         }
         if(e.getSource() == backButton){
             frame.dispose();
