@@ -5,8 +5,8 @@ import TypingGame.TypingGame;
 public class Main {
     public static void main(String[] args) {
 
-       //startingWindow();
-       pong();
+       startingWindow();
+       //pong();
        //SpaceInvader();
        //TypingGame();
 

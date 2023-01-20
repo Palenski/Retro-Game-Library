@@ -48,9 +48,12 @@ public class GameScreen implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
+        
+
+
         if (key == KeyEvent.VK_N) {
             label.setText(Texte[1]);
-
+            System.out.print("Test");
         }
 
     }

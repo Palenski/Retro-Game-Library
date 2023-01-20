@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 
+
+
 public class TypingGame implements ActionListener {
     JFrame frame = new JFrame();
 
@@ -48,6 +50,7 @@ public class TypingGame implements ActionListener {
         }
         if(e.getSource() == backButton){
             frame.dispose();
+           
             
         }
     }
