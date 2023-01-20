@@ -27,6 +27,7 @@ public class PongWindow implements KeyListener {
     JPanel panel = new JPanel();
 
     Ball ball = new Ball();
+    
 
     JPanel player1Panel = new JPanel();
     JPanel player2Panel = new JPanel();
@@ -79,7 +80,7 @@ public class PongWindow implements KeyListener {
         int y1 = player1Panel.getY();
         int y2 = player2Panel.getY();
 
-      
+      System.out.println("Test");
 
 
         ball.setBounds(ball.getX() + 5, ball.getY() + 5, 100, 100);

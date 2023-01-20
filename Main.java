@@ -1,4 +1,5 @@
-import Pong.PongWindow; 
+import Pong.PongWindow;
+import Pong.Test;
 import SpaceInvaders.SpaceInvader;
 import TypingGame.TypingGame; 
 
@@ -7,8 +8,9 @@ public class Main {
     
     public static void main(String[] args) {
 
-       startingWindow();
-       //pong();
+        
+       //startingWindow();
+       pong();
        //SpaceInvader();
        //TypingGame();
 
@@ -21,7 +23,7 @@ public class Main {
     }
 
     public static void pong(){
-        PongWindow pong = new PongWindow();
+        Test pong = new Test();
     }
 
     public static void SpaceInvader(){
