@@ -12,26 +12,20 @@ public class GameScreen implements KeyListener {
     JFrame frame = new JFrame();
 
     JLabel label = new JLabel();
-    String Text = "Niemand schaut später auf sein Leben zurück und erinnert sich an die Nächte, in denen er viel geschlafen hat.";
-    String Texte[] = {
-            "<html><font color=blue><u>N</u></font>iemand schaut später auf sein Leben zurück und <BR> erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
-            "<html><font color=blue><u>Ni</u></font>emand schaut später auf sein Leben zurück und <BR> erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
-            "<html><font color=blue><u>Nie</u></font>mand schaut später auf sein Leben zurück und <BR> erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
-            "<html><font color=blue><u>Niem</u></font>and schaut später auf sein Leben zurück und <BR> erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
-            "<html><font color=blue><u>Niema</u></font>nd schaut später auf sein Leben zurück und <BR> erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>"
-    };
+    String Text = ("Niemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.");
+
     Character Letters[] = { 'N', 'i', 'e', 'm', 'a', 'n', 'd', ' ', 's', 'c', 'h', 'a', 'u', 't' };
 
     public GameScreen() {
 
         label.setBounds(255, 50, 500, 55);
         label.setFocusable(false);
-        label.setText(Texte[0]); // vielleicht später Text aus online Document nehmen oder aus einer .txt
+        label.setText(Text); // vielleicht später Text aus online Document nehmen oder aus einer .txt
         label.setFont(new Font("Serif", Font.PLAIN, 20));
         label.setForeground(Color.black);
         frame.addKeyListener(this);
 
-        frame.add(label);
+        // frame.add(label);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -48,11 +42,8 @@ public class GameScreen implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        
-
-
         if (key == KeyEvent.VK_N) {
-            label.setText(Texte[1]);
+
             System.out.print("Test");
         }
 

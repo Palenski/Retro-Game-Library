@@ -3,6 +3,8 @@ import SpaceInvaders.SpaceInvader;
 import TypingGame.TypingGame; 
 
 public class Main {
+
+    
     public static void main(String[] args) {
 
        startingWindow();

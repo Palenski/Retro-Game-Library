@@ -19,11 +19,10 @@ public class StartingWindow implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    ImageIcon pong = new ImageIcon("Pong/Images/PongStart_snipped1.jpg");
-    ImageIcon Backscreen = new ImageIcon("Pong/Images/StartBackscreen.png");
+    ImageIcon pong = new ImageIcon("Pong/Images/PongStart.png");
 
     JButton typingButton = new JButton("Typing Game");
-    JButton pongButton = new JButton(pong);
+    JButton pongButton = new JButton("Pong");
 
     StartingWindow() {
 
@@ -34,7 +33,7 @@ public class StartingWindow implements ActionListener {
 
         pongButton.addActionListener(this);
         pongButton.setBounds(255, 125, 500, 120);
-        pongButton.setBorderPainted(false);
+        pongButton.setBorderPainted(true);
         pongButton.setIcon(pong);
 
         frame.add(pongButton);

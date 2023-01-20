@@ -16,6 +16,9 @@ public class TypingGame implements ActionListener {
     JButton startButton = new JButton("Start the Game");
     JButton backButton = new JButton("Back to menu");
 
+
+    
+
     public TypingGame() {
 
         startButton.setBounds(345, 200, 300, 200);
