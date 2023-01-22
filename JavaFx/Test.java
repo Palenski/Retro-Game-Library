@@ -1,6 +1,5 @@
 package JavaFx;
 
-
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -55,16 +54,16 @@ public class Test extends Application {
         ball.setRadius(25);
         ball.setFill(Color.RED);
 
-        Image bg = new Image("JavaFx/PongStart.png");
+        Image bg = new Image("JavaFx/Images/fantasy-space-wallpaper-preview.jpg");
         ImageView imageView = new ImageView(bg);
-        imageView.setX(300);
-        imageView.setY(300);
+        imageView.setX(0);
+        imageView.setY(0);
 
+        root.getChildren().add(imageView);
         root.getChildren().add(text);
         root.getChildren().add(line);
         root.getChildren().add(rec);
         root.getChildren().add(ball);
-        root.getChildren().add(imageView);
 
         stage.setResizable(false);
         stage.setTitle("PONG");
