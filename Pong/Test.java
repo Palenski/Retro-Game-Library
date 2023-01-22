@@ -34,6 +34,8 @@ public class Test extends Application {
     private int playerOneXPos = 0;
     private double playerTwoXPos = width - PLAYER_WIDTH;
 
+    
+
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -47,12 +49,13 @@ public class Test extends Application {
         tl.setCycleCount(Timeline.INDEFINITE);
 
         canvas.setOnMouseMoved(e -> playerOneYPos = e.getY());
+        //canvas.setOnKeyPressed(null);
         canvas.setOnMouseClicked(e -> gameStarted = true);
         stage.setScene(new Scene(new StackPane(canvas)));
         stage.show();
         tl.play();
 
-        
+       
         
     }
 

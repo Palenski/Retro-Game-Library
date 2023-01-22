@@ -24,6 +24,7 @@ public class Main {
 
     public static void pong(){
         Test pong = new Test();
+        
     }
 
     public static void SpaceInvader(){
