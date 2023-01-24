@@ -2,9 +2,12 @@ package Pong;
 
 import java.awt.Color;
 
-import javafx.scene.canvas.GraphicsContext;
+import javax.swing.JPanel;
 
-public class Paddle1 implements Runnable {
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
+
+public class Paddle1 extends JPanel implements Runnable {
 
     public static int x;
     public static int y;
@@ -16,7 +19,9 @@ public class Paddle1 implements Runnable {
         this.x = x;
         this.y = y;
         this.gc = gc;
-        this.running = false;
+        this.running = true;
+
+        
     }
 
     public static void clear() {
@@ -26,17 +31,13 @@ public class Paddle1 implements Runnable {
     static void draw(int x, int y) {
         clear();
         gc.fillRect(x, y, 20, 175);
-        
+
     }
 
     public void run() {
 
         while (running) {
 
-            clear();
-            draw(x, y);
-            x++;
-            // y++;
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
@@ -46,4 +47,7 @@ public class Paddle1 implements Runnable {
         }
 
     }
+    
+
 }
+

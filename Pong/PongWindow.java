@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -22,7 +23,7 @@ public class PongWindow extends Application {
 
     public static int screenX = 1000;
     public static int screenY = 650;
-    
+
     public static Paddle1 paddle1;
     public static Paddle2 paddle2;
     public static Ball ball;
@@ -81,12 +82,16 @@ public class PongWindow extends Application {
 
 
         
+    
         root.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
-            t = new Thread(ball);
+            t = new Thread(paddle1);
+            System.out.println("TEst");
             t.start();
         });
 
-        
+     
+
+      
 
 
         button.setOnAction(new EventHandler<ActionEvent>() {
