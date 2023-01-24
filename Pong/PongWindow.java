@@ -1,136 +1,141 @@
 package Pong;
 
-import javax.swing.*;
-import java.awt.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
-import java.awt.Color;
-import javax.swing.JPanel;
+public class PongWindow extends Application {
 
-import java.awt.BorderLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
-import java.awt.Graphics;
-
-public class PongWindow implements KeyListener {
-
-    JFrame frame = new JFrame();
-
-    JPanel panel = new JPanel();
-
-    Ball ball = new Ball();
+    public static int screenX = 1000;
+    public static int screenY = 650;
     
+    public static Paddle1 paddle1;
+    public static Paddle2 paddle2;
+    public static Ball ball;
+    public static Thread t;
 
-    JPanel player1Panel = new JPanel();
-    JPanel player2Panel = new JPanel();
-
-    JPanel end1Panel = new JPanel();
-    JPanel end2Panel = new JPanel();
-
-    public PongWindow() {
-
-        end1Panel.setBackground(Color.GRAY);
-        end1Panel.setBounds(0, 0, 25, 613);
-
-        end2Panel.setBackground(Color.GRAY);
-        end2Panel.setBounds(960, 0, 25, 613);
-
-        player1Panel.setBackground(Color.GREEN);
-        player1Panel.setBounds(80, 200, 25, 175);
-
-        player2Panel.setBackground(Color.BLUE);
-        player2Panel.setBounds(880, 200, 25, 175);
-
-        ball.setBounds(393, 220, 100, 100);
-
-        frame.add(end1Panel);
-        frame.add(end2Panel);
-        frame.add(player1Panel);
-        frame.add(player2Panel);
-        frame.add(ball);
-
-        frame.addKeyListener(this);
-
-        frame.addKeyListener(null);
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setSize(1000, 650);
-
-        frame.setTitle("Pong");
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
-
-        
-
-    }
-
-    public void keyPressed(KeyEvent e) {
-        
-        int key = e.getKeyCode();
-        int y1 = player1Panel.getY();
-        int y2 = player2Panel.getY();
-
-      System.out.println("Test");
-
-
-        ball.setBounds(ball.getX() + 5, ball.getY() + 5, 100, 100);
-
-
-
-        if (key == KeyEvent.VK_W) {
-            if (y1 > 0) {
-                player1Panel.setBounds(80, player1Panel.getY() - 5, 25, 175);
-            }
-
-        }
-
-        if (key == KeyEvent.VK_S) {
-            if (y1 < 440) {
-                player1Panel.setBounds(80, player1Panel.getY() + 5, 25, 175);
-            }
-
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            if (y2 > 0) {
-                player2Panel.setBounds(880, player2Panel.getY() - 5, 25, 175);
-            }
-
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            if (y2 < 440) {
-                player2Panel.setBounds(880, player2Panel.getY() + 5, 25, 175);
-            }
-
-        }
-
-    }
-
-    public void actionPerformed(ActionEvent e) { // einfache Weiterleitung an die verschiedenen Fenster
-
+    public static void main(String[] args) {
+        launch(args);
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
+    public void start(Stage stage) throws Exception {
+
+        Group root = new Group();
+        Scene scene = new Scene(root, screenX, screenY, Color.BLACK);
+
+        Canvas can = new Canvas(screenX, screenY);
+
+        GraphicsContext gc = can.getGraphicsContext2D();
+        gc.setFill(Color.WHITE);
+
+        paddle1 = new Paddle1(0, 0, gc, true);
+        paddle2 = new Paddle2(0, 0, gc, true);
+        ball = new Ball(0, 0, gc, true);
+    
+        paddle1.draw(50, 200);
+        paddle2.draw(915, 200);
+        ball.draw(465, 300);
+
+        gc.setFill(Color.RED);
+
+        gc.fillRect(0, 0, 10, 650);
+        gc.fillRect(975, 0, 10, 650);
+
+        gc.setFill(Color.WHITE);
+        
+        root.getChildren().add(can);
+
+        Button button = new Button("Funktion 1");
+
+        Button button2 = new Button("Funktion 2");
+
+        Button button3 = new Button("Animieren");
+        Button button4 = new Button("Stoppen");
+        Button button5 = new Button("Löschen");
+
+        stage.setTitle("Title");
+
+        stage.setResizable(false);
+
+        stage.setWidth(screenX);
+        stage.setHeight(screenY);
+
+        stage.setScene(scene);
+
+        stage.show();
+
+
+        
+        root.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
+            t = new Thread(ball);
+            t.start();
+        });
+
+        
+
+
+        button.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent event) {
+                gc.setFill(Color.DARKBLUE);
+                gc.fillRect(100, 100, 200, 200);
+            }
+        });
+
+        button2.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent event) {
+                t = new Thread(paddle1);
+                t.start();
+            }
+        });
+
+        button3.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent event) {
+                ball.running = true;
+                t = new Thread(ball);
+                t.start();
+
+            }
+        });
+
+        button4.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent event) {
+                ball.running = false;
+            }
+        });
+
+        button5.setOnAction(new EventHandler<ActionEvent>() {
+
+            public void handle(ActionEvent event) {
+                ball.clear();
+                ball.x = 0;
+                ball.y = 100;
+
+            }
+        });
 
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
+    private GraphicsContext getGraphicsContext2D() {
+        return null;
     }
 
 }

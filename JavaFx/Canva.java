@@ -9,8 +9,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class Canva extends Application {
@@ -32,7 +35,10 @@ public class Canva extends Application {
 
         HBox box = new HBox();
 
+        //Pane root = new Pane();
+
         Button button = new Button("Funktion 1");
+
         Button button2 = new Button("Funktion 2");
 
         Button button3 = new Button("Animieren");
@@ -45,7 +51,14 @@ public class Canva extends Application {
 
         ball = new Ball(0, 100, gc, true);
 
+        BorderPane pane = new BorderPane();
+        pane.setTop(box);
+        pane.setCenter(can);
 
+     
+
+
+        Scene scene = new Scene(pane);
         button.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
@@ -67,14 +80,14 @@ public class Canva extends Application {
                 ball.running = true;
                 t = new Thread(ball);
                 t.start();
-                
+
             }
         });
 
         button4.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-              ball.running = false;
+                ball.running = false;
             }
         });
 
@@ -82,17 +95,11 @@ public class Canva extends Application {
 
             public void handle(ActionEvent event) {
                 ball.clear();
-                ball.x = 0; 
-                ball. y = 100;
-                
+                ball.x = 0;
+                ball.y = 100;
+
             }
         });
-
-        BorderPane pane = new BorderPane();
-        pane.setTop(box);
-        pane.setCenter(can);
-
-        Scene scene = new Scene(pane);
 
         stage.setTitle("Title");
 
