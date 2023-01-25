@@ -1,4 +1,4 @@
-package Pong;
+package JavaFx;
 
 import javafx.scene.canvas.GraphicsContext;
 
@@ -14,15 +14,14 @@ public class Ball implements Runnable {
         this.x = x;
         this.y = y;
         this.gc = gc;
-        this.running = true;
+        this.running = false;
     }
 
     public static void clear() {
-        gc.clearRect(x, y, 21, 21);
-        
+        gc.clearRect(0, 0, 1000, 1000);
     }
 
-    static void draw(int x, int y) {
+    private static void draw(int x, int y) {
         clear();
         gc.fillOval(x, y, 20, 20);
     }

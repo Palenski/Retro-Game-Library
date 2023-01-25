@@ -1,16 +1,13 @@
-package Pong;
+package JavaFx;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -19,13 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class PongWindow extends Application {
+public class Canva extends Application {
 
-    public static int screenX = 1000;
-    public static int screenY = 650;
-
-    public static Paddle1 paddle1;
-    public static Paddle2 paddle2;
     public static Ball ball;
     public static Thread t;
 
@@ -36,30 +28,14 @@ public class PongWindow extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Group root = new Group();
-        Scene scene = new Scene(root, screenX, screenY, Color.BLACK);
-
-        Canvas can = new Canvas(screenX, screenY);
-
+        Canvas can = new Canvas();
+        can.setHeight(650);
+        can.setWidth(1000);
         GraphicsContext gc = can.getGraphicsContext2D();
-        gc.setFill(Color.WHITE);
 
-        paddle1 = new Paddle1(0, 0, gc, true);
-        paddle2 = new Paddle2(0, 0, gc, true);
-        ball = new Ball(0, 0, gc, true);
-    
-        paddle1.draw(50, 200);
-        paddle2.draw(915, 200);
-        ball.draw(465, 300);
+        HBox box = new HBox();
 
-        gc.setFill(Color.RED);
-
-        gc.fillRect(0, 0, 10, 650);
-        gc.fillRect(975, 0, 10, 650);
-
-        gc.setFill(Color.WHITE);
-        
-        root.getChildren().add(can);
+        //Pane root = new Pane();
 
         Button button = new Button("Funktion 1");
 
@@ -69,31 +45,20 @@ public class PongWindow extends Application {
         Button button4 = new Button("Stoppen");
         Button button5 = new Button("Löschen");
 
-        stage.setTitle("Title");
+        box.getChildren().addAll(button, button2, button3, button4, button5);
+        box.setSpacing(10);
+        box.setPadding(new Insets(10));
 
-        stage.setResizable(false);
+        ball = new Ball(0, 100, gc, true);
 
-        stage.setWidth(screenX);
-        stage.setHeight(screenY);
-
-        stage.setScene(scene);
-
-        stage.show();
-
-
-        
-    
-        root.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
-            t = new Thread(paddle1);
-            System.out.println("TEst");
-            t.start();
-        });
+        BorderPane pane = new BorderPane();
+        pane.setTop(box);
+        pane.setCenter(can);
 
      
 
-      
 
-
+        Scene scene = new Scene(pane);
         button.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
@@ -105,8 +70,7 @@ public class PongWindow extends Application {
         button2.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                t = new Thread(paddle1);
-                t.start();
+                gc.clearRect(100, 100, 200, 200);
             }
         });
 
@@ -136,6 +100,17 @@ public class PongWindow extends Application {
 
             }
         });
+
+        stage.setTitle("Title");
+
+        stage.setResizable(false);
+
+        stage.setWidth(1000);
+        stage.setHeight(650);
+
+        stage.setScene(scene);
+
+        stage.show();
 
     }
 
