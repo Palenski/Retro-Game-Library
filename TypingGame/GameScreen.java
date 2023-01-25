@@ -23,9 +23,10 @@ public class GameScreen implements KeyListener {
         label.setText(Text); // vielleicht später Text aus online Document nehmen oder aus einer .txt
         label.setFont(new Font("Serif", Font.PLAIN, 20));
         label.setForeground(Color.black);
+        label.setVisible(true);
         frame.addKeyListener(this);
 
-        // frame.add(label);
+        frame.add(label);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
