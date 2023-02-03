@@ -12,11 +12,15 @@ public class GameScreen implements KeyListener {
     JFrame frame = new JFrame();
 
     JLabel label = new JLabel();
-    String Text = ("Niemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.");
+    String Text = ("<html>Niemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>");
     String Var1 = ("<html> <font color = Blue> N </font> iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>");
     String[] TextVarianten = {
-            "<html> <font color = Blue> N </font> iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
-            "<html> <font color = Blue> Ni </font> emand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>" };
+            "<html> <font color = Blue> N </font>iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
+            "<html> <font color = Blue> Ni </font>emand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>" };
+
+    String [] TextVariantenFalse = {
+        "<html> <font color = Red> N </font>iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
+        "<html><font color = Blue> N </Fonte> <font color = Red> i </font>emand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",};
 
     
 
@@ -49,14 +53,14 @@ public class GameScreen implements KeyListener {
         int[] keys = { 78, 73 };
         int i = 0;
 
-        if (key == 78) {
+        if (key == keys[i]) {
             label.setText(TextVarianten[i]);
-            System.out.print("Test");
-
+            //System.out.print("Test");
+            i++;
+            System.out.print(i);
         }
-
-        if (key == 73) {
-            label.setText(TextVarianten[i + 1]);
+        else{
+            label.setText(TextVariantenFalse[i]);
         }
 
     }
