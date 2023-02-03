@@ -13,9 +13,12 @@ public class GameScreen implements KeyListener {
 
     JLabel label = new JLabel();
     String Text = ("Niemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.");
-    String Var1 = ("iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.");
+    String Var1 = ("<html> <font color = Blue> N </font> iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>");
+    String[] TextVarianten = {
+            "<html> <font color = Blue> N </font> iemand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>",
+            "<html> <font color = Blue> Ni </font> emand schaut auf sein Leben und erinnert sich an die Nächte, in denen er viel geschlafen hat.</html>" };
 
-    Character Letters[] = { 'N', 'i', 'e', 'm', 'a', 'n', 'd', ' ', 's', 'c', 'h', 'a', 'u', 't' };
+    
 
     public GameScreen() {
 
@@ -43,10 +46,17 @@ public class GameScreen implements KeyListener {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        int[] keys = { 78, 73 };
+        int i = 0;
 
-        if (key == KeyEvent.VK_N) {
-            label.setText(Var1);
+        if (key == 78) {
+            label.setText(TextVarianten[i]);
             System.out.print("Test");
+
+        }
+
+        if (key == 73) {
+            label.setText(TextVarianten[i + 1]);
         }
 
     }
