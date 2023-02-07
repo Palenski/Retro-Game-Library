@@ -1,32 +1,30 @@
-package Pong;
-
-import java.awt.Color;
+package PongTest;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public class Paddle2 implements Runnable {
+public class Ball implements Runnable {
 
     public static int x;
     public static int y;
     public static GraphicsContext gc;
     public static boolean running;
 
-    public Paddle2(int x, int y, GraphicsContext gc, boolean running) {
+    public Ball(int x, int y, GraphicsContext gc, boolean running) {
 
         this.x = x;
         this.y = y;
         this.gc = gc;
-        this.running = false;
+        this.running = true;
     }
 
     public static void clear() {
-        gc.clearRect(x, y, 20, 175);
+        gc.clearRect(x, y, 21, 21);
+        
     }
 
     static void draw(int x, int y) {
         clear();
-        gc.fillRect(x, y, 20, 175);
-
+        gc.fillOval(x, y, 20, 20);
     }
 
     public void run() {
