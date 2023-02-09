@@ -15,7 +15,13 @@ static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEITH);
 static final int BALL_DIAMETER = 20; 
 static final int PADDLE_WIDTH = 25;
 static final int PADDLE_HEIGTH = 200;
-
+Thread gameThread; 
+Image image;
+Graphics graphics;
+Paddle paddle1;
+Paddle paddle2;
+Ball ball;
+Score score;
 
 
 

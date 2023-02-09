@@ -9,6 +9,10 @@ import javafx.scene.shape.Rectangle;
 
 public class Ball extends Rectangle{
    
+    Randon random;
+    int xVelocity;
+    int yVelocity;
+    
     Ball(){
 
     }
