@@ -146,7 +146,7 @@ public class TicTacToe implements ActionListener {
         if ((buttons[2].getText() == "X") &&
                 (buttons[4].getText() == "X") &&
                 (buttons[6].getText() == "X")) {
-            xWins(0, 1, 2);
+            xWins(2, 4, 6);
         }
 
         // überprüfen ob O gewinnt
@@ -196,7 +196,7 @@ public class TicTacToe implements ActionListener {
         if ((buttons[2].getText() == "O") &&
                 (buttons[4].getText() == "O") &&
                 (buttons[6].getText() == "O")) {
-            oWins(0, 1, 2);
+            oWins(2, 4, 6);
         }
 
     }
@@ -218,7 +218,7 @@ public class TicTacToe implements ActionListener {
         buttons[b].setBackground(Color.GREEN);
         buttons[c].setBackground(Color.GREEN);
 
-        TextFeld.setText("X hat gewonnen!");
+        TextFeld.setText("O hat gewonnen!");
 
         for(int i = 0; i<9;i++){
             buttons[i].setEnabled(false);
