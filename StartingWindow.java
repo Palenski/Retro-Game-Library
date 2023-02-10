@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import Pong.PongWindow;
+import PongTest.PongWindow;
 import TypingGame.TypingGame;
 
 public class StartingWindow implements ActionListener {

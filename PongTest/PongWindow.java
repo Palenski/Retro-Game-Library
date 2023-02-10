@@ -1,4 +1,4 @@
-package Pong;
+package PongTest;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;

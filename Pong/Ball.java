@@ -1,47 +1,58 @@
 package Pong;
 
-import javafx.scene.canvas.GraphicsContext;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 
-public class Ball implements Runnable {
 
-    public static int x;
-    public static int y;
-    public static GraphicsContext gc;
-    public static boolean running;
+import javafx.scene.shape.Rectangle;
 
-    public Ball(int x, int y, GraphicsContext gc, boolean running) {
+public class Ball extends Rectangle{
+   
+    Random random;
+    int xVelocity;
+    int yVelocity;
 
+    int x;
+    int y;
+    int ballWidth;
+    int ballHeighth;
+    
+    Ball(int x, int y, int ballWidth, int ballHeighth){
         this.x = x;
         this.y = y;
-        this.gc = gc;
-        this.running = true;
-    }
-
-    public static void clear() {
-        gc.clearRect(x, y, 21, 21);
-        
-    }
-
-    static void draw(int x, int y) {
-        clear();
-        gc.fillOval(x, y, 20, 20);
-    }
-
-    public void run() {
-
-        while (running) {
-
-            clear();
-            draw(x, y);
-            x++;
-            // y++;
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+        this.ballWidth = ballWidth;
+        this.ballHeighth = ballHeighth;
+        random = new Random();
+        int randomXDirection = random.nextInt(2);
+        if(randomXDirection == 0){
+            randomXDirection--;
         }
+        setXDirection(randomXDirection);
 
+        int randomYDirection = random.nextInt(2);
+        if (randomYDirection == 0) {
+            randomYDirection--;
+        }
+        setYDirection(randomYDirection);
+
+    }
+
+    public void setXDirection(int randomXDirection){
+        xVelocity = randomXDirection;
+    }
+
+    public void setYDirection(int randomYDirection){
+        yVelocity = randomYDirection;
+    }
+
+    public void move(){
+        x = x + xVelocity;
+        y = y + yVelocity;
+    }
+
+    public void draw(Graphics g){
+        g.setColor(Color.white);
+        g.fillOval(x, y, ballWidth, ballHeighth);
     }
 }

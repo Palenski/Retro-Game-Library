@@ -1,4 +1,4 @@
-package Pong;
+package PongTest;
 
 import java.util.Random;
 import javafx.animation.KeyFrame;

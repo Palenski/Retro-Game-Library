@@ -1,5 +1,5 @@
-import Pong.PongWindow;
-import Pong.Test;
+import PongTest.PongWindow;
+import PongTest.Test;
 import SpaceInvaders.SpaceInvader;
 import TypingGame.TypingGame; 
 

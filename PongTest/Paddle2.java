@@ -1,27 +1,22 @@
-package Pong;
+package PongTest;
 
 import java.awt.Color;
 
-import javax.swing.JPanel;
-
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 
-public class Paddle1 extends JPanel implements Runnable {
+public class Paddle2 implements Runnable {
 
     public static int x;
     public static int y;
     public static GraphicsContext gc;
     public static boolean running;
 
-    public Paddle1(int x, int y, GraphicsContext gc, boolean running) {
+    public Paddle2(int x, int y, GraphicsContext gc, boolean running) {
 
         this.x = x;
         this.y = y;
         this.gc = gc;
-        this.running = true;
-
-        
+        this.running = false;
     }
 
     public static void clear() {
@@ -38,6 +33,10 @@ public class Paddle1 extends JPanel implements Runnable {
 
         while (running) {
 
+            clear();
+            draw(x, y);
+            x++;
+            // y++;
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
@@ -47,7 +46,4 @@ public class Paddle1 extends JPanel implements Runnable {
         }
 
     }
-    
-
 }
-
