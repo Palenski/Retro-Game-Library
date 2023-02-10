@@ -87,7 +87,7 @@ public class TicTacToe implements ActionListener {
         try { // zuerst wird der Titel angezeigt, nach 2000 Millisekunden dann wer am Zug ist
             Thread.sleep(2000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
 
@@ -107,7 +107,7 @@ public class TicTacToe implements ActionListener {
                 (buttons[2].getText() == "X")) {
             xWins(0, 1, 2);
         }
-
+        
         if ((buttons[3].getText() == "X") &&
                 (buttons[4].getText() == "X") &&
                 (buttons[5].getText() == "X")) {
@@ -224,5 +224,9 @@ public class TicTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
+    }
+
+    public void Draw(){
+        TextFeld.setText("Unentschieden");
     }
 }

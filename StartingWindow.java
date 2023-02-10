@@ -23,6 +23,7 @@ public class StartingWindow implements ActionListener {
 
     JButton typingButton = new JButton("Typing Game");
     JButton pongButton = new JButton("Pong");
+    JButton TicTacToeButton = new JButton("TicTacToe");
 
     StartingWindow() {
 
@@ -40,16 +41,32 @@ public class StartingWindow implements ActionListener {
         pongButton.setOpaque(false);
         pongButton.setContentAreaFilled(false);
 
+        TicTacToeButton.addActionListener(this);
+        TicTacToeButton.setBounds(255, 80, 80, 80);
+        TicTacToeButton.setBorderPainted(true);
+        TicTacToeButton.setIcon(pong);
+
+        frame.add(TicTacToeButton);
+        TicTacToeButton.setOpaque(false);
+        TicTacToeButton.setContentAreaFilled(false);
+
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1750, 750);
+        
+        
 
         frame.setSize(1000, 650);
 
-        frame.setTitle("Anmeldung");
-        frame.setLayout(null);
+        frame.setTitle("Starting Window");
+        
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setBackground(Color.BLACK);
+        
+        
+        
+        
+        
         /*
          * 
          * 
