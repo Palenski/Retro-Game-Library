@@ -1,6 +1,6 @@
 package TicTacToe;
 
-public class Main {
+public class MainTicTacToe {
     public static void main(String[] args) {
         TicTacToe ticTacToe = new TicTacToe();
     }

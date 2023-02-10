@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
-import org.w3c.dom.Text;
+
 
 public class TicTacToe implements ActionListener {
 
@@ -44,6 +44,7 @@ public class TicTacToe implements ActionListener {
             buttons[i].setFont(new Font("MV Boli", Font.BOLD, 120));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
+
         }
 
         Titel.add(TextFeld);
@@ -208,7 +209,7 @@ public class TicTacToe implements ActionListener {
 
         TextFeld.setText("X hat gewonnen!");
 
-        for(int i = 0; i<9;i++){
+        for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
     }
@@ -220,7 +221,7 @@ public class TicTacToe implements ActionListener {
 
         TextFeld.setText("O hat gewonnen!");
 
-        for(int i = 0; i<9;i++){
+        for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
     }
