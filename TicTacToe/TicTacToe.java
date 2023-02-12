@@ -33,7 +33,7 @@ public class TicTacToe implements ActionListener {
         TextFeld.setForeground(new Color(25, 255, 0));
         TextFeld.setFont(new Font("Ink Free", Font.BOLD, 75));
         TextFeld.setHorizontalAlignment(JLabel.CENTER);
-        TextFeld.setText("TicTacToe. Zug: " + RundenZähler);
+        TextFeld.setText("TicTacToe");
         TextFeld.setOpaque(true);
 
         Titel.setLayout(new BorderLayout());
@@ -45,7 +45,7 @@ public class TicTacToe implements ActionListener {
         RestartButton.setLayout(new GridLayout(3, 3));
         RestartButton.setText("Neustart?");
         RestartButton.addActionListener(this);
-        RestartButton.setVisible(false);
+        RestartButton.setVisible(true);
 
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
@@ -75,7 +75,7 @@ public class TicTacToe implements ActionListener {
                         buttons[i].setForeground(new Color(255, 0, 0));
                         buttons[i].setText("X");
                         player1_turn = false;
-                        TextFeld.setText("O ist am Zug. Zug: " + RundenZähler);
+                        TextFeld.setText("O ist am Zug");
                         RundenZähler++;
                         Überprüfung();
                     }
@@ -84,7 +84,7 @@ public class TicTacToe implements ActionListener {
                         buttons[i].setForeground(new Color(0, 0, 255));
                         buttons[i].setText("O");
                         player1_turn = true;
-                        TextFeld.setText("X ist am Zug. Zug: " + RundenZähler);
+                        TextFeld.setText("X ist am Zug");
                         RundenZähler++;
                         Überprüfung();
                     }
@@ -115,7 +115,7 @@ public class TicTacToe implements ActionListener {
             TextFeld.setText("O ist am Zug");
         }
 
-        for ( int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(true);
         }
     }
@@ -220,7 +220,7 @@ public class TicTacToe implements ActionListener {
             oWins(2, 4, 6);
         }
 
-        if (RundenZähler == 9) {
+        if (RundenZähler == 10) {
             Draw();
         }
 
@@ -256,13 +256,13 @@ public class TicTacToe implements ActionListener {
         TextFeld.setText("Unentschieden");
 
         for (int i = 0; i < 9; i++) {
-            buttons[i].setEnabled(false);
+            buttons[i].remove(i);
         }
 
-
+        frame.add(RestartButton);
 
     }
 
-   
+
 
 }
