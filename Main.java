@@ -15,7 +15,7 @@ public class Main {
        //pong();
        //SpaceInvader();
        //TypingGame();
-       TicTacToe();
+       MainTicTacToe();
 
     }
 
@@ -38,7 +38,7 @@ public class Main {
         TypingGame typingGame = new TypingGame();
     }
 
-    public static void TicTacToe() {
-        MainTicTacToe mainTicTacToe = new MainTicTacToe();
+    public static void MainTicTacToe() {
+        
     }
 }

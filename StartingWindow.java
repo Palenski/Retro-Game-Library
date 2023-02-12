@@ -12,15 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import Pong.PongGame;
 import PongTest.PongWindow;
+import TicTacToe.MainTicTacToe;
 import TypingGame.TypingGame;
 
 public class StartingWindow implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    ImageIcon pong = new ImageIcon("Pong/Images/PongStart.png");
-
+    
     JButton typingButton = new JButton("Typing Game");
     JButton pongButton = new JButton("Pong");
     JButton TicTacToeButton = new JButton("TicTacToe");
@@ -28,33 +29,23 @@ public class StartingWindow implements ActionListener {
     StartingWindow() {
 
         typingButton.addActionListener(this);
-        typingButton.setBounds(255, 50, 500, 55);
+        typingButton.setBounds(255, 50, 50, 55);
         typingButton.setFont(new Font("Serif", Font.PLAIN, 30));
-        frame.add(typingButton);
+       //frame.add(typingButton);
 
         pongButton.addActionListener(this);
-        pongButton.setBounds(255, 125, 500, 120);
-        pongButton.setBorderPainted(true);
-        pongButton.setIcon(pong);
-
+        pongButton.setBounds(255, 125, 50, 50);
         frame.add(pongButton);
-        pongButton.setOpaque(false);
-        pongButton.setContentAreaFilled(false);
+        
 
         TicTacToeButton.addActionListener(this);
-        TicTacToeButton.setBounds(255, 80, 80, 80);
-        TicTacToeButton.setBorderPainted(true);
-        TicTacToeButton.setIcon(pong);
-
-        frame.add(TicTacToeButton);
-        TicTacToeButton.setOpaque(false);
-        TicTacToeButton.setContentAreaFilled(false);
+        //frame.add(TicTacToeButton);
+       
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
-
         frame.setSize(1000, 650);
 
         frame.setTitle("Starting Window");
@@ -67,17 +58,7 @@ public class StartingWindow implements ActionListener {
         
         
         
-        /*
-         * 
-         * 
-         * try {
-         * frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new
-         * File("Pong/Images/StartBackscreen.png")))));
-         * } catch (Exception e) {
-         * e.printStackTrace();
-         * }
-         * frame.pack();
-         */
+        
 
     }
 
@@ -90,8 +71,13 @@ public class StartingWindow implements ActionListener {
 
         if (e.getSource() == pongButton) {
             frame.dispose();
-            PongWindow pongWindow = new PongWindow();
+           PongGame pongGame = new PongGame();
 
+        }
+
+        if(e.getSource() == TicTacToeButton){
+            frame.dispose();
+            MainTicTacToe mainTicTacToe = new MainTicTacToe();
         }
     }
 
