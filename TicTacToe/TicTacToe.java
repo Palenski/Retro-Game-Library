@@ -7,10 +7,6 @@ import java.util.*;
 import javax.management.timer.Timer;
 import javax.swing.*;
 
-
-
-
-
 public class TicTacToe implements ActionListener {
 
     Random random = new Random();
@@ -24,10 +20,6 @@ public class TicTacToe implements ActionListener {
 
     int RundenZähler = 0;
     int delay = 0;
-
-    
-
-    
 
     TicTacToe() {
 
@@ -55,14 +47,13 @@ public class TicTacToe implements ActionListener {
         RestartButton.addActionListener(this);
         RestartButton.setVisible(false);
 
-        
-
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
             buttonPanel.add(buttons[i]);
             buttons[i].setFont(new Font("MV Boli", Font.BOLD, 120));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
+            buttons[i].setEnabled(false);
 
         }
 
@@ -73,10 +64,6 @@ public class TicTacToe implements ActionListener {
         firstTurn();
 
     }
-
-   
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -105,7 +92,7 @@ public class TicTacToe implements ActionListener {
             }
         }
 
-        if(e.getSource() == RestartButton){
+        if (e.getSource() == RestartButton) {
             TicTacToe ticTacToe = new TicTacToe();
         }
 
@@ -116,7 +103,7 @@ public class TicTacToe implements ActionListener {
         try { // zuerst wird der Titel angezeigt, nach 2000 Millisekunden dann wer am Zug ist
             Thread.sleep(2000);
         } catch (InterruptedException e) {
-            
+
             e.printStackTrace();
         }
 
@@ -127,6 +114,10 @@ public class TicTacToe implements ActionListener {
             player1_turn = false;
             TextFeld.setText("O ist am Zug");
         }
+
+        for ( int i = 0; i < 9; i++) {
+            buttons[i].setEnabled(true);
+        }
     }
 
     public void Überprüfung() {
@@ -136,7 +127,7 @@ public class TicTacToe implements ActionListener {
                 (buttons[2].getText() == "X")) {
             xWins(0, 1, 2);
         }
-        
+
         if ((buttons[3].getText() == "X") &&
                 (buttons[4].getText() == "X") &&
                 (buttons[5].getText() == "X")) {
@@ -229,7 +220,7 @@ public class TicTacToe implements ActionListener {
             oWins(2, 4, 6);
         }
 
-        if(RundenZähler == 9){
+        if (RundenZähler == 9) {
             Draw();
         }
 
@@ -245,7 +236,7 @@ public class TicTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
-        
+
     }
 
     public void oWins(int a, int b, int c) {
@@ -258,23 +249,20 @@ public class TicTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
-        //frame.add(RestartButton);
+        // frame.add(RestartButton);
     }
 
-    public void Draw(){
+    public void Draw() {
         TextFeld.setText("Unentschieden");
 
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
-        //frame.add(RestartButton);
+
+
+
     }
 
-    public void Restart(){
-        
-        for(int i = 0; i<9;i++){
-            buttons[i].remove(i);
-        }
-        frame.add(RestartButton);
-    }
+   
+
 }
