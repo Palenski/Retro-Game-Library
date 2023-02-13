@@ -220,7 +220,7 @@ public class TicTacToe implements ActionListener {
             oWins(2, 4, 6);
         }
 
-        if (RundenZähler == 9) {
+        if(RundenZähler == 9) {
             Draw();
         }
 
