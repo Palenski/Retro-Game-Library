@@ -103,6 +103,7 @@ public class TicTacToe implements ActionListener {
 
         try { // zuerst wird der Titel angezeigt, nach 2000 Millisekunden dann wer am Zug ist
             Thread.sleep(2000);
+            TextFeld.setText("Tic Tac Toe");
         } catch (InterruptedException e) {
 
             e.printStackTrace();

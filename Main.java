@@ -1,6 +1,7 @@
 import PongTest.PongWindow;
 import PongTest.Test;
 import SpaceInvaders.SpaceInvader;
+import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.MainTicTacToe;
 import TicTacToe.TicTacToe;
 import TypingGame.TypingGame; 
@@ -15,7 +16,7 @@ public class Main {
        //pong();
        //SpaceInvader();
        //TypingGame();
-       MainTicTacToe();
+       TicTacToe();
 
     }
 
@@ -38,7 +39,7 @@ public class Main {
         TypingGame typingGame = new TypingGame();
     }
 
-    public static void MainTicTacToe() {
-        
+    public static void TicTacToe() {
+        MainTicTacToe mainTicTacToe = new MainTicTacToe();
     }
 }

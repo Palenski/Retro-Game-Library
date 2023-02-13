@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 
 import Pong.PongGame;
 import PongTest.PongWindow;
+import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.MainTicTacToe;
 import TypingGame.TypingGame;
 
@@ -35,11 +36,11 @@ public class StartingWindow implements ActionListener {
 
         pongButton.addActionListener(this);
         pongButton.setBounds(255, 125, 50, 50);
-        frame.add(pongButton);
+        //frame.add(pongButton);
         
 
         TicTacToeButton.addActionListener(this);
-        //frame.add(TicTacToeButton);
+        frame.add(TicTacToeButton);
        
 
 
