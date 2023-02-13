@@ -31,7 +31,7 @@ public class TicTacToe implements ActionListener {
 
         TextFeld.setBackground(new Color(25, 25, 25));
         TextFeld.setForeground(new Color(25, 255, 0));
-        TextFeld.setFont(new Font("Ink Free", Font.BOLD, 75));
+        TextFeld.setFont(new Font("SansSerif", Font.BOLD, 75));
         TextFeld.setHorizontalAlignment(JLabel.CENTER);
         TextFeld.setText("TicTacToe");
         TextFeld.setOpaque(true);
@@ -50,10 +50,11 @@ public class TicTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
             buttonPanel.add(buttons[i]);
-            buttons[i].setFont(new Font("MV Boli", Font.BOLD, 120));
+            buttons[i].setFont(new Font("SansSerif", Font.BOLD, 120));
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
             buttons[i].setEnabled(false);
+            buttons[i].setBackground(new Color(0,0,0));
 
         }
 
