@@ -25,9 +25,11 @@ public class MainScreenTicTacToe implements ActionListener {
 
         ButtonsGrid.setLayout(new GridLayout(3,3));
         
-        start.setText("Start");
+        start.setText("<html><font color = Green> Starte: <p>Tic Tac Toe </p> </font> </html>");
         start.addActionListener(this);
         start.setSize(50,50);
+        start.setBackground(new Color(0,0,0));
+        start.setFont(new Font("SansSerif", Font.BOLD, 120));
         
 
 
@@ -37,8 +39,16 @@ public class MainScreenTicTacToe implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == start) {
-            frame.dispose();
-            TicTacToe ticTacToe = new TicTacToe();
+            start.setText("Wilkommen zu Tic Tac Toe");
+            int i = 0;
+            for(int u = 0; u<5;u++){
+                u++;
+                if(u == 4){
+                    frame.dispose();
+                    TicTacToe ticTacToe = new TicTacToe();
+                }
+            }
+            
         }
         
     }
