@@ -55,11 +55,11 @@ public class GamePanelS extends JPanel implements ActionListener{
 		
 			for(int i = 0; i< bodyParts;i++) {
 				if(i == 0) {
-					g.setColor(Color.green);
+					g.setColor(Color.blue);
 					g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
 				}
 				else {
-					g.setColor(new Color(45,180,0));
+					g.setColor(new Color(0,0,100));
 					//g.setColor(new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255)));
 					g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
 				}			
@@ -143,7 +143,7 @@ public class GamePanelS extends JPanel implements ActionListener{
 		g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
 		//Game Over text
 		g.setColor(Color.red);
-		g.setFont( new Font("Ink Free",Font.BOLD, 75));
+		g.setFont( new Font("Lucida Fax",Font.BOLD, 95));
 		FontMetrics metrics2 = getFontMetrics(g.getFont());
 		g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
 	}
