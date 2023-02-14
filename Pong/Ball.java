@@ -4,55 +4,70 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+public class Ball extends Rectangle {
 
-import javafx.scene.shape.Rectangle;
-
-public class Ball extends Rectangle{
-   
     Random random;
-    int xVelocity;
-    int yVelocity;
+    int xRichtung;
+    int yRichtung;
 
     int x;
     int y;
-    int ballWidth;
-    int ballHeighth;
+    int ballBreite;
+    int ballHöhe;
+
+  
     
-    Ball(int x, int y, int ballWidth, int ballHeighth){
+
+    Ball(int x, int y, int ballBreite, int ballHöhe) {
         this.x = x;
         this.y = y;
-        this.ballWidth = ballWidth;
-        this.ballHeighth = ballHeighth;
+        this.ballBreite = ballBreite;
+        this.ballHöhe = ballHöhe;
         random = new Random();
-        int randomXDirection = random.nextInt(2);
-        if(randomXDirection == 0){
-            randomXDirection--;
+        int randomXRichtung = random.nextInt(2);
+        if (randomXRichtung == 0) {
+            randomXRichtung--;
         }
-        setXDirection(randomXDirection);
+        setXDirection(randomXRichtung);
 
-        int randomYDirection = random.nextInt(2);
-        if (randomYDirection == 0) {
-            randomYDirection--;
+        int randomYRichtung = random.nextInt(2);
+        if (randomYRichtung == 0) {
+            randomYRichtung--;
         }
-        setYDirection(randomYDirection);
+        setYDirection(randomYRichtung);
+
+        
+    }
+
+    public void setXDirection(int randomXRichtung) {
+        xRichtung = randomXRichtung;
+    }
+
+    public void setYDirection(int randomYRichtung) {
+        yRichtung = randomYRichtung;
+    }
+
+    public void move() {
+
+       
+
+        if (y < 0 || y > 640) {
+            x = x + xRichtung;
+            yRichtung = yRichtung * -1;
+            y = y + yRichtung;
+        } else if(1==2){
+            y = y + yRichtung;
+            xRichtung = xRichtung * -1;
+            x = x + xRichtung;
+        } else {
+            x = x + xRichtung;
+            y = y + yRichtung;
+        }
 
     }
 
-    public void setXDirection(int randomXDirection){
-        xVelocity = randomXDirection;
-    }
-
-    public void setYDirection(int randomYDirection){
-        yVelocity = randomYDirection;
-    }
-
-    public void move(){
-        x = x + xVelocity;
-        y = y + yVelocity;
-    }
-
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         g.setColor(Color.white);
-        g.fillOval(x, y, ballWidth, ballHeighth);
+        g.fillOval(x, y, ballBreite, ballHöhe);
     }
 }

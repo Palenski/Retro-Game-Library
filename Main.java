@@ -1,5 +1,3 @@
-import PongTest.PongWindow;
-import PongTest.Test;
 import SpaceInvaders.SpaceInvader;
 import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.MainTicTacToe;
@@ -27,7 +25,7 @@ public class Main {
     }
 
     public static void pong(){
-        Test pong = new Test();
+        //Test pong = new Test();
         
     }
 
