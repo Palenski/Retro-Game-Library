@@ -7,6 +7,12 @@ import java.util.*;
 import javax.management.timer.Timer;
 import javax.swing.*;
 
+
+/*
+ * Das Hauptspiel "Tic Tac Toe"
+ */
+
+
 public class TicTacToe implements ActionListener {
 
     Random random = new Random();
