@@ -3,10 +3,7 @@ package TicTacToe;
 public class MainTicTacToe {
     public static void main(String[] args) {
 
-        Game();
+        MainScreenTicTacToe frame = new MainScreenTicTacToe();
     }
 
-    public static void Game() {
-        MainScreenTicTacToe mainScreenTicTacToe = new MainScreenTicTacToe();
-    }
 }
