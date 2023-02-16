@@ -36,8 +36,8 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void newBall() {
-        //random = new Random();
-        ball = new Ball(480, 305, BALL_DIAMETER, BALL_DIAMETER);
+        // random = new Random();
+        ball = new Ball(480, 305, BALL_DIAMETER, BALL_DIAMETER, 1);
     }
 
     public void newPaddles() {
@@ -56,36 +56,62 @@ public class GamePanel extends JPanel implements Runnable {
         paddle1.draw(g);
         paddle2.draw(g);
         ball.draw(g);
+        score.draw(g);
     }
 
     public void move() {
-        //paddle1.move();
-        //paddle2.move();
         ball.move();
     }
 
     public void checkCollision() {
-        //Stopt die Paddles
+        //Falls der Bal die Kante oben oder unten berührt
+        if (ball.y < 0) {   
+            ball.setYDirection(ball.yRichtung * -1);
+            ball.setSpeed(ball.speed + 0.4);
+        } else if (ball.y > 650 - ball.ballBreite) {
+            ball.setYDirection(ball.yRichtung * -1);
+            ball.setSpeed(ball.speed + 0.4);
+        }
+
+        //Falls der Ball die Paddles berührt
+        if(ball.x <= 75 && ball.x > paddle1.x && ball.y > paddle1.y && ball.y < paddle1.y + paddle1.PaddleHöhe){
+            ball.setXDirection(ball.xRichtung * -1);
+            ball.setSpeed(ball.speed + 0.4);
+        } else if (ball.x >= paddle2.x - ball.ballBreite && ball.x < paddle2.x + paddle2.PaddleBreite && ball.y > paddle2.y && ball.y < paddle2.y + paddle2.PaddleHöhe) {
+            ball.setXDirection(ball.xRichtung * -1);
+            ball.setSpeed(ball.speed + 0.4);
+        }
+       
+
+        if(ball.x <= 0){
+            score.player2++;
+            newPaddles();
+            newBall();
+        }else if(ball.x >= 1000){
+            score.player1++;
+            newPaddles();
+            newBall();
+        }
+
     }
 
     public void run() {
-        //Game loop (basic)
+        // Game loop (basic)
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.00;
         double nanoSeconds = 1000000000 / amountOfTicks;
         double delta = 0;
-        while(true){
+        while (true) {
             long now = System.nanoTime();
             delta = delta + (now - lastTime) / nanoSeconds;
             lastTime = now;
-            if(delta >= 1){
-                move();
+            if (delta >= 1) {
                 checkCollision();
+                move();
                 repaint();
                 delta--;
             }
         }
-
 
     }
 

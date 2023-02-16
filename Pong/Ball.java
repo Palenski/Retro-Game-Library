@@ -10,19 +10,22 @@ public class Ball extends Rectangle {
     int xRichtung;
     int yRichtung;
 
-    int x;
+    double x;
     int y;
     int ballBreite;
     int ballHöhe;
 
+    double speed;
+
   
     
 
-    Ball(int x, int y, int ballBreite, int ballHöhe) {
+    Ball(int x, int y, int ballBreite, int ballHöhe, double speed) {
         this.x = x;
         this.y = y;
         this.ballBreite = ballBreite;
         this.ballHöhe = ballHöhe;
+        this.speed = speed;
         random = new Random();
         int randomXRichtung = random.nextInt(2);
         if (randomXRichtung == 0) {
@@ -47,27 +50,19 @@ public class Ball extends Rectangle {
         yRichtung = randomYRichtung;
     }
 
+    public void setSpeed(double randomSpeed) {
+        speed = randomSpeed;
+    }
+
     public void move() {
 
-       
-
-        if (y < 0 || y > 640) {
-            x = x + xRichtung;
-            yRichtung = yRichtung * -1;
-            y = y + yRichtung;
-        } else if(1==2){
-            y = y + yRichtung;
-            xRichtung = xRichtung * -1;
-            x = x + xRichtung;
-        } else {
-            x = x + xRichtung;
-            y = y + yRichtung;
-        }
+       x = x + xRichtung * speed;
+       y = y + yRichtung;
 
     }
 
     public void draw(Graphics g) {
         g.setColor(Color.white);
-        g.fillOval(x, y, ballBreite, ballHöhe);
+        g.fillOval((int) x, y, ballBreite, ballHöhe);
     }
 }
