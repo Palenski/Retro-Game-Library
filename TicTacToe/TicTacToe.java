@@ -228,9 +228,7 @@ public class TicTacToe implements ActionListener {
             oWins(2, 4, 6);
         }
 
-        if(RundenZähler == 9) {
-            Draw();
-        }
+        
 
     }
 
@@ -261,6 +259,7 @@ public class TicTacToe implements ActionListener {
     }
 
     public void Draw() {
+        
         TextFeld.setText("Unentschieden");
 
         for (int i = 0; i < 9; i++) {
