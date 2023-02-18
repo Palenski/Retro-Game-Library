@@ -1,4 +1,5 @@
 import SpaceInvaders.SpaceInvader;
+import Pong.GameFrame;
 import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.MainTicTacToe;
 import TicTacToe.TicTacToe;
@@ -10,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
         
-       startingWindow();
-       //pong();
+       //startingWindow();
+       pong();
        //SpaceInvader();
        //TypingGame();
        //TicTacToe();
@@ -25,7 +26,7 @@ public class Main {
     }
 
     public static void pong(){
-        Pong.GameFrame frame = new Pong.GameFrame();
+        GameFrame frame = new GameFrame();
         
     }
 
