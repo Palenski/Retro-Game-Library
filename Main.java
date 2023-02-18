@@ -10,11 +10,11 @@ public class Main {
     public static void main(String[] args) {
 
         
-       //startingWindow();
+       startingWindow();
        //pong();
        //SpaceInvader();
        //TypingGame();
-       TicTacToe();
+       //TicTacToe();
 
     }
 
@@ -25,7 +25,7 @@ public class Main {
     }
 
     public static void pong(){
-        //Test pong = new Test();
+        Pong.GameFrame frame = new Pong.GameFrame();
         
     }
 
