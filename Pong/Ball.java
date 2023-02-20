@@ -11,7 +11,7 @@ public class Ball extends Rectangle {
     int yRichtung;
 
     double x;
-    int y;
+    double y;
     int ballBreite;
     int ballHöhe;
 
@@ -57,12 +57,12 @@ public class Ball extends Rectangle {
     public void move() {
 
        x = x + xRichtung * speed;
-       y = y + yRichtung;
+       y = y + yRichtung * (speed / 2);
 
     }
 
     public void draw(Graphics g) {
         g.setColor(Color.white);
-        g.fillOval((int) x, y, ballBreite, ballHöhe);
+        g.fillOval((int) x, (int) y, ballBreite, ballHöhe);
     }
 }

@@ -3,17 +3,18 @@ package Pong;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    static final int GAME_WIDTH = 1000;
-    static final int GAME_HEIGTH = 650;
-    static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH, GAME_HEIGTH);
-    static final int BALL_DIAMETER = 20;
-    static final int PADDLE_WIDTH = 25;
-    static final int PADDLE_HEIGTH = 150;
+    static final int breite = 1000;
+    static final int höhe = 650;
+    static final Dimension screen = new Dimension(breite, höhe);
+    static final int ball_diameter = 20;
+    static final int paddle_breite = 25;
+    static final int paddle_höhe = 150;
     Thread gameThread;
     Image image;
     Graphics graphics;
@@ -26,23 +27,22 @@ public class GamePanel extends JPanel implements Runnable {
     GamePanel() {
         newPaddles();
         newBall();
-        score = new Score(GAME_WIDTH, GAME_HEIGTH);
+        score = new Score(breite, höhe);
         this.setFocusable(true);
         this.addKeyListener(new AL());
-        this.setPreferredSize(SCREEN_SIZE);
+        this.setPreferredSize(screen);
 
         gameThread = new Thread(this);
         gameThread.start();
     }
 
     public void newBall() {
-        // random = new Random();
-        ball = new Ball(480, 305, BALL_DIAMETER, BALL_DIAMETER, 1);
+        ball = new Ball(480, 305, ball_diameter, ball_diameter, 1);
     }
 
     public void newPaddles() {
-        paddle1 = new Paddle(50, 225, PADDLE_WIDTH, PADDLE_HEIGTH, 1);
-        paddle2 = new Paddle(925, 225, PADDLE_WIDTH, PADDLE_HEIGTH, 2);
+        paddle1 = new Paddle(50, 225, paddle_breite, paddle_höhe, 1);
+        paddle2 = new Paddle(925, 225, paddle_breite, paddle_höhe, 2);
     }
 
     public void paint(Graphics g) {
@@ -59,11 +59,11 @@ public class GamePanel extends JPanel implements Runnable {
         score.draw(g);
     }
 
-    public void move() {
+    public void bewegen() {
         ball.move();
     }
 
-    public void checkCollision() {
+    public void checkCollision(){
         //Falls der Bal die Kante oben oder unten berührt
         if (ball.y < 0) {   
             ball.setYDirection(ball.yRichtung * -1);
@@ -84,13 +84,15 @@ public class GamePanel extends JPanel implements Runnable {
        
 
         if(ball.x <= 0){
-            score.player2++;
+            score.spieler2++;
             newPaddles();
             newBall();
+            
         }else if(ball.x >= 1000){
-            score.player1++;
+            score.spieler1++;
             newPaddles();
             newBall();
+            
         }
 
     }
@@ -107,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
             lastTime = now;
             if (delta >= 1) {
                 checkCollision();
-                move();
+                bewegen();
                 repaint();
                 delta--;
             }

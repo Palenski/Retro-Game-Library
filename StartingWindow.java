@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import Pong.PongGame;
+
 
 import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.MainTicTacToe;
@@ -72,7 +72,7 @@ public class StartingWindow implements ActionListener {
 
         if (e.getSource() == pongButton) {
             frame.dispose();
-           PongGame pongGame = new PongGame();
+           Main.pong();
 
         }
 

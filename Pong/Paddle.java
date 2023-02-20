@@ -14,7 +14,7 @@ public class Paddle extends Rectangle {
     int PaddleBreite;
     int PaddleHöhe;
     int yRichtung;
-    int yGeschwindigkeit = 10;
+    int yGeschwindigkeit = 15;
 
     Paddle(int x, int y, int PaddleBreite, int PaddleHöhe, int id) {
 
