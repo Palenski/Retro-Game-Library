@@ -7,11 +7,9 @@ import java.util.*;
 import javax.management.timer.Timer;
 import javax.swing.*;
 
-
 /*
  * Das Hauptspiel "Tic Tac Toe"
  */
-
 
 public class TicTacToe implements ActionListener {
 
@@ -60,7 +58,7 @@ public class TicTacToe implements ActionListener {
             buttons[i].setFocusable(false);
             buttons[i].addActionListener(this);
             buttons[i].setEnabled(false);
-            buttons[i].setBackground(new Color(0,0,0));
+            buttons[i].setBackground(new Color(0, 0, 0));
 
         }
 
@@ -228,11 +226,18 @@ public class TicTacToe implements ActionListener {
             oWins(2, 4, 6);
         }
 
-        
+        if (RundenZähler == 9) {
+            for (int i = 0; i < 9; i++) {
+                buttons[i].setEnabled(false);
+            }
+
+            TextFeld.setText("Unentschieden");
+        }
 
     }
 
     public void xWins(int a, int b, int c) {
+
         buttons[a].setBackground(Color.GREEN);
         buttons[b].setBackground(Color.GREEN);
         buttons[c].setBackground(Color.GREEN);
@@ -255,11 +260,11 @@ public class TicTacToe implements ActionListener {
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
-        // frame.add(RestartButton);
+
     }
 
     public void Draw() {
-        
+
         TextFeld.setText("Unentschieden");
 
         for (int i = 0; i < 9; i++) {
@@ -269,7 +274,5 @@ public class TicTacToe implements ActionListener {
         frame.add(RestartButton);
 
     }
-
-
 
 }
