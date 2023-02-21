@@ -81,8 +81,8 @@ public class TicTacToeGame implements ActionListener {
                         buttons[i].setText("X");
                         player1_turn = false;
                         TextFeld.setText("O ist am Zug");
-                        RundenZähler++;
                         Überprüfung();
+                        RundenZähler++;
                     }
                 } else {
                     if (buttons[i].getText() == "") {
@@ -90,8 +90,8 @@ public class TicTacToeGame implements ActionListener {
                         buttons[i].setText("O");
                         player1_turn = true;
                         TextFeld.setText("X ist am Zug");
-                        RundenZähler++;
                         Überprüfung();
+                        RundenZähler++;
                     }
                 }
             }
