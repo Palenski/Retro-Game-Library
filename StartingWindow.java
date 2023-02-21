@@ -13,11 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 
-
-import TicTacToe.MainScreenTicTacToe;
-import TicTacToe.MainTicTacToe;
-import TypingGame.TypingGame;
-
 public class StartingWindow implements ActionListener {
 
     JFrame frame = new JFrame();
@@ -66,7 +61,7 @@ public class StartingWindow implements ActionListener {
     public void actionPerformed(ActionEvent e) { // einfache Weiterleitung an die verschiedenen Fenster
         if (e.getSource() == typingButton) {
             frame.dispose();
-            TypingGame typingGame = new TypingGame();
+            Main.TypingGame();
 
         }
 
@@ -78,7 +73,7 @@ public class StartingWindow implements ActionListener {
 
         if(e.getSource() == TicTacToeButton){
             frame.dispose();
-            MainTicTacToe mainTicTacToe = new MainTicTacToe();
+            Main.TicTacToe();
         }
     }
 

@@ -21,7 +21,7 @@ public class MainScreenTicTacToe implements ActionListener {
     JButton start = new JButton();
     JPanel ButtonsGrid = new JPanel();
 
-    MainScreenTicTacToe(){
+    public MainScreenTicTacToe(){
 
 
 
@@ -49,7 +49,7 @@ public class MainScreenTicTacToe implements ActionListener {
         if(e.getSource() == start) {
            
             timer();
-            TicTacToe ticTacToe = new TicTacToe();   
+            TicTacToeGame ticTacToe = new TicTacToeGame();   
             frame.dispose();      
         }
         

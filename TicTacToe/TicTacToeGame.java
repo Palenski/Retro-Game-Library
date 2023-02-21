@@ -11,7 +11,7 @@ import javax.swing.*;
  * Das Hauptspiel "Tic Tac Toe"
  */
 
-public class TicTacToe implements ActionListener {
+public class TicTacToeGame implements ActionListener {
 
     Random random = new Random();
     JFrame frame = new JFrame();
@@ -25,7 +25,7 @@ public class TicTacToe implements ActionListener {
     int RundenZähler = 0;
     int delay = 0;
 
-    TicTacToe() {
+    TicTacToeGame() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
@@ -98,7 +98,7 @@ public class TicTacToe implements ActionListener {
         }
 
         if (e.getSource() == RestartButton) {
-            TicTacToe ticTacToe = new TicTacToe();
+            TicTacToeGame ticTacToe = new TicTacToeGame();
         }
 
     }
