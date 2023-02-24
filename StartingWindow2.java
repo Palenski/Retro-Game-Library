@@ -24,7 +24,11 @@ public class StartingWindow2 implements ActionListener {
     JButton typingGameButton = new JButton("Typing Game");
     JButton spaceInvadersButton = new JButton("Space Invader");
 
-    JButton logOutButton = new JButton("Log Out");
+    JButton snakeButton = new JButton("Snake");
+
+    JButton logOutButton = new JButton("Beenden");
+
+    public static int Test = 0;
 
     StartingWindow2() {
 
@@ -44,6 +48,10 @@ public class StartingWindow2 implements ActionListener {
         spaceInvadersButton.setFocusable(false);
         spaceInvadersButton.addActionListener(this);
 
+        snakeButton.setBounds(5,350,398,50);
+        snakeButton.setFocusable(false);
+        snakeButton.addActionListener(this);
+
         logOutButton.setBounds(5, 350, 398, 50);
         logOutButton.setFocusable(false);
         logOutButton.addActionListener(this);
@@ -61,11 +69,12 @@ public class StartingWindow2 implements ActionListener {
         frame.add(tictactoeButton);
         frame.add(typingGameButton);
         frame.add(spaceInvadersButton);
+        frame.add(snakeButton);
         frame.add(logOutButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 450);
-        frame.setTitle("Anmeldung");
+        frame.setTitle("Startscreen");
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setResizable(false);
@@ -80,6 +89,9 @@ public class StartingWindow2 implements ActionListener {
         if (e.getSource() == tictactoeButton) {
             frame.dispose();
             Main.TicTacToe();
+
+
+            
         }
 
         if (e.getSource() == typingGameButton) {
@@ -91,10 +103,17 @@ public class StartingWindow2 implements ActionListener {
             frame.dispose();
             Main.SpaceInvader();
         }
+
+        if(e.getSource() == snakeButton) {
+            frame.dispose();
+            //fehlt noch start für Snake
+        }
         
         if (e.getSource() == logOutButton) {
             frame.dispose();
         }
     }
+
+    
 
 }

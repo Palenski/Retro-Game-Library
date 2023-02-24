@@ -1,5 +1,9 @@
 import SpaceInvaders.SpaceInvader;
 import Pong.GameFrame;
+import SnakeGame.GameFrameS;
+import SnakeGame.GamePanelS;
+
+import SnakeGame.SnakeGame;
 import TicTacToe.MainScreenTicTacToe;
 
 import TypingGame.TypingGame; 
@@ -45,4 +49,6 @@ public class Main {
     public static void TicTacToe() {
         MainScreenTicTacToe frame = new MainScreenTicTacToe();
     }
+
+    
 }

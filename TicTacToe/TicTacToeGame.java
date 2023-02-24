@@ -20,10 +20,13 @@ public class TicTacToeGame implements ActionListener {
     JLabel TextFeld = new JLabel();
     JButton[] buttons = new JButton[9];
     JButton RestartButton = new JButton();
+    JButton BackToStart = new JButton();
     boolean player1_turn;
 
     int RundenZähler = 0;
     int delay = 0;
+    int XScore = 0;
+    int OScore = 0;
 
     TicTacToeGame() {
 
@@ -35,7 +38,7 @@ public class TicTacToeGame implements ActionListener {
 
         TextFeld.setBackground(new Color(0, 0, 0));
         TextFeld.setForeground(new Color(25, 255, 0));
-        TextFeld.setFont(new Font("SansSerif", Font.BOLD, 75));
+        TextFeld.setFont(new Font("SansSerif", Font.BOLD, 65));
         TextFeld.setHorizontalAlignment(JLabel.CENTER);
         TextFeld.setText("TicTacToe");
         TextFeld.setOpaque(true);
@@ -46,10 +49,15 @@ public class TicTacToeGame implements ActionListener {
         buttonPanel.setLayout(new GridLayout(3, 3));
         buttonPanel.setBackground(new Color(150, 150, 150));
 
-        RestartButton.setLayout(new GridLayout(3, 3));
+        RestartButton.setHorizontalAlignment(JButton.CENTER);
         RestartButton.setText("Neustart?");
         RestartButton.addActionListener(this);
         RestartButton.setVisible(true);
+
+        BackToStart.setHorizontalAlignment(JButton.CENTER);
+        BackToStart.setText("Zurück zum Start?");
+        BackToStart.addActionListener(this);
+        BackToStart.setVisible(true);
 
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
@@ -80,7 +88,7 @@ public class TicTacToeGame implements ActionListener {
                         buttons[i].setForeground(new Color(255, 0, 0));
                         buttons[i].setText("X");
                         player1_turn = false;
-                        TextFeld.setText("O ist am Zug");
+                        TextFeld.setText("X:" + XScore + "    O ist am Zug   " + "O:" + OScore);
                         Überprüfung();
                         RundenZähler++;
                     }
@@ -89,7 +97,7 @@ public class TicTacToeGame implements ActionListener {
                         buttons[i].setForeground(new Color(0, 0, 255));
                         buttons[i].setText("O");
                         player1_turn = true;
-                        TextFeld.setText("X ist am Zug");
+                        TextFeld.setText("X:" + XScore + "    X ist am Zug   " + "O:" + OScore);
                         Überprüfung();
                         RundenZähler++;
                     }
@@ -99,6 +107,12 @@ public class TicTacToeGame implements ActionListener {
 
         if (e.getSource() == RestartButton) {
             TicTacToeGame ticTacToe = new TicTacToeGame();
+            frame.dispose();
+        }
+
+        if(e.getSource() == BackToStart) {
+                
+            frame.dispose();
         }
 
     }
@@ -115,7 +129,7 @@ public class TicTacToeGame implements ActionListener {
 
         if (random.nextInt(2) == 0) { // es wird ausgelost wer zuerst am Zug ist
             player1_turn = true;
-            TextFeld.setText("X ist am Zug");
+            TextFeld.setText("X:" + XScore + "    O ist am Zug   " + "O:" + OScore);
         } else {
             player1_turn = false;
             TextFeld.setText("O ist am Zug");
@@ -248,6 +262,8 @@ public class TicTacToeGame implements ActionListener {
             buttons[i].setEnabled(false);
         }
 
+        frame.add(RestartButton, BorderLayout.PAGE_END);
+        frame.add(BackToStart, BorderLayout.SOUTH);
     }
 
     public void oWins(int a, int b, int c) {
@@ -261,6 +277,8 @@ public class TicTacToeGame implements ActionListener {
             buttons[i].setEnabled(false);
         }
 
+        frame.add(RestartButton, BorderLayout.SOUTH);
+
     }
 
     public void Draw() {
@@ -271,7 +289,7 @@ public class TicTacToeGame implements ActionListener {
             buttons[i].remove(i);
         }
 
-        frame.add(RestartButton);
+        frame.add(RestartButton,BorderLayout.SOUTH);
 
     }
 
