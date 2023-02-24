@@ -16,7 +16,7 @@ public class StartingWindow2 implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    JButton titleButton = new JButton("Bitte wählen Sie eine der Optionen");
+    JButton titleButton = new JButton("Wähle ein Spiel");
 
     JButton pongButton = new JButton("Pong");
     JButton tictactoeButton = new JButton("TicTacToe");
