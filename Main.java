@@ -18,8 +18,8 @@ public class Main {
        //pong();
        //SpaceInvader();
        //TypingGame();
-       TicTacToe();
-       //startingWindow2();
+       //TicTacToe();
+       startingWindow2();
        //Snake();
 
     }

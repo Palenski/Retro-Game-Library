@@ -106,7 +106,7 @@ public class StartingWindow2 implements ActionListener {
 
         if(e.getSource() == snakeButton) {
             frame.dispose();
-            //fehlt noch start für Snake
+            Main.Snake();
         }
         
         if (e.getSource() == logOutButton) {
