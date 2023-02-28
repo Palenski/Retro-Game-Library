@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class GameFrameS extends JFrame{
 
-	GameFrameS(){
+	public GameFrameS(){
 			
 		this.add(new GamePanelS());
 		this.setTitle("Snake");

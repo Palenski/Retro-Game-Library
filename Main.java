@@ -19,7 +19,8 @@ public class Main {
        //SpaceInvader();
        //TypingGame();
        //TicTacToe();
-       startingWindow2();
+       //startingWindow2();
+       Snake();
 
     }
 
@@ -48,6 +49,10 @@ public class Main {
 
     public static void TicTacToe() {
         MainScreenTicTacToe frame = new MainScreenTicTacToe();
+    }
+
+    public static void Snake() {
+        GameFrameS snake = new GameFrameS();
     }
 
     
