@@ -26,19 +26,20 @@ public class MainScreenTicTacToe implements ActionListener {
 
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 900);
+        frame.setSize(750, 700);
         frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
 
         ButtonsGrid.setLayout(new GridLayout(3,3));
         
-        start.setText("<html> <p> <font color = Green> Wilkommen zu Tic Tac Toe </font> </p>  <p><font color = Green> Drücke um zu starten</font> </p></html>"); 
+        start.setText("<html><p><font color = Green>Tic Tac Toe </font> </p></html>"); 
         start.addActionListener(this);
         start.setSize(50,50);
         start.setBackground(new Color(0,0,0));
         start.setFont(new Font("SansSerif", Font.BOLD, 120));
-        
+    
 
 
         frame.add(start);

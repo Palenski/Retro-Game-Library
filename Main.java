@@ -18,9 +18,9 @@ public class Main {
        //pong();
        //SpaceInvader();
        //TypingGame();
-       //TicTacToe();
+       TicTacToe();
        //startingWindow2();
-       Snake();
+       //Snake();
 
     }
 
