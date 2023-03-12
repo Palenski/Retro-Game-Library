@@ -133,10 +133,7 @@ public class StartingWindow2 implements ActionListener {
             Main.TypingGame();
         }
 
-        if (e.getSource() == spaceInvadersButton) {
-            frame.dispose();
-            Main.SpaceInvader();
-        }
+        
 
         if(e.getSource() == snakeButton) {
             frame.dispose();

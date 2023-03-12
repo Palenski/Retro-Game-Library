@@ -1,9 +1,10 @@
-import SpaceInvaders.SpaceInvader;
+
 import Pong.GameFrame;
 import SnakeGame.GameFrameS;
 import SnakeGame.GamePanelS;
 
 import SnakeGame.SnakeGame;
+
 import TicTacToe.MainScreenTicTacToe;
 
 import TypingGame.TypingGame; 
@@ -19,8 +20,9 @@ public class Main {
        //SpaceInvader();
        //TypingGame();
        //TicTacToe();
-       startingWindow2();
+       //startingWindow2();
        //Snake();
+
 
     }
 
@@ -39,9 +41,7 @@ public class Main {
         
     }
 
-    public static void SpaceInvader(){
-        SpaceInvader spaceInvader = new SpaceInvader();
-    }
+    
 
     public static void TypingGame(){
         TypingGame typingGame = new TypingGame();
