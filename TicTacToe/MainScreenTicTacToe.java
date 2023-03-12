@@ -50,7 +50,7 @@ public class MainScreenTicTacToe implements ActionListener {
         if(e.getSource() == start) {
            
             timer();
-            TicTacToeGame ticTacToe = new TicTacToeGame();   
+            TicTacToeGame ticTacToe = new TicTacToeGame();  
             frame.dispose();      
         }
         

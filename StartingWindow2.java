@@ -15,54 +15,54 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class StartingWindow2 implements ActionListener {
 
     JFrame frame = new JFrame();
 
-
-   
-
-
-
     JButton titleButton = new JButton("Wähle ein Spiel");
     
+    ImageIcon iconPong = new ImageIcon("Images/discover.png");
+    JButton pongButton = new JButton(iconPong);
 
-    Icon normal = new ImageIcon(getClass().getResource("Images/Pong.png"));
-  
+    ImageIcon iconTicTacToe = new ImageIcon("");
+    JButton tictactoeButton = new JButton(iconTicTacToe);
     
-    JButton pongButton = new JButton(normal);
-
-    JButton tictactoeButton = new JButton();
-    //static ImageIcon iconTicTactToe = new ImageIcon();
-
-    JButton typingGameButton = new JButton("Typing Game");
-    static ImageIcon icontypigingGame = new ImageIcon();
-
-    JButton spaceInvadersButton = new JButton("Space Invader");
-    static ImageIcon iconSpaceInvaders = new ImageIcon();
-
-    JButton snakeButton = new JButton("Snake");
-    static ImageIcon iconSnakeButton = new ImageIcon();
-
-    JButton spiel6 = new JButton("6");
-    static ImageIcon iconSpiel6 = new ImageIcon();
+    ImageIcon iconTypingGame = new ImageIcon("");
+    JButton typingGameButton = new JButton(iconTypingGame);
+    
+    
+    ImageIcon iconSpaceInvaders = new ImageIcon("");
+    JButton spaceInvadersButton = new JButton(iconSpaceInvaders);
+    
+    ImageIcon iconSnake = new ImageIcon("");
+    JButton snakeButton = new JButton(iconSnake);
+    
+    ImageIcon iconGame6 = new ImageIcon("");
+    JButton spiel6 = new JButton(iconGame6);
+    
 
     JButton logOutButton = new JButton("Beenden");
 
 
     StartingWindow2() {
 
+        
+        
+
         pongButton.setBounds(8, 110, 398, 125);
         pongButton.setFocusable(false);
         pongButton.addActionListener(this);
+        pongButton.setBorderPainted(false);
+        
 
         tictactoeButton.setBounds(8, 245, 398, 125);
         tictactoeButton.setFocusable(false);
         tictactoeButton.addActionListener(this);
       
-        tictactoeButton.setIcon(new ImageIcon("Pong.png"));
+       
 
 
         typingGameButton.setBounds(8, 380, 398, 125);
