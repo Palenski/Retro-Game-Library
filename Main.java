@@ -15,7 +15,6 @@ public class Main {
     public static void main(String[] args) {
 
         
-       //startingWindow();
        //pong();
        //SpaceInvader();
        //TypingGame();
@@ -28,10 +27,7 @@ public class Main {
 
 
 
-    public static void startingWindow(){
-        StartingWindow startingWindow = new StartingWindow();
-    }
-
+    
     public static void startingWindow2(){
         StartingWindow2 startingWindow2 = new StartingWindow2();
     }
@@ -40,8 +36,6 @@ public class Main {
         GameFrame frame = new GameFrame();
         
     }
-
-    
 
     public static void TypingGame(){
         TypingGame typingGame = new TypingGame();
