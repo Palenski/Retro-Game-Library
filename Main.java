@@ -20,7 +20,7 @@ public class Main {
        //SpaceInvader();
        //TypingGame();
        //TicTacToe();
-       //startingWindow2();
+       startingWindow2();
        //Snake();
 
 

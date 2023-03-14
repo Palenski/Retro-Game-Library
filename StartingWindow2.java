@@ -22,29 +22,28 @@ public class StartingWindow2 implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    JButton titleButton = new JButton("Wähle ein Spiel");
+    JButton titleButton = new JButton("<html><p><font color = Black>Wähle dein Spiel </font> </p></html>");
     
     ImageIcon iconPong = new ImageIcon("Images/discover.png");
     JButton pongButton = new JButton(iconPong);
 
-    ImageIcon iconTicTacToe = new ImageIcon("");
+    ImageIcon iconTicTacToe = new ImageIcon("Images/tictactoe.png");
     JButton tictactoeButton = new JButton(iconTicTacToe);
     
     ImageIcon iconTypingGame = new ImageIcon("");
     JButton typingGameButton = new JButton(iconTypingGame);
-    
-    
+
     ImageIcon iconSpaceInvaders = new ImageIcon("");
     JButton spaceInvadersButton = new JButton(iconSpaceInvaders);
     
-    ImageIcon iconSnake = new ImageIcon("");
+    ImageIcon iconSnake = new ImageIcon("Images/Snake-Title.png");
     JButton snakeButton = new JButton(iconSnake);
     
-    ImageIcon iconGame6 = new ImageIcon("");
+    ImageIcon iconGame6 = new ImageIcon("Images/handzeichen-ikonensatz-von-schere-stein-papier-rockpaperscissorsvector-illustration-190036698.jpg");
     JButton spiel6 = new JButton(iconGame6);
     
-
-    JButton logOutButton = new JButton("Beenden");
+    ImageIcon iconExit = new ImageIcon("Images/81ZEliCxW5L._AC_UL320_.jpg");
+    JButton logOutButton = new JButton(iconExit);
 
 
     StartingWindow2() {
@@ -61,6 +60,8 @@ public class StartingWindow2 implements ActionListener {
         tictactoeButton.setBounds(8, 245, 398, 125);
         tictactoeButton.setFocusable(false);
         tictactoeButton.addActionListener(this);
+        tictactoeButton.setBorderPainted(false);
+        tictactoeButton.setBackground(Color.black);
       
        
 
@@ -68,27 +69,34 @@ public class StartingWindow2 implements ActionListener {
         typingGameButton.setBounds(8, 380, 398, 125);
         typingGameButton.setFocusable(false);
         typingGameButton.addActionListener(this);
+        typingGameButton.setBorderPainted(false);
 
         spaceInvadersButton.setBounds(415, 110, 398, 125);
         spaceInvadersButton.setFocusable(false);
         spaceInvadersButton.addActionListener(this);
+        spaceInvadersButton.setBorderPainted(false);
 
         snakeButton.setBounds(415,245,398,125);
         snakeButton.setFocusable(false);
         snakeButton.addActionListener(this);
+        snakeButton.setBorderPainted(false);
 
         spiel6.setBounds(415, 380, 398, 125);
         spiel6.setFocusable(false);
         spiel6.addActionListener(this);
+        spiel6.setBorderPainted(false);
 
         logOutButton.setBounds(8, 515, 805, 125);
         logOutButton.setFocusable(false);
         logOutButton.addActionListener(this);
+        logOutButton.setContentAreaFilled(false);
+        logOutButton.setBorderPainted(false);
 
         titleButton.setBounds(0, 0, 820, 100);
         titleButton.addActionListener(this);
         titleButton.setFocusable(false);
         titleButton.setFont(new Font(null, Font.BOLD, 43));
+
         titleButton.setContentAreaFilled(false);
         titleButton.setBorderPainted(false);
 
