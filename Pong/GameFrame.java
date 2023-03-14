@@ -7,7 +7,9 @@ import java.util.*;
 
 public class GameFrame extends JFrame{
     
-    GamePanel panel = new GamePanel();;
+    public static GamePanel panel = new GamePanel();
+    
+    
     
     public GameFrame(){     //Erstellt den Frame
         
@@ -19,6 +21,14 @@ public class GameFrame extends JFrame{
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        
+        
+        
     }
+
+    public static void close(){
+        
+    }
+    
 
 }

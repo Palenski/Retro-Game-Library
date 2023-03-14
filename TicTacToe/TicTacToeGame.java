@@ -7,6 +7,8 @@ import java.util.*;
 import javax.management.timer.Timer;
 import javax.swing.*;
 
+import Main.Main;
+
 /*
  * Das Hauptspiel "Tic Tac Toe"
  */
@@ -78,6 +80,8 @@ public class TicTacToeGame implements ActionListener {
         firstTurn();
 
     }
+
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -293,5 +297,8 @@ public class TicTacToeGame implements ActionListener {
         frame.add(RestartButton,BorderLayout.SOUTH);
 
     }
+
+
+    
 
 }

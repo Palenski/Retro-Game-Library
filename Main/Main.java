@@ -1,3 +1,4 @@
+package Main;
 
 import Pong.GameFrame;
 import SnakeGame.GameFrameS;
@@ -25,16 +26,18 @@ public class Main {
 
     }
 
-
-
-    
     public static void startingWindow2(){
         StartingWindow2 startingWindow2 = new StartingWindow2();
     }
 
+
+    static GameFrame pong1;
     public static void pong(){
-        GameFrame frame = new GameFrame();
-        
+       pong1 = new GameFrame();
+    }
+
+    public static void pongclose(){
+        pong1.dispose();
     }
 
     public static void TypingGame(){

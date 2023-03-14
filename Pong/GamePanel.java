@@ -1,5 +1,7 @@
 package Pong;
 
+import Main.Main;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -120,6 +122,10 @@ public class GamePanel extends JPanel implements Runnable {
         public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                Main.pongclose();
+                Main.startingWindow2();
+            }
         }
 
         public void KeyReleased(KeyEvent e) {
