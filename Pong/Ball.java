@@ -1,7 +1,7 @@
 package Pong;
 
 import java.awt.*;
-import java.awt.event.*;
+
 import java.util.*;
 
 public class Ball extends Rectangle {
@@ -17,9 +17,6 @@ public class Ball extends Rectangle {
 
     double speed;
 
-  
-    
-
     Ball(int x, int y, int ballBreite, int ballHöhe, double speed) {
         this.x = x;
         this.y = y;
@@ -27,7 +24,7 @@ public class Ball extends Rectangle {
         this.ballHöhe = ballHöhe;
         this.speed = speed;
         random = new Random();
-        int randomXRichtung = random.nextInt(2);
+        int randomXRichtung = random.nextInt(2);    //Sorgt für einen fairen Start
         if (randomXRichtung == 0) {
             randomXRichtung--;
         }
@@ -54,14 +51,14 @@ public class Ball extends Rectangle {
         speed = randomSpeed;
     }
 
-    public void move() {
+    public void move() {        //bewegt den Ball
 
        x = x + xRichtung * speed;
        y = y + yRichtung * (speed / 2);
 
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics g) {      //Grafische Darstellung
         g.setColor(Color.white);
         g.fillOval((int) x, (int) y, ballBreite, ballHöhe);
     }

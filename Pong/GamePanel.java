@@ -1,5 +1,7 @@
 package Pong;
 
+import Main.Main;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -24,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     Ball ball;
     Score score;
 
-    GamePanel() {
+    GamePanel() {   //Spieloberfläche, welche alle Klassen beeinhaltet
         newPaddles();
         newBall();
         score = new Score(breite, höhe);
@@ -36,16 +38,16 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
 
-    public void newBall() {
+    public void newBall() {     //Erstllung des Balls
         ball = new Ball(480, 305, ball_diameter, ball_diameter, 1);
     }
 
-    public void newPaddles() {
+    public void newPaddles() {      //Erstellung der Paddle
         paddle1 = new Paddle(50, 225, paddle_breite, paddle_höhe, 1);
         paddle2 = new Paddle(925, 225, paddle_breite, paddle_höhe, 2);
     }
 
-    public void paint(Graphics g) {
+    public void paint(Graphics g) {     //Grafische Darstellung
         image = createImage(getWidth(), getHeight());
         graphics = image.getGraphics();
         draw(graphics);
@@ -97,8 +99,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void run() {
-        // Game loop (basic)
+    public void run() {     //Standart Gameloop
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.00;
         double nanoSeconds = 1000000000 / amountOfTicks;
@@ -117,10 +118,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public class AL extends KeyAdapter {
+    public class AL extends KeyAdapter {        //Guckt, ob Paddles bewegt werden müssen
         public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                Main.pongclose();
+                Main.startingWindow2();
+            }
         }
 
         public void KeyReleased(KeyEvent e) {

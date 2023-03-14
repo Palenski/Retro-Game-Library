@@ -1,9 +1,11 @@
-import SpaceInvaders.SpaceInvader;
+package Main;
+
 import Pong.GameFrame;
 import SnakeGame.GameFrameS;
 import SnakeGame.GamePanelS;
 
 import SnakeGame.SnakeGame;
+
 import TicTacToe.MainScreenTicTacToe;
 
 import TypingGame.TypingGame; 
@@ -14,7 +16,6 @@ public class Main {
     public static void main(String[] args) {
 
         
-       //startingWindow();
        //pong();
        //SpaceInvader();
        //TypingGame();
@@ -22,25 +23,21 @@ public class Main {
        startingWindow2();
        //Snake();
 
-    }
 
-
-
-    public static void startingWindow(){
-        StartingWindow startingWindow = new StartingWindow();
     }
 
     public static void startingWindow2(){
         StartingWindow2 startingWindow2 = new StartingWindow2();
     }
 
+
+    static GameFrame pong1;
     public static void pong(){
-        GameFrame frame = new GameFrame();
-        
+       pong1 = new GameFrame();
     }
 
-    public static void SpaceInvader(){
-        SpaceInvader spaceInvader = new SpaceInvader();
+    public static void pongclose(){
+        pong1.dispose();
     }
 
     public static void TypingGame(){
