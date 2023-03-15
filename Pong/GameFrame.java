@@ -26,9 +26,5 @@ public class GameFrame extends JFrame{
         
     }
 
-    public static void close(){
-        
-    }
     
-
 }
