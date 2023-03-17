@@ -1,10 +1,5 @@
 package ConnectFour;
 
-/**
- * ConnectFour class represents and plays the game
- * @author Celal TEMIZ
- */
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -21,14 +16,12 @@ public final class ConnectFour extends JFrame {
     private int numberOfPlayer; // Player number
     private static int livingCellNumber = 0; // Number of living cells
 
-    // GUI Requirements
     private final JFrame frame; // Frame
     private final JPanel panel; // Panel
     private final JButton[][] buttons; // Buttons
     private Cell gameBoard[][]; // Game Board
     private final GridLayout grid; // GridLayout
 
-    // Button icons
     ImageIcon empty = new ImageIcon("Images/emptycell.png");
     ImageIcon player1 = new ImageIcon("Images/player1.png");
     ImageIcon player2 = new ImageIcon("Images/player2.png");
@@ -46,46 +39,29 @@ public final class ConnectFour extends JFrame {
         playerNumberAndBoardSize(); // Get the game parameters
         dynamicAllocation(); // Create 2D dynamic Cell array
 
-        buttons = new JButton[getBoardSize()][getBoardSize()]; // Create button array
-        grid = new GridLayout(getBoardSize(), getBoardSize()); // Create GridLayout
+        buttons = new JButton[getBoardSize()][getBoardSize()]; // Button als Array
+        grid = new GridLayout(getBoardSize(), getBoardSize()); // Erzeugt Gridlayout
         panel.setLayout(grid);
 
         // Initialization board
         initialBoard();
 
-        // Frame functions
-        // stackoverflow.com/questions/3433809/java-setvisibletrue-has-no-effect-on-gui
         frame.setContentPane(panel);
-        frame.pack(); // Automatic sizing of the window based on the added swing components
-        // frame.setResizable(false); // No resize to game board
-        frame.setLocationRelativeTo(null); // Game board will be center of the screen
-        frame.setVisible(true); // Show frame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close the frame
+        frame.pack();
+        frame.setLocationRelativeTo(null); 
+        frame.setVisible(true); 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }
 
-    /**
-     * Setter to board size
-     * 
-     * @param newSize integer to board size
-     */
+
     public void setBoardSize(int newSize) {
         size = newSize;
     }
 
-    /**
-     * Getter to board size
-     * 
-     * @return Board size
-     */
     public int getBoardSize() {
         return size;
     }
 
-    /**
-     * static function that returns the number of living cells in all the games.
-     * 
-     * @return Number of living cell in game
-     */
     public static int numberOfLivingCells() {
         return livingCellNumber;
     }
@@ -95,31 +71,28 @@ public final class ConnectFour extends JFrame {
      */
     public void playerNumberAndBoardSize() {
         // User inputs from input dialogs
-        String playerNumber = JOptionPane.showInputDialog("Player Number (1 or 2)");
-        String boardSize = JOptionPane.showInputDialog("Game Board Size");
+        String playerNumber = JOptionPane.showInputDialog("Spieler Anzahl (1 oder 2)");
+        String boardSize = JOptionPane.showInputDialog("Spielfeldgröße (mind. 4) ");
 
-        // Get player number and size of board
-        numberOfPlayer = Integer.parseInt(playerNumber);
-        int sizeOfBoard = Integer.parseInt(boardSize);
+       
+        numberOfPlayer = Integer.parseInt(playerNumber); //Anzahl der Spieler
 
-        // User input check to game board
+        int sizeOfBoard = Integer.parseInt(boardSize);      //Größe des Feldes
+
         if (sizeOfBoard < 4) {
             JFrame frameInputError = new JFrame();
             JOptionPane.showMessageDialog(frameInputError,
-                    "Board size must be greater than 4  !!",
-                    "Board Size Error",
+                    "Spielfeld muss größer sein als 4 !!!",
+                    "Spiel Feld Fehler",
                     JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
 
-        setBoardSize(sizeOfBoard); // Set to dynamic board size
+        setBoardSize(sizeOfBoard); 
     }
 
-    /**
-     * Create 2D dynamic Cell array
-     */
-    public void dynamicAllocation() {
-        // Create dynamic Cell array to game board
+    
+    public void dynamicAllocation() {   //Spielfeld als 2d Array
         gameBoard = new Cell[getBoardSize()][getBoardSize()];
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
@@ -136,12 +109,12 @@ public final class ConnectFour extends JFrame {
             for (int j = 0; j < getBoardSize(); ++j) {
                 buttons[i][j] = new JButton(empty); // Empty button
 
-                if (numberOfPlayer == 1) // Computer vs Player button listener
+                if (numberOfPlayer == 1) // Computer vs Spieler 
                 {
                     buttons[i][j].addActionListener(new listenButtonOnePlayer());
                 }
 
-                if (numberOfPlayer == 2) // Two players button listener
+                if (numberOfPlayer == 2) // Spieler vs Spieler
                 {
                     buttons[i][j].addActionListener(new listenButtonTwoPlayers());
                 }
@@ -172,21 +145,21 @@ public final class ConnectFour extends JFrame {
     public void winnerPlayer(int winner) {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
-                if (gameBoard[i][j].getCellState() == winner) {
-                    // CHECK UP TO DOWN POSITIONS
-                    if (i + 3 < getBoardSize()) {
+
+                if (gameBoard[i][j].getCellState() == winner) {     
+                    if (i + 3 < getBoardSize()) {       //Ob Zellen überhaupt da sind
                         if (gameBoard[i + 1][j].getCellState() == winner && gameBoard[i + 2][j].getCellState() == winner
-                                && gameBoard[i + 3][j].getCellState() == winner) {
-                            if (winner == 1)
+                                && gameBoard[i + 3][j].getCellState() == winner) {  //Von oben nach unten
+                            if (winner == 1)        //1 bedeutet Spieler 1
                                 showResult(1);
                             else
                                 showResult(2);
                         }
                     }
-                    // CHECK LEFT TO RIGHT POSITION
-                    if (j + 3 < getBoardSize()) {
+
+                    if (j + 3 < getBoardSize()) {     // Ob Zellen überhaupt da sind   
                         if (gameBoard[i][j + 1].getCellState() == winner && gameBoard[i][j + 2].getCellState() == winner
-                                && gameBoard[i][j + 3].getCellState() == winner) {
+                                && gameBoard[i][j + 3].getCellState() == winner) {      //Von Links nach Rechts
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -194,11 +167,10 @@ public final class ConnectFour extends JFrame {
                         }
                     }
 
-                    // CHECK DIAGONAL LEFT TO RIGHT POSITION
-                    if (i < getBoardSize() - 3 && j < getBoardSize() - 3) {
+                    if (i < getBoardSize() - 3 && j < getBoardSize() - 3) {         // Ob Zellen überhaupt da sind
                         if (gameBoard[i + 1][j + 1].getCellState() == winner
                                 && gameBoard[i + 2][j + 2].getCellState() == winner
-                                && gameBoard[i + 3][j + 3].getCellState() == winner) {
+                                && gameBoard[i + 3][j + 3].getCellState() == winner) {      //Diagonale Links nach Rechts
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -206,11 +178,10 @@ public final class ConnectFour extends JFrame {
                         }
                     }
 
-                    // CHECK DIAGONAL RIGHT TO LEFT POSITION
-                    if (i < getBoardSize() - 3 && j - 3 >= 0) {
+                    if (i < getBoardSize() - 3 && j - 3 >= 0) {      // Ob Zellen überhaupt da sind  
                         if (gameBoard[i + 1][j - 1].getCellState() == winner
                                 && gameBoard[i + 2][j - 2].getCellState() == winner
-                                && gameBoard[i + 3][j - 3].getCellState() == winner) {
+                                && gameBoard[i + 3][j - 3].getCellState() == winner) {      //Diagonale Rechts nach Links
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -220,36 +191,28 @@ public final class ConnectFour extends JFrame {
                 }
             }
         }
-    } // End winnerPlayer function
+    } 
 
-    /**
-     * Show winner player on the new frame
-     * 
-     * @param winnerPlayer integer if the parameter is equal to 1,player 1 is
-     *                     winner.Otherwise, player 2
-     */
+
     public void showResult(int winnerPlayer) {
-        JFrame frameShowResult = new JFrame();
+        JFrame frameShowResult = new JFrame();      //Neuer Gewinnerframe
         if (winnerPlayer == 1) {
             JOptionPane.showMessageDialog(frameShowResult,
-                    "\nWinner : Player 1\n\nThe new game will start.\n\n",
-                    "End Game",
+                    "\nGewinner : Spieler 1\n\nDas neue Spiel Startet.\n\n",
+                    "Spiel Benden",
                     JOptionPane.INFORMATION_MESSAGE);
             startAgain();
         } else {
             JOptionPane.showMessageDialog(frameShowResult,
-                    "\nWinner : Player 2\n\nThe new game will start.\n\n",
-                    "End Game",
+                    "\nGewinner : Spieler 2\n\nDas neue Spiel Startet.\n\n",
+                    "Spiel Benden",
                     JOptionPane.INFORMATION_MESSAGE);
             startAgain();
         }
     }
 
-    /**
-     * After the game ends, start from the beginning again
-     */
-    public void startAgain() {
 
+    public void startAgain() {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
                 gameBoard[i][j].setCellState(-99); // Initial Value
