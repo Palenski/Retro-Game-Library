@@ -43,9 +43,14 @@ public class Main {
     public static void TypingGame(){
         TypingGame typingGame = new TypingGame();
     }
-
+    
+    static MainScreenTicTacToe ticTacToe1;
     public static void TicTacToe() {
-        MainScreenTicTacToe frame = new MainScreenTicTacToe();
+        ticTacToe1 = new MainScreenTicTacToe();
+    }
+
+    public static void TicTacToeClose(){
+        ticTacToe1.dispose();
     }
 
     public static void Snake() {

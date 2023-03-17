@@ -66,4 +66,7 @@ public class MainScreenTicTacToe implements ActionListener {
         }
     }
 
+    public void dispose() {
+    }
+
 }

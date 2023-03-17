@@ -8,6 +8,7 @@ import javax.management.timer.Timer;
 import javax.swing.*;
 
 import Main.Main;
+import Pong.Paddle;
 
 /*
  * Das Hauptspiel "Tic Tac Toe"
@@ -23,6 +24,8 @@ public class TicTacToeGame implements ActionListener {
     JButton[] buttons = new JButton[9];
     JButton RestartButton = new JButton();
     JButton BackToStart = new JButton();
+    Paddle paddle1;
+    Paddle paddle2;
     boolean player1_turn;
 
     int RundenZähler = 0;
@@ -33,7 +36,7 @@ public class TicTacToeGame implements ActionListener {
     TicTacToeGame() {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700, 700);
+        frame.setSize(800, 700);
         frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
@@ -111,8 +114,12 @@ public class TicTacToeGame implements ActionListener {
         }
 
         if (e.getSource() == RestartButton) {
-            TicTacToeGame ticTacToe = new TicTacToeGame();
-            frame.dispose();
+            for (int i = 0; i < 9; i++) {
+            buttons[i].setText("");
+            buttons[i].setEnabled(true);
+            buttons[i].setForeground(new Color(0,0,0));
+            buttons[i].setBackground(Color.BLACK);
+        }
         }
 
         if(e.getSource() == BackToStart) {
@@ -262,6 +269,8 @@ public class TicTacToeGame implements ActionListener {
         buttons[c].setBackground(Color.GREEN);
 
         TextFeld.setText("X hat gewonnen!");
+        XScore++;
+        RundenZähler = 0;
 
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
@@ -277,6 +286,8 @@ public class TicTacToeGame implements ActionListener {
         buttons[c].setBackground(Color.GREEN);
 
         TextFeld.setText("O hat gewonnen!");
+        OScore++;
+        RundenZähler = 0;
 
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
@@ -298,7 +309,21 @@ public class TicTacToeGame implements ActionListener {
 
     }
 
+    public class AL extends KeyAdapter{
+        public void keyPressed(KeyEvent e) {
+            paddle1.keyPressed(e);
+            paddle2.keyPressed(e);
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                Main.TicTacToeClose();
+                Main.startingWindow2();
+            }
+        }
 
+        public void KeyReleased(KeyEvent e) {
+            paddle1.KeyReleased(e);
+            paddle2.KeyReleased(e);
+        }
+    }
     
 
 }
