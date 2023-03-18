@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-import javax.management.timer.Timer;
 import javax.swing.*;
 
 import Main.Main;
@@ -16,9 +15,7 @@ import Pong.Paddle;
 
 public class TicTacToeGame implements ActionListener {
 
-    /*
-     * 
-     */
+    
 
     Random random = new Random();
     JFrame frame = new JFrame();
@@ -175,8 +172,10 @@ public class TicTacToeGame implements ActionListener {
     public void Überprüfung() {
         /*
          * Es wird nach jedem Zu danch geprüft, ob jemand gewonnen hat
-         * Dies wird dadurch gemacht, dass alle Optionen aufgelistet sind in dieser Methode
-         * Abhänig davon wer gewinnt, wird die entsprechende Methode aufgerufen und die Werte für die
+         * Dies wird dadurch gemacht, dass alle Optionen aufgelistet sind in dieser
+         * Methode
+         * Abhänig davon wer gewinnt, wird die entsprechende Methode aufgerufen und die
+         * Werte für die
          * richtige Buttons weiter gegeben
          */
         if ((buttons[0].getText() == "X") &&
@@ -278,8 +277,10 @@ public class TicTacToeGame implements ActionListener {
         }
 
         /*
-         * Wenn der Rundenzähl auf 9 ist und keine der oben aufgeführten Optionen in Kraft tat, dann liegt ein Unentschieden vor.
-         * Die Buttons können dann nicht mehr benutzt werden und oben im Textfeld wird angezeigt das es sich um ein Unetschieden handelt
+         * Wenn der Rundenzähl auf 9 ist und keine der oben aufgeführten Optionen in
+         * Kraft tat, dann liegt ein Unentschieden vor.
+         * Die Buttons können dann nicht mehr benutzt werden und oben im Textfeld wird
+         * angezeigt das es sich um ein Unetschieden handelt
          */
         if (RundenZähler == 9) {
             for (int i = 0; i < 9; i++) {
