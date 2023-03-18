@@ -15,8 +15,6 @@ import Pong.Paddle;
 
 public class TicTacToeGame implements ActionListener {
 
-    
-
     Random random = new Random();
     JFrame frame = new JFrame();
     JPanel Titel = new JPanel();
@@ -71,6 +69,8 @@ public class TicTacToeGame implements ActionListener {
         RestartButton.setHorizontalAlignment(JButton.CENTER);
         RestartButton.setText("Neustart?");
         RestartButton.addActionListener(this);
+        RestartButton.setBackground(Color.DARK_GRAY);
+        RestartButton.setBorderPainted(false);
         RestartButton.setVisible(true);
 
         /*
@@ -99,39 +99,42 @@ public class TicTacToeGame implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent e) { //wenn der Button gedrückt wird, dann wird das hier genannte ausgeführt
+        /*
+         *  Wenn das Boolean player1_turn = True ist, dann ist Spieler 1 am Zug, wenn player1_turn = false ist, dann ist Spieler 2 am Zug
+         */
         for (int i = 0; i < 9; i++) {
             if (e.getSource() == buttons[i]) {
-                if (player1_turn) {
-                    if (buttons[i].getText() == "") {
-                        buttons[i].setForeground(new Color(255, 0, 0));
-                        buttons[i].setText("X");
-                        player1_turn = false;
-                        TextFeld.setText("X:" + XScore + "    O ist am Zug   " + "O:" + OScore);
-                        Überprüfung();
-                        RundenZähler++;
+                if (player1_turn) { //wenn unten ausgelost wurde das Spieler 1 anfängt dann greift diese Schleife (siehe Zeile 147 - 153)
+                    if (buttons[i].getText() == "") { //Wenn der Button noch nicht benutzt wurde (man kann dadurch keinen Button überschreiben)
+                        buttons[i].setForeground(new Color(255, 0, 0)); //Bei Spieler 1 ist die Schrift Rot (in RGB angegeben)
+                        buttons[i].setText("X"); //es wird X reingeschrieben
+                        player1_turn = false; //Danach ist Spieler 2 dran
+                        TextFeld.setText("X:" + XScore + "    O ist am Zug   " + "O:" + OScore); //Im Textfeld wird angezeigt, dass nun 
+                        Überprüfung(); //es wird geprüft, ob ein Spieler gewonnen
+                        RundenZähler++; //der Rundenzähler geht einen hoch
                     }
-                } else {
+                } else { //das selbe wie in Zeile 105 - 113 nur für O
                     if (buttons[i].getText() == "") {
-                        buttons[i].setForeground(new Color(0, 0, 255));
-                        buttons[i].setText("O");
-                        player1_turn = true;
+                        buttons[i].setForeground(new Color(0, 0, 255)); //Blau
+                        buttons[i].setText("O"); //Es wird O in das Feld geschrieben
+                        player1_turn = true; //Spieler 1 ist am Zug
                         TextFeld.setText("X:" + XScore + "    X ist am Zug   " + "O:" + OScore);
-                        Überprüfung();
-                        RundenZähler++;
+                        Überprüfung(); //es wird geprüft, ob ein Spieler gewonnen
+                        RundenZähler++; //der Rundenzähler geht einen hoch
                     }
                 }
             }
         }
 
-        if (e.getSource() == RestartButton) {
+        if (e.getSource() == RestartButton) { //Das Feld wird zurückgesetzt für die nächste Runde
             for (int i = 0; i < 9; i++) {
                 buttons[i].setText("");
                 buttons[i].setEnabled(true);
                 buttons[i].setForeground(new Color(0, 0, 0));
                 buttons[i].setBackground(Color.BLACK);
             }
+            RestartButton.setVisible(false);
         }
 
     }
@@ -307,6 +310,7 @@ public class TicTacToeGame implements ActionListener {
          * Der Rundenzähler wird zurück auf 0 gesetzt für die nächste Runde
          */
         TextFeld.setText("X hat gewonnen!");
+        RestartButton.setVisible(true);
         XScore++;
         RundenZähler = 0;
 
@@ -336,6 +340,7 @@ public class TicTacToeGame implements ActionListener {
          * Der Rundenzähler wird zurück auf 0 gesetzt für die nächste Runde
          */
         TextFeld.setText("O hat gewonnen!");
+        RestartButton.setVisible(true);
         OScore++;
         RundenZähler = 0;
 
