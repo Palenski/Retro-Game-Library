@@ -300,16 +300,24 @@ public class TicTacToeGame implements ActionListener {
         buttons[b].setBackground(Color.RED);
         buttons[c].setBackground(Color.RED);
 
+        /*
+         * Auf dem Textfeld wird angezeigt das X gewonnen hat
+         * Der Score von Spieler 1 geht einen hoch
+         * Der Rundenzähler wird zurück auf 0 gesetzt für die nächste Runde
+         */
         TextFeld.setText("X hat gewonnen!");
         XScore++;
         RundenZähler = 0;
 
+        /*
+         * Die Buttons werden Disabled
+         * Und der Restartbutton wird hinzugefügt
+         */
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(false);
         }
 
         frame.add(RestartButton, BorderLayout.PAGE_END);
-        frame.add(BackToStart, BorderLayout.SOUTH);
     }
 
     public void oWins(int a, int b, int c) {
@@ -321,6 +329,11 @@ public class TicTacToeGame implements ActionListener {
         buttons[b].setBackground(Color.BLUE);
         buttons[c].setBackground(Color.BLUE);
 
+        /*
+         * Auf dem Textfeld wird angezeigt das O gewonnen hat
+         * Der Score von Spieler 2 geht einen hoch
+         * Der Rundenzähler wird zurück auf 0 gesetzt für die nächste Runde
+         */
         TextFeld.setText("O hat gewonnen!");
         OScore++;
         RundenZähler = 0;
