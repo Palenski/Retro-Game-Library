@@ -16,6 +16,10 @@ import Pong.Paddle;
 
 public class TicTacToeGame implements ActionListener {
 
+    /*
+     * 
+     */
+
     Random random = new Random();
     JFrame frame = new JFrame();
     JPanel Titel = new JPanel();
@@ -28,13 +32,16 @@ public class TicTacToeGame implements ActionListener {
     Paddle paddle2;
     boolean player1_turn;
 
-    int RundenZähler = 0;
-    int delay = 0;
-    int XScore = 0;
-    int OScore = 0;
+    int RundenZähler = 0; // wird pro Runde hochgezählt
+
+    int XScore = 0; // Score von X (Spieler 1)
+    int OScore = 0; // Score von O (Spieler 2)
 
     TicTacToeGame() {
 
+        /*
+         * Wie der Frame aussieht
+         */
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 700);
         frame.getContentPane().setBackground(new Color(50, 50, 50));
@@ -42,6 +49,9 @@ public class TicTacToeGame implements ActionListener {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
+        /*
+         * Wie das Textfeld (oben) aussieht
+         */
         TextFeld.setBackground(new Color(0, 0, 0));
         TextFeld.setForeground(new Color(25, 255, 0));
         TextFeld.setFont(new Font("SansSerif", Font.BOLD, 65));
@@ -52,19 +62,24 @@ public class TicTacToeGame implements ActionListener {
         Titel.setLayout(new BorderLayout());
         Titel.setBounds(0, 0, 800, 100);
 
+        /*
+         * Es wird ein Grid erstellt, auf welchem die Buttons plaziert werden
+         */
         buttonPanel.setLayout(new GridLayout(3, 3));
         buttonPanel.setBackground(new Color(150, 150, 150));
 
+        /*
+         * Der Buttons, womit man das Spiel neustarten kann
+         */
         RestartButton.setHorizontalAlignment(JButton.CENTER);
         RestartButton.setText("Neustart?");
         RestartButton.addActionListener(this);
         RestartButton.setVisible(true);
 
-        BackToStart.setHorizontalAlignment(JButton.CENTER);
-        BackToStart.setText("Zurück zum Start?");
-        BackToStart.addActionListener(this);
-        BackToStart.setVisible(true);
-
+        /*
+         * Das Grid für die Buttons wird erstellt
+         * Es ist 3x3 groß
+         */
         for (int i = 0; i < 9; i++) {
             buttons[i] = new JButton();
             buttonPanel.add(buttons[i]);
@@ -76,6 +91,9 @@ public class TicTacToeGame implements ActionListener {
 
         }
 
+        /*
+         * Der Titel und das Grid werden hinzugefügt
+         */
         Titel.add(TextFeld);
         frame.add(Titel, BorderLayout.NORTH);
         frame.add(buttonPanel);
@@ -84,9 +102,6 @@ public class TicTacToeGame implements ActionListener {
 
     }
 
-    
-
-    @Override
     public void actionPerformed(ActionEvent e) {
 
         for (int i = 0; i < 9; i++) {
@@ -115,16 +130,11 @@ public class TicTacToeGame implements ActionListener {
 
         if (e.getSource() == RestartButton) {
             for (int i = 0; i < 9; i++) {
-            buttons[i].setText("");
-            buttons[i].setEnabled(true);
-            buttons[i].setForeground(new Color(0,0,0));
-            buttons[i].setBackground(Color.BLACK);
-        }
-        }
-
-        if(e.getSource() == BackToStart) {
-                
-            frame.dispose();
+                buttons[i].setText("");
+                buttons[i].setEnabled(true);
+                buttons[i].setForeground(new Color(0, 0, 0));
+                buttons[i].setBackground(Color.BLACK);
+            }
         }
 
     }
@@ -139,6 +149,13 @@ public class TicTacToeGame implements ActionListener {
             e.printStackTrace();
         }
 
+        /*
+         * es wird bestimmt wer anfängt
+         * eine zufällige Zahl zwischen 0 und 1 wird generiert:
+         * wenn die Zahl 0 ist, dann fängt Spieler 1 an (X). Anderenfalls beginnt
+         * Spieler 2 (O)
+         * Dies wird daraufhin oben im Textfeld angezeigt
+         */
         if (random.nextInt(2) == 0) { // es wird ausgelost wer zuerst am Zug ist
             player1_turn = true;
             TextFeld.setText("X:" + XScore + "    O ist am Zug   " + "O:" + OScore);
@@ -147,13 +164,21 @@ public class TicTacToeGame implements ActionListener {
             TextFeld.setText("O ist am Zug");
         }
 
+        /*
+         * Die Buttons auf dem Grid können benutzt werden
+         */
         for (int i = 0; i < 9; i++) {
             buttons[i].setEnabled(true);
         }
     }
 
     public void Überprüfung() {
-        // überprüfen ob X gewinnt
+        /*
+         * Es wird nach jedem Zu danch geprüft, ob jemand gewonnen hat
+         * Dies wird dadurch gemacht, dass alle Optionen aufgelistet sind in dieser Methode
+         * Abhänig davon wer gewinnt, wird die entsprechende Methode aufgerufen und die Werte für die
+         * richtige Buttons weiter gegeben
+         */
         if ((buttons[0].getText() == "X") &&
                 (buttons[1].getText() == "X") &&
                 (buttons[2].getText() == "X")) {
@@ -252,6 +277,10 @@ public class TicTacToeGame implements ActionListener {
             oWins(2, 4, 6);
         }
 
+        /*
+         * Wenn der Rundenzähl auf 9 ist und keine der oben aufgeführten Optionen in Kraft tat, dann liegt ein Unentschieden vor.
+         * Die Buttons können dann nicht mehr benutzt werden und oben im Textfeld wird angezeigt das es sich um ein Unetschieden handelt
+         */
         if (RundenZähler == 9) {
             for (int i = 0; i < 9; i++) {
                 buttons[i].setEnabled(false);
@@ -264,9 +293,12 @@ public class TicTacToeGame implements ActionListener {
 
     public void xWins(int a, int b, int c) {
 
-        buttons[a].setBackground(Color.GREEN);
-        buttons[b].setBackground(Color.GREEN);
-        buttons[c].setBackground(Color.GREEN);
+        /*
+         * Wenn Spieler 1 (X) gewonnen hat werden die Knöpfe die zum Sieg führen rot
+         */
+        buttons[a].setBackground(Color.RED);
+        buttons[b].setBackground(Color.RED);
+        buttons[c].setBackground(Color.RED);
 
         TextFeld.setText("X hat gewonnen!");
         XScore++;
@@ -281,9 +313,13 @@ public class TicTacToeGame implements ActionListener {
     }
 
     public void oWins(int a, int b, int c) {
-        buttons[a].setBackground(Color.GREEN);
-        buttons[b].setBackground(Color.GREEN);
-        buttons[c].setBackground(Color.GREEN);
+
+        /*
+         * Wenn Spieler 2 (O) gewonnen hat werden die Knöpfe die zum Sieg führen blau
+         */
+        buttons[a].setBackground(Color.BLUE);
+        buttons[b].setBackground(Color.BLUE);
+        buttons[c].setBackground(Color.BLUE);
 
         TextFeld.setText("O hat gewonnen!");
         OScore++;
@@ -305,11 +341,11 @@ public class TicTacToeGame implements ActionListener {
             buttons[i].remove(i);
         }
 
-        frame.add(RestartButton,BorderLayout.SOUTH);
+        frame.add(RestartButton, BorderLayout.SOUTH);
 
     }
 
-    public class AL extends KeyAdapter{
+    public class AL extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);
@@ -324,6 +360,5 @@ public class TicTacToeGame implements ActionListener {
             paddle2.KeyReleased(e);
         }
     }
-    
 
 }
