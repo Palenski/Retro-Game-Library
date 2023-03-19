@@ -139,6 +139,20 @@ public final class ConnectFour extends JFrame implements ActionListener {
      * 
      * @param winner integer If the player 1 is equal to 1, otherwise 2
      */
+
+    public class MyKeyAdapter extends KeyAdapter {
+        public void keyPressed(KeyEvent e) {
+            System.out.println();
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_Q:
+                    close();
+                    Main.startingWindow2();
+                    break;
+            }
+        }
+    }
+
+
     public void winnerPlayer(int winner) {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
@@ -392,18 +406,6 @@ public final class ConnectFour extends JFrame implements ActionListener {
 
         } // END ACTIONPERFORMED
     } // END listenButtonTwoPlayers CLASS
-
-    public class MyKeyAdapter extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
-            System.out.println();
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_Q:
-                    close();
-                    Main.startingWindow2();
-                    break;
-            }
-        }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
