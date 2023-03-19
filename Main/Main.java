@@ -8,23 +8,17 @@ import SnakeGame.SnakeGame;
 
 import TicTacToe.MainScreenTicTacToe;
 
-import TypingGame.TypingGame; 
+import TypingGame.TypingGame;
+import ConnectFour.ConnectFour; 
 
 public class Main {
 
     
     public static void main(String[] args) {
-
-        
-       //pong();
-       //SpaceInvader();
-       //TypingGame();
-       //TicTacToe();
        startingWindow2();
-       //Snake();
-
-
     }
+
+
 
     public static void startingWindow2(){
         StartingWindow2 startingWindow2 = new StartingWindow2();
@@ -40,8 +34,14 @@ public class Main {
         pong1.dispose();
     }
 
-    public static void TypingGame(){
-        TypingGame typingGame = new TypingGame();
+    
+
+    public static void connectFour() {
+        ConnectFour game = new ConnectFour();
+    }
+
+    public static void RockPaperScissor(){
+        
     }
     
     static MainScreenTicTacToe ticTacToe1;

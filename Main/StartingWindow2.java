@@ -24,68 +24,61 @@ public class StartingWindow2 implements ActionListener {
     JFrame frame = new JFrame();
 
     JButton titleButton = new JButton("<html><p><font color = Black>Wähle dein Spiel </font> </p></html>");
-    
+
     ImageIcon iconPong = new ImageIcon("Images/discover.png");
     JButton pongButton = new JButton(iconPong);
 
+    ImageIcon iconConnectFourButton = new ImageIcon("Images/369922d484c072edefc5a27ce992ea79.png");
+    JButton connectFourButton = new JButton(iconConnectFourButton);
+
     ImageIcon iconTicTacToe = new ImageIcon("Images/tictactoe.png");
     JButton tictactoeButton = new JButton(iconTicTacToe);
-    
-    ImageIcon iconTypingGame = new ImageIcon("");
-    JButton typingGameButton = new JButton(iconTypingGame);
 
-    ImageIcon iconSpaceInvaders = new ImageIcon("");
-    JButton spaceInvadersButton = new JButton(iconSpaceInvaders);
-    
+    ImageIcon iconRockPaperScissor = new ImageIcon(
+            "Images/handzeichen-ikonensatz-von-schere-stein-papier-rockpaperscissorsvector-illustration-190036698.jpg");
+    JButton RockPaperScissor = new JButton(iconRockPaperScissor);
+
     ImageIcon iconSnake = new ImageIcon("Images/Snake-Title.png");
     JButton snakeButton = new JButton(iconSnake);
-    
-    ImageIcon iconGame6 = new ImageIcon("Images/handzeichen-ikonensatz-von-schere-stein-papier-rockpaperscissorsvector-illustration-190036698.jpg");
-    JButton spiel6 = new JButton(iconGame6);
-    
+
+    ImageIcon iconSpaceInvaders = new ImageIcon("Images/360_F_433466592_JpXOCCvbV3kMKTWo3jZKhGBnqEafnmfw.jpg");
+    JButton spaceInvadersButton = new JButton(iconSpaceInvaders);
+
     ImageIcon iconExit = new ImageIcon("Images/81ZEliCxW5L._AC_UL320_.jpg");
     JButton logOutButton = new JButton(iconExit);
 
-
     StartingWindow2() {
-
-        
-        
 
         pongButton.setBounds(8, 110, 398, 125);
         pongButton.setFocusable(false);
         pongButton.addActionListener(this);
         pongButton.setBorderPainted(false);
-        
+
+        connectFourButton.setBounds(415, 110, 398, 125);
+        connectFourButton.setFocusable(false);
+        connectFourButton.addActionListener(this);
+        connectFourButton.setBorderPainted(false);
 
         tictactoeButton.setBounds(8, 245, 398, 125);
         tictactoeButton.setFocusable(false);
         tictactoeButton.addActionListener(this);
         tictactoeButton.setBorderPainted(false);
         tictactoeButton.setBackground(Color.black);
-      
-       
 
+        RockPaperScissor.setBounds(415, 245, 398, 125);
+        RockPaperScissor.setFocusable(false);
+        RockPaperScissor.addActionListener(this);
+        RockPaperScissor.setBorderPainted(false);
 
-        typingGameButton.setBounds(8, 380, 398, 125);
-        typingGameButton.setFocusable(false);
-        typingGameButton.addActionListener(this);
-        typingGameButton.setBorderPainted(false);
-
-        spaceInvadersButton.setBounds(415, 110, 398, 125);
-        spaceInvadersButton.setFocusable(false);
-        spaceInvadersButton.addActionListener(this);
-        spaceInvadersButton.setBorderPainted(false);
-
-        snakeButton.setBounds(415,245,398,125);
+        snakeButton.setBounds(8, 380, 398, 125);
         snakeButton.setFocusable(false);
         snakeButton.addActionListener(this);
         snakeButton.setBorderPainted(false);
 
-        spiel6.setBounds(415, 380, 398, 125);
-        spiel6.setFocusable(false);
-        spiel6.addActionListener(this);
-        spiel6.setBorderPainted(false);
+        spaceInvadersButton.setBounds(415, 380, 398, 125);
+        spaceInvadersButton.setFocusable(false);
+        spaceInvadersButton.addActionListener(this);
+        spaceInvadersButton.setBorderPainted(false);
 
         logOutButton.setBounds(8, 515, 805, 125);
         logOutButton.setFocusable(false);
@@ -105,14 +98,12 @@ public class StartingWindow2 implements ActionListener {
 
         frame.add(pongButton);
         frame.add(tictactoeButton);
-        frame.add(typingGameButton);
+        frame.add(RockPaperScissor);
         frame.add(spaceInvadersButton);
         frame.add(snakeButton);
-        frame.add(spiel6);
+        frame.add(connectFourButton);
         frame.add(logOutButton);
 
-        
-        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(837, 750);
         frame.setTitle("Startscreen");
@@ -129,31 +120,29 @@ public class StartingWindow2 implements ActionListener {
             Main.pong();
         }
 
+        if (e.getSource() == connectFourButton) {
+            frame.dispose();
+            Main.connectFour();
+        }
+
         if (e.getSource() == tictactoeButton) {
             frame.dispose();
             Main.TicTacToe();
-
-
-            
         }
 
-        if (e.getSource() == typingGameButton) {
+        if (e.getSource() == RockPaperScissor) {
             frame.dispose();
-            Main.TypingGame();
+            Main.RockPaperScissor();
         }
 
-        
-
-        if(e.getSource() == snakeButton) {
+        if (e.getSource() == snakeButton) {
             frame.dispose();
             Main.Snake();
         }
-        
+
         if (e.getSource() == logOutButton) {
             frame.dispose();
         }
     }
-
-    
 
 }
