@@ -2,14 +2,20 @@ package ConnectFour;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.tree.DefaultTreeCellEditor;
+
+import Main.Main;
+
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public final class ConnectFour extends JFrame {
+public final class ConnectFour extends JFrame implements ActionListener {
 
     private int size; // Board size
     private int playerOrder = 0; // First player 1 will play the game
@@ -26,12 +32,6 @@ public final class ConnectFour extends JFrame {
     ImageIcon player1 = new ImageIcon("Images/player1.png");
     ImageIcon player2 = new ImageIcon("Images/player2.png");
 
-
-
-    public static void main(String[] args) {
-        ConnectFour game = new ConnectFour();
-    }
-
     public ConnectFour() {
         frame = new JFrame("Connect Four Game");
         panel = new JPanel();
@@ -45,14 +45,13 @@ public final class ConnectFour extends JFrame {
 
         // Initialization board
         initialBoard();
-
+        frame.addKeyListener(new MyKeyAdapter());
         frame.setContentPane(panel);
         frame.pack();
-        frame.setLocationRelativeTo(null); 
-        frame.setVisible(true); 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 
     public void setBoardSize(int newSize) {
         size = newSize;
@@ -74,10 +73,9 @@ public final class ConnectFour extends JFrame {
         String playerNumber = JOptionPane.showInputDialog("Spieler Anzahl (1 oder 2)");
         String boardSize = JOptionPane.showInputDialog("Spielfeldgröße (mind. 4) ");
 
-       
-        numberOfPlayer = Integer.parseInt(playerNumber); //Anzahl der Spieler
+        numberOfPlayer = Integer.parseInt(playerNumber); // Anzahl der Spieler
 
-        int sizeOfBoard = Integer.parseInt(boardSize);      //Größe des Feldes
+        int sizeOfBoard = Integer.parseInt(boardSize); // Größe des Feldes
 
         if (sizeOfBoard < 4) {
             JFrame frameInputError = new JFrame();
@@ -88,11 +86,10 @@ public final class ConnectFour extends JFrame {
             System.exit(0);
         }
 
-        setBoardSize(sizeOfBoard); 
+        setBoardSize(sizeOfBoard);
     }
 
-    
-    public void dynamicAllocation() {   //Spielfeld als 2d Array
+    public void dynamicAllocation() { // Spielfeld als 2d Array
         gameBoard = new Cell[getBoardSize()][getBoardSize()];
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
@@ -109,7 +106,7 @@ public final class ConnectFour extends JFrame {
             for (int j = 0; j < getBoardSize(); ++j) {
                 buttons[i][j] = new JButton(empty); // Empty button
 
-                if (numberOfPlayer == 1) // Computer vs Spieler 
+                if (numberOfPlayer == 1) // Computer vs Spieler
                 {
                     buttons[i][j].addActionListener(new listenButtonOnePlayer());
                 }
@@ -119,7 +116,7 @@ public final class ConnectFour extends JFrame {
                     buttons[i][j].addActionListener(new listenButtonTwoPlayers());
                 }
 
-                panel.add(buttons[i][j]); // Add buttons to panel
+                panel.add(buttons[i][j]);
             }
         }
     }
@@ -146,20 +143,20 @@ public final class ConnectFour extends JFrame {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
 
-                if (gameBoard[i][j].getCellState() == winner) {     
-                    if (i + 3 < getBoardSize()) {       //Ob Zellen überhaupt da sind
+                if (gameBoard[i][j].getCellState() == winner) {
+                    if (i + 3 < getBoardSize()) { // Ob Zellen überhaupt da sind
                         if (gameBoard[i + 1][j].getCellState() == winner && gameBoard[i + 2][j].getCellState() == winner
-                                && gameBoard[i + 3][j].getCellState() == winner) {  //Von oben nach unten
-                            if (winner == 1)        //1 bedeutet Spieler 1
+                                && gameBoard[i + 3][j].getCellState() == winner) { // Von oben nach unten
+                            if (winner == 1) // 1 bedeutet Spieler 1
                                 showResult(1);
                             else
                                 showResult(2);
                         }
                     }
 
-                    if (j + 3 < getBoardSize()) {     // Ob Zellen überhaupt da sind   
+                    if (j + 3 < getBoardSize()) { // Ob Zellen überhaupt da sind
                         if (gameBoard[i][j + 1].getCellState() == winner && gameBoard[i][j + 2].getCellState() == winner
-                                && gameBoard[i][j + 3].getCellState() == winner) {      //Von Links nach Rechts
+                                && gameBoard[i][j + 3].getCellState() == winner) { // Von Links nach Rechts
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -167,10 +164,10 @@ public final class ConnectFour extends JFrame {
                         }
                     }
 
-                    if (i < getBoardSize() - 3 && j < getBoardSize() - 3) {         // Ob Zellen überhaupt da sind
+                    if (i < getBoardSize() - 3 && j < getBoardSize() - 3) { // Ob Zellen überhaupt da sind
                         if (gameBoard[i + 1][j + 1].getCellState() == winner
                                 && gameBoard[i + 2][j + 2].getCellState() == winner
-                                && gameBoard[i + 3][j + 3].getCellState() == winner) {      //Diagonale Links nach Rechts
+                                && gameBoard[i + 3][j + 3].getCellState() == winner) { // Diagonale Links nach Rechts
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -178,10 +175,10 @@ public final class ConnectFour extends JFrame {
                         }
                     }
 
-                    if (i < getBoardSize() - 3 && j - 3 >= 0) {      // Ob Zellen überhaupt da sind  
+                    if (i < getBoardSize() - 3 && j - 3 >= 0) { // Ob Zellen überhaupt da sind
                         if (gameBoard[i + 1][j - 1].getCellState() == winner
                                 && gameBoard[i + 2][j - 2].getCellState() == winner
-                                && gameBoard[i + 3][j - 3].getCellState() == winner) {      //Diagonale Rechts nach Links
+                                && gameBoard[i + 3][j - 3].getCellState() == winner) { // Diagonale Rechts nach Links
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -191,11 +188,10 @@ public final class ConnectFour extends JFrame {
                 }
             }
         }
-    } 
-
+    }
 
     public void showResult(int winnerPlayer) {
-        JFrame frameShowResult = new JFrame();      //Neuer Gewinnerframe
+        JFrame frameShowResult = new JFrame(); // Neuer Gewinnerframe
         if (winnerPlayer == 1) {
             JOptionPane.showMessageDialog(frameShowResult,
                     "\nGewinner : Spieler 1\n\nDas neue Spiel Startet.\n\n",
@@ -211,7 +207,6 @@ public final class ConnectFour extends JFrame {
         }
     }
 
-
     public void startAgain() {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
@@ -221,17 +216,24 @@ public final class ConnectFour extends JFrame {
         }
 
         frame.setVisible(false); // Unvisible previous game board
-        ConnectFour newGame = new ConnectFour(); // New Game Object
+        Main.connectFour();
     }
 
     /**
      *
      * Action listener to game button
      * Computer vs Player 1
+     * 
      */
-    private class listenButtonOnePlayer implements ActionListener {
+
+    public void close() {
+        frame.dispose();
+    }
+
+    public class listenButtonOnePlayer implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+
             try {
                 for (int i = getBoardSize() - 1; i >= 0; --i) // Check the buttons up to down position
                 {
@@ -255,7 +257,6 @@ public final class ConnectFour extends JFrame {
                                 }
 
                                 setUpperCellToEmpty(i, j); // Set the upper cells to empty cell to listen button
-                                System.out.println("... Player 1 played ... ");
                                 ++playerOrder; // Change player order from player 1 to computer
                                 break;
                             }
@@ -265,7 +266,6 @@ public final class ConnectFour extends JFrame {
 
                             if (1 == playerOrder % 2) {
                                 moveComputer(i);
-                                System.out.println("... Computer played ... ");
                                 ++playerOrder; // Change player order from computer to player 1
                                 break;
                             } else {
@@ -279,6 +279,7 @@ public final class ConnectFour extends JFrame {
             catch (Exception ex) {
                 warningMessage();
             }
+
         } // END ACTION PERFORMED
 
     } // END listenButtonOnePlayer CLASS
@@ -331,7 +332,7 @@ public final class ConnectFour extends JFrame {
      * Action listener to game button
      * Player 1 vs Player 2
      */
-    private class listenButtonTwoPlayers implements ActionListener {
+    public class listenButtonTwoPlayers implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
@@ -360,7 +361,6 @@ public final class ConnectFour extends JFrame {
                                 }
 
                                 setUpperCellToEmpty(i, j); // Set upper cell to empty
-                                System.out.println("... Player 1 played ... ");
                                 ++playerOrder; // Change order from player 1 to player 2
                                 break;
                             }
@@ -380,7 +380,6 @@ public final class ConnectFour extends JFrame {
                                     }
                                 }
                                 setUpperCellToEmpty(i, j);
-                                System.out.println("... Player 2 played ... ");
                                 ++playerOrder;
                                 break;
                             }
@@ -393,4 +392,22 @@ public final class ConnectFour extends JFrame {
 
         } // END ACTIONPERFORMED
     } // END listenButtonTwoPlayers CLASS
-} // END CONNECTFOUR CLASS
+
+    public class MyKeyAdapter extends KeyAdapter {
+        public void keyPressed(KeyEvent e) {
+            System.out.println();
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_Q:
+                    close();
+                    Main.startingWindow2();
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+}

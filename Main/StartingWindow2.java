@@ -105,7 +105,7 @@ public class StartingWindow2 implements ActionListener {
         frame.add(logOutButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(837, 750);
+        frame.setSize(837, 700);
         frame.setTitle("Startscreen");
         frame.setLayout(null);
         frame.setVisible(true);

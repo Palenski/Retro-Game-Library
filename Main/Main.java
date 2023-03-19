@@ -4,10 +4,8 @@ import Pong.GameFrame;
 import SnakeGame.GameFrameS;
 import SnakeGame.GamePanelS;
 
-import SnakeGame.SnakeGame;
-
 import TicTacToe.MainScreenTicTacToe;
-
+import TicTacToe.TicTacToeGame;
 import TypingGame.TypingGame;
 import ConnectFour.ConnectFour; 
 
@@ -35,26 +33,39 @@ public class Main {
     }
 
     
-
+    static ConnectFour connectFour;
     public static void connectFour() {
-        ConnectFour game = new ConnectFour();
+        connectFour = new ConnectFour();
     }
+
+    public static void connectFourClose() {
+        connectFour.dispose();
+    }
+
+
 
     public static void RockPaperScissor(){
         
     }
     
-    static MainScreenTicTacToe ticTacToe1;
+    static MainScreenTicTacToe ticTacToe;
     public static void TicTacToe() {
-        ticTacToe1 = new MainScreenTicTacToe();
+        ticTacToe = new MainScreenTicTacToe();
     }
 
-    public static void TicTacToeClose(){
-        ticTacToe1.dispose();
+    static TicTacToeGame ticTacToe2;
+    public static void TicTacToe2() {
+        ticTacToe2 = new TicTacToeGame();
     }
 
+
+    static GameFrameS snake;
     public static void Snake() {
-        GameFrameS snake = new GameFrameS();
+        snake = new GameFrameS();
+    }
+    
+    public static void SnakeClose() {
+        snake.dispose();
     }
 
     

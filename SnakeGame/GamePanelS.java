@@ -3,6 +3,9 @@ package SnakeGame;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import Main.Main;
+
 import java.util.Random;
 
 public class GamePanelS extends JPanel implements ActionListener{
@@ -181,6 +184,10 @@ public class GamePanelS extends JPanel implements ActionListener{
 				if(direction != 'U') {
 					direction = 'D';
 				}
+				break;
+			case KeyEvent.VK_Q:
+				Main.SnakeClose();
+				Main.startingWindow2();
 				break;
 			}
 		}

@@ -7,6 +7,8 @@ import java.util.*;
 import javax.management.timer.Timer;
 import javax.swing.*;
 
+import Main.Main;
+
 
 /*
  * Zuerst wird ein Startscreen angezeigt, wenn man dann hier auf
@@ -50,7 +52,7 @@ public class MainScreenTicTacToe implements ActionListener {
         if(e.getSource() == start) {
            
             timer();
-            TicTacToeGame ticTacToe = new TicTacToeGame();  
+            Main.TicTacToe2();
             frame.dispose();      
         }
         
@@ -66,7 +68,6 @@ public class MainScreenTicTacToe implements ActionListener {
         }
     }
 
-    public void dispose() {
-    }
+    
 
 }

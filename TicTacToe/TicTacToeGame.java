@@ -32,17 +32,20 @@ public class TicTacToeGame implements ActionListener {
     int XScore = 0; // Score von X (Spieler 1)
     int OScore = 0; // Score von O (Spieler 2)
 
-    TicTacToeGame() {
+    public TicTacToeGame() {
 
         /*
          * Wie der Frame aussieht
          */
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 700);
         frame.getContentPane().setBackground(new Color(50, 50, 50));
         frame.setLayout(new BorderLayout());
+        frame.addKeyListener(new MyKeyAdapter());
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        
 
         /*
          * Wie das Textfeld (oben) aussieht
@@ -99,6 +102,7 @@ public class TicTacToeGame implements ActionListener {
 
     }
 
+
     public void actionPerformed(ActionEvent e) { //wenn der Button gedrückt wird, dann wird das hier genannte ausgeführt
         /*
          *  Wenn das Boolean player1_turn = True ist, dann ist Spieler 1 am Zug, wenn player1_turn = false ist, dann ist Spieler 2 am Zug
@@ -136,7 +140,17 @@ public class TicTacToeGame implements ActionListener {
             }
             RestartButton.setVisible(false);
         }
+    }
 
+    public class MyKeyAdapter extends KeyAdapter {
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_Q:
+                    close();
+                    Main.startingWindow2();
+                    break;
+            }
+        }
     }
 
     public void firstTurn() {
@@ -364,20 +378,8 @@ public class TicTacToeGame implements ActionListener {
 
     }
 
-    public class AL extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
-            paddle1.keyPressed(e);
-            paddle2.keyPressed(e);
-            if (e.getKeyCode() == KeyEvent.VK_Q) {
-                Main.TicTacToeClose();
-                Main.startingWindow2();
-            }
-        }
-
-        public void KeyReleased(KeyEvent e) {
-            paddle1.KeyReleased(e);
-            paddle2.KeyReleased(e);
-        }
+    public void close(){
+        frame.dispose();
     }
 
 }
