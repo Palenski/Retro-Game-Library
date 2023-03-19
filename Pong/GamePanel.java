@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     Ball ball;
     Score score;
 
-    GamePanel() {   //Spieloberfläche, welche alle Klassen beeinhaltet
+    GamePanel() { // Spieloberfläche, welche alle Klassen beeinhaltet
         newPaddles();
         newBall();
         score = new Score(breite, höhe);
@@ -38,16 +38,16 @@ public class GamePanel extends JPanel implements Runnable {
         gameThread.start();
     }
 
-    public void newBall() {     //Erstllung des Balls
+    public void newBall() { // Erstllung des Balls
         ball = new Ball(480, 305, ball_diameter, ball_diameter, 1);
     }
 
-    public void newPaddles() {      //Erstellung der Paddle
+    public void newPaddles() { // Erstellung der Paddle
         paddle1 = new Paddle(50, 225, paddle_breite, paddle_höhe, 1);
         paddle2 = new Paddle(925, 225, paddle_breite, paddle_höhe, 2);
     }
 
-    public void paint(Graphics g) {     //Grafische Darstellung
+    public void paint(Graphics g) { // Grafische Darstellung
         image = createImage(getWidth(), getHeight());
         graphics = image.getGraphics();
         draw(graphics);
@@ -65,9 +65,9 @@ public class GamePanel extends JPanel implements Runnable {
         ball.move();
     }
 
-    public void checkCollision(){
-        //Falls der Bal die Kante oben oder unten berührt
-        if (ball.y < 0) {   
+    public void checkCollision() {
+        // Falls der Bal die Kante oben oder unten berührt
+        if (ball.y < 0) {
             ball.setYDirection(ball.yRichtung * -1);
             ball.setSpeed(ball.speed + 0.4);
         } else if (ball.y > 650 - ball.ballBreite) {
@@ -75,31 +75,31 @@ public class GamePanel extends JPanel implements Runnable {
             ball.setSpeed(ball.speed + 0.4);
         }
 
-        //Falls der Ball die Paddles berührt
-        if(ball.x <= 75 && ball.x > paddle1.x && ball.y > paddle1.y && ball.y < paddle1.y + paddle1.PaddleHöhe){
+        // Falls der Ball die Paddles berührt
+        if (ball.x <= 75 && ball.x > paddle1.x && ball.y > paddle1.y && ball.y < paddle1.y + paddle1.PaddleHöhe) {
             ball.setXDirection(ball.xRichtung * -1);
             ball.setSpeed(ball.speed + 0.4);
-        } else if (ball.x >= paddle2.x - ball.ballBreite && ball.x < paddle2.x + paddle2.PaddleBreite && ball.y > paddle2.y && ball.y < paddle2.y + paddle2.PaddleHöhe) {
+        } else if (ball.x >= paddle2.x - ball.ballBreite && ball.x < paddle2.x + paddle2.PaddleBreite
+                && ball.y > paddle2.y && ball.y < paddle2.y + paddle2.PaddleHöhe) {
             ball.setXDirection(ball.xRichtung * -1);
             ball.setSpeed(ball.speed + 0.4);
         }
-       
 
-        if(ball.x <= 0){
+        if (ball.x <= 0) {
             score.spieler2++;
             newPaddles();
             newBall();
-            
-        }else if(ball.x >= 1000){
+
+        } else if (ball.x >= 1000) {
             score.spieler1++;
             newPaddles();
             newBall();
-            
+
         }
 
     }
 
-    public void run() {     //Standart Gameloop
+    public void run() { // Standart Gameloop
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.00;
         double nanoSeconds = 1000000000 / amountOfTicks;
@@ -118,7 +118,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public class AL extends KeyAdapter {        //Guckt, ob Paddles bewegt werden müssen
+    public class AL extends KeyAdapter { // Guckt, ob Paddles bewegt werden müssen
         public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);

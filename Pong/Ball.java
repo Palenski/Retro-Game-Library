@@ -24,7 +24,7 @@ public class Ball extends Rectangle {
         this.ballHöhe = ballHöhe;
         this.speed = speed;
         random = new Random();
-        int randomXRichtung = random.nextInt(2);    //Sorgt für einen fairen Start
+        int randomXRichtung = random.nextInt(2); // Sorgt für einen fairen Start
         if (randomXRichtung == 0) {
             randomXRichtung--;
         }
@@ -36,7 +36,6 @@ public class Ball extends Rectangle {
         }
         setYDirection(randomYRichtung);
 
-        
     }
 
     public void setXDirection(int randomXRichtung) {
@@ -51,14 +50,14 @@ public class Ball extends Rectangle {
         speed = randomSpeed;
     }
 
-    public void move() {        //bewegt den Ball
+    public void move() { // bewegt den Ball
 
-       x = x + xRichtung * speed;
-       y = y + yRichtung * (speed / 2);
+        x = x + xRichtung * speed;
+        y = y + yRichtung * (speed / 2);
 
     }
 
-    public void draw(Graphics g) {      //Grafische Darstellung
+    public void draw(Graphics g) { // Grafische Darstellung
         g.setColor(Color.white);
         g.fillOval((int) x, (int) y, ballBreite, ballHöhe);
     }

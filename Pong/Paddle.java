@@ -26,8 +26,8 @@ public class Paddle extends Rectangle {
 
     }
 
-    public void keyPressed(KeyEvent e) {    //Bewegt die verschiedenen Paddles
-        switch (id) {   //Entscheidet, welches Paddle bewegt wird
+    public void keyPressed(KeyEvent e) { // Bewegt die verschiedenen Paddles
+        switch (id) { // Entscheidet, welches Paddle bewegt wird
             case 1:
                 if (e.getKeyCode() == KeyEvent.VK_W & y > 0) {
                     setYRichtung(-yGeschwindigkeit);
@@ -84,7 +84,7 @@ public class Paddle extends Rectangle {
         y = y + yRichtung;
     }
 
-    public void draw(Graphics g) {      //Grafische Darstellung
+    public void draw(Graphics g) { // Grafische Darstellung
         if (id == 1) {
             g.setColor(Color.blue);
             g.fillRect(x, y, PaddleBreite, PaddleHöhe);
@@ -95,7 +95,5 @@ public class Paddle extends Rectangle {
         }
 
     }
-     
-    
 
 }
