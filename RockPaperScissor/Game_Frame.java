@@ -36,6 +36,8 @@ public class Game_Frame extends JFrame implements ActionListener {
     Integer PlayerChoice = 0;
     String ComputerChoice;
 
+    JButton restarButton = new JButton("Restart?");
+
 
     public Game_Frame() {
 
@@ -105,8 +107,12 @@ public class Game_Frame extends JFrame implements ActionListener {
         Ergebnis.setContentAreaFilled(false);
         Ergebnis.setFont(new Font("SansSerif", Font.BOLD, 50));
 
-
         Ergebniss.add(Ergebnis);
+
+        restarButton.setBackground(Color.YELLOW);
+        restarButton.setVisible(true);
+        restarButton.setFocusable(true);
+        restarButton.addActionListener(this);
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
         frame.add(labelPanel, BorderLayout.NORTH);
@@ -156,6 +162,9 @@ public class Game_Frame extends JFrame implements ActionListener {
                 buttons[i].setEnabled(false);
             }
         }
+        if(e.getSource() == restarButton){
+            System.out.println("Test");
+        }
 
         PCTurn();
 
@@ -189,5 +198,7 @@ public class Game_Frame extends JFrame implements ActionListener {
         if (PlayerChoice.equals(3) && ComputerChoice.equals("Stein")){
             Ergebnis.setText("Du gewinnst");
         }
+
+        frame.add(restarButton,BorderLayout.SOUTH);
     }
 }
