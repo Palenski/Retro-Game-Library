@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
@@ -34,9 +35,11 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
     ImageIcon spieler2 = new ImageIcon("Images/player2.png");
 
     public Vier_Gewinnt() {
+            
         frame = new JFrame("Vier Gewinnt");
         panel = new JPanel();
-
+        panel.addKeyListener(new keyListener());
+        
         spielerUndFeld(); 
         spielErstellen(); 
 
@@ -48,10 +51,13 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
         frame.setContentPane(panel);
         frame.pack();
+        frame.addKeyListener(new keyListener());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
 
     public void setBordGröße(int neueGröße) {       //Allgemeine Set und Get Methoden
         größe = neueGröße;
@@ -65,6 +71,14 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         return leereFelder;
     }
 
+    public void spielErstellen() {      // Spielfeld als 2d Array
+        spielfeld = new Felder[getBordGröße()][getBordGröße()];
+        for (int i = 0; i < getBordGröße(); i++) {
+            for (int j = 0; j < getBordGröße(); j++) {
+                spielfeld[i][j] = new Felder();
+            }
+        }
+    }
 
     public void spielerUndFeld() {
         String anzahlSpieler = JOptionPane.showInputDialog("Spieler Anzahl (1 oder 2)"); // Anzahl der Spieler
@@ -115,15 +129,6 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         setBordGröße(feldGröße);
     }
 
-    public void spielErstellen() {      // Spielfeld als 2d Array
-        spielfeld = new Felder[getBordGröße()][getBordGröße()];
-        for (int i = 0; i < getBordGröße(); i++) {
-            for (int j = 0; j < getBordGröße(); j++) {
-                spielfeld[i][j] = new Felder();
-            }
-        }
-    }
-
 
     public void buttonHinzufügen() {
         for (int i = 0; i < getBordGröße(); ++i) {
@@ -155,7 +160,36 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         buttonHinzufügen(); // Fügt die Buttons plus die Listener hinzu
     }
 
-    public void unentschieden(int p) { // Guckt, ob alle Felder ausgefüllt sind und niemand gewonnen hat
+    
+    public void endergebnis(int sieger) {
+        JFrame endergebnisFrame = new JFrame(); // Neuer Gewinnerframe
+        if (sieger == 1) {
+            JOptionPane.showMessageDialog(
+                    endergebnisFrame,
+                    "\nGewinner : Spieler 1\n\nDas neue Spiel startet.\n\n",
+                    "Spiel Benden",
+                    JOptionPane.INFORMATION_MESSAGE);
+            erneutSpielen();        //Spiel wird wieder von vorne gestartet
+        } else if (sieger == 0) {
+            JOptionPane.showMessageDialog(
+                    endergebnisFrame,
+                    "\nUnentschieden : Keiner hat gewonnen\n\nDas neue Spiel startet.\n\n",
+                    "Spiel Benden",
+                    JOptionPane.INFORMATION_MESSAGE);
+            erneutSpielen();
+        } else {
+            JOptionPane.showMessageDialog(
+                    endergebnisFrame,
+                    "\nGewinner : Spieler 2\n\nDas neue Spiel startet.\n\n",
+                    "Spiel Benden",
+                    JOptionPane.INFORMATION_MESSAGE);
+            erneutSpielen();
+        }
+        endergebnisFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+
+   public void unentschieden(int p) { // Guckt, ob alle Felder ausgefüllt sind und niemand gewonnen hat
         for (int i = getBordGröße() - 2; i >= 0; --i) {
             for (int j = getBordGröße() - 1; j >= 0; --j) {
                 if (spielfeld[i][j].getFeldStatus() == 1 || spielfeld[i][j].getFeldStatus() == 2) {
@@ -168,6 +202,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
             }
         }
     }
+
 
     public void gewinnen(int gewinner) {        //Entscheidet wer gewonnen hat. Bei 1 ist es Spieler 1, ansonten Spieler 2
         for (int i = 0; i < getBordGröße(); ++i) {
@@ -221,33 +256,45 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
             }
         }
     }
+    
 
-    public void endergebnis(int sieger) {
-        JFrame endergebnisFrame = new JFrame(); // Neuer Gewinnerframe
-        if (sieger == 1) {
-            JOptionPane.showMessageDialog(
-                    endergebnisFrame,
-                    "\nGewinner : Spieler 1\n\nDas neue Spiel startet.\n\n",
-                    "Spiel Benden",
-                    JOptionPane.INFORMATION_MESSAGE);
-            erneutSpielen();        //Spiel wird wieder von vorne gestartet
-        } else if (sieger == 0) {
-            JOptionPane.showMessageDialog(
-                    endergebnisFrame,
-                    "\nUnentschieden : Keiner hat gewonnen\n\nDas neue Spiel startet.\n\n",
-                    "Spiel Benden",
-                    JOptionPane.INFORMATION_MESSAGE);
-            erneutSpielen();
-        } else {
-            JOptionPane.showMessageDialog(
-                    endergebnisFrame,
-                    "\nGewinner : Spieler 2\n\nDas neue Spiel startet.\n\n",
-                    "Spiel Benden",
-                    JOptionPane.INFORMATION_MESSAGE);
-            erneutSpielen();
+    public void obereReihe(int rowPos, int columnPos) {     //Damit der Computer weiß, wann die Reihen gefüllt sind
+        try {
+            spielfeld[rowPos - 1][columnPos].setFeldStatus(0);
+        } catch (Exception ex) {
         }
-        endergebnisFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+
+    public void warnung() {     //Für den Fall, dass der Spieler ein schon besetztes Feld angecklickt hat
+        JFrame warnungFrame = new JFrame();     //Frame wird erstellt und mit Inhalt gefüllt
+        JOptionPane.showMessageDialog(
+                warnungFrame,
+                "Nicht möglicher Zug !!\nDas Feld ist besetzt!", "Verwarnung",
+                JOptionPane.WARNING_MESSAGE);
+    }
+
+
+    public void computerZug(int reihenPosition) {       //Erstellung der "KI"
+        int l;
+        int m;
+        boolean platzhalter = false;
+
+        for (l = getBordGröße() - 1; (l >= 0) && !platzhalter; --l) {
+            for (m = 0; (m < getBordGröße()) && !platzhalter; ++m) {
+                if (spielfeld[l][m].getFeldStatus() == 0) {
+                    buttons[l][m].setIcon(spieler2); 
+                    spielfeld[l][m].setAllePosition('O', reihenPosition); 
+                    spielfeld[l][m].setFeldStatus(2);       //Setzt den Status auf besetzt durch Spieler 2
+                    leereFelder++;
+                    gewinnen(2);     //Zur Ermittlung des Siegers    
+                    platzhalter = true;
+                    obereReihe(l, m);
+                }
+            }
+        }
+    }
+
 
     public void erneutSpielen() {
         for (int i = 0; i < getBordGröße(); ++i) {
@@ -260,7 +307,9 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         frame.dispose();    //Löscht den alten Frame
         Main.vierGewinnt(); //Und erstellt den Neuen
     }
-    public class einSpielerListener implements ActionListener {     //Spieler vs Computer
+    
+
+        public class einSpielerListener implements ActionListener {     //Spieler vs Computer
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -304,40 +353,6 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         }
     }
 
-    public void warnung() {     //Für den Fall, dass der Spieler ein schon besetztes Feld angecklickt hat
-        JFrame warnungFrame = new JFrame();     //Frame wird erstellt und mit Inhalt gefüllt
-        JOptionPane.showMessageDialog(
-                warnungFrame,
-                "Nicht möglicher Zug !!\nDas Feld ist besetzt!", "Verwarnung",
-                JOptionPane.WARNING_MESSAGE);
-    }
-
-    public void obereReihe(int rowPos, int columnPos) {     //Damit der Computer weiß, wann die Reihen gefüllt sind
-        try {
-            spielfeld[rowPos - 1][columnPos].setFeldStatus(0);
-        } catch (Exception ex) {
-        }
-    }
-
-    public void computerZug(int reihenPosition) {       //Erstellung der "KI"
-        int l;
-        int m;
-        boolean platzhalter = false;
-
-        for (l = getBordGröße() - 1; (l >= 0) && !platzhalter; --l) {
-            for (m = 0; (m < getBordGröße()) && !platzhalter; ++m) {
-                if (spielfeld[l][m].getFeldStatus() == 0) {
-                    buttons[l][m].setIcon(spieler2); 
-                    spielfeld[l][m].setAllePosition('O', reihenPosition); 
-                    spielfeld[l][m].setFeldStatus(2);       //Setzt den Status auf besetzt durch Spieler 2
-                    leereFelder++;
-                    gewinnen(2);     //Zur Ermittlung des Siegers    
-                    platzhalter = true;
-                    obereReihe(l, m);
-                }
-            }
-        }
-    }
 
     public class zweiSpielerListener implements ActionListener {        //Selbes Prinzip wie oben, nur Spieler vs Spieler
         @Override       
@@ -395,9 +410,36 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         } 
     } 
 
+
+    public class keyListener implements KeyListener {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                Main.startingWindow2();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                Main.startingWindow2();
+            }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_Q) {
+                Main.startingWindow2();
+            }
+        }
+
+    }
+    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+       
     }
 
 }
