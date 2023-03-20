@@ -23,21 +23,13 @@ public class StartingWindow2 implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    JButton titleButton = new JButton("<html><p><font color = Black>Wähle dein Spiel </font> </p></html>"); // HTML
-                                                                                                            // Befehle
-                                                                                                            // für eine
-                                                                                                            // bessere
-                                                                                                            // Gesatltung
-                                                                                                            // der
-                                                                                                            // Schrift
+    JButton titleButton = new JButton("<html><p><font color = Black>Wähle dein Spiel </font> </p></html>"); // HTML Befehle für eine bessere Gestalltung der Schrift
 
-    ImageIcon iconPong = new ImageIcon("Images/discover.png"); // Bild aus dem Ordner Images wird hier dem Icon
-                                                               // zugewiesen
-    JButton pongButton = new JButton(iconPong); // Beim erstellen der Buttons wird jedem ein Icon mit passendem Bild
-                                                // zugewiesen
-
-    ImageIcon iconConnectFourButton = new ImageIcon("Images/369922d484c072edefc5a27ce992ea79.png");
-    JButton connectFourButton = new JButton(iconConnectFourButton);
+    ImageIcon iconPong = new ImageIcon("Images/discover.png"); // Bild aus dem Ordner Images wird hier dem Icon zugewiesen                                                          
+    JButton pongButton = new JButton(iconPong); // Beim erstellen der Buttons wird jedem ein Icon mit passendem Bild zugewiesen
+                                              
+    ImageIcon iconVierGewinnt = new ImageIcon("Images/369922d484c072edefc5a27ce992ea79.png");
+    JButton vierGewinntButton = new JButton(iconVierGewinnt);
 
     ImageIcon iconTicTacToe = new ImageIcon("Images/tictactoe.png");
     JButton tictactoeButton = new JButton(iconTicTacToe);
@@ -55,17 +47,17 @@ public class StartingWindow2 implements ActionListener {
     ImageIcon iconExit = new ImageIcon("Images/81ZEliCxW5L._AC_UL320_.jpg");
     JButton logOutButton = new JButton(iconExit);
 
-    StartingWindow2() {     //Platzieren und Modifizieren der einzelnen Buttons auf dem Startfenster
+    StartingWindow2() { // Platzieren und Modifizieren der einzelnen Buttons auf dem Startfenster
 
         pongButton.setBounds(8, 110, 398, 125);
         pongButton.setFocusable(false);
         pongButton.addActionListener(this);
         pongButton.setBorderPainted(false);
 
-        connectFourButton.setBounds(415, 110, 398, 125);
-        connectFourButton.setFocusable(false);
-        connectFourButton.addActionListener(this);
-        connectFourButton.setBorderPainted(false);
+        vierGewinntButton.setBounds(415, 110, 398, 125);
+        vierGewinntButton.setFocusable(false);
+        vierGewinntButton.addActionListener(this);
+        vierGewinntButton.setBorderPainted(false);
 
         tictactoeButton.setBounds(8, 245, 398, 125);
         tictactoeButton.setFocusable(false);
@@ -109,7 +101,7 @@ public class StartingWindow2 implements ActionListener {
         frame.add(RockPaperScissor);
         frame.add(TypingGameButton);
         frame.add(snakeButton);
-        frame.add(connectFourButton);
+        frame.add(vierGewinntButton);
         frame.add(logOutButton);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,9 +120,9 @@ public class StartingWindow2 implements ActionListener {
             Main.pong();
         }
 
-        if (e.getSource() == connectFourButton) {
+        if (e.getSource() == vierGewinntButton) {
             frame.dispose();
-            Main.connectFour();
+            Main.vierGewinnt();
         }
 
         if (e.getSource() == tictactoeButton) {

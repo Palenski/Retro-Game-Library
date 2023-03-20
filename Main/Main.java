@@ -8,7 +8,7 @@ import SnakeGame.GamePanelS;
 import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.TicTacToeGame;
 import TypingGame.TypingGame;
-import ConnectFour.ConnectFour; 
+import VierGewinnt.Vier_Gewinnt; 
 
 public class Main {
 
@@ -34,13 +34,13 @@ public class Main {
     }
 
     
-    static ConnectFour connectFour;
-    public static void connectFour() {
-        connectFour = new ConnectFour();
+    static Vier_Gewinnt vierGewinnt;
+    public static void vierGewinnt() {
+        vierGewinnt = new Vier_Gewinnt();
     }
 
-    public static void connectFourClose() {
-        connectFour.dispose();
+    public static void vierGewinntClose() {
+        vierGewinnt.dispose();
     }
 
 

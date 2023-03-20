@@ -1,4 +1,4 @@
-package ConnectFour;
+package VierGewinnt;
 
 
 public class Felder {     //Hier befinden sich die einzelnen Felder als Objekte
