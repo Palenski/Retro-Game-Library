@@ -3,9 +3,12 @@ package RockPaperScissor;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import Main.Main;
+
 import java.util.*;
 
-public class GameFrame extends JFrame implements ActionListener {
+public class Game_Frame extends JFrame implements ActionListener {
 
     Random random = new Random();
     JFrame frame = new JFrame();
@@ -22,16 +25,13 @@ public class GameFrame extends JFrame implements ActionListener {
     String PlayerChoice;
     String ComputerChoice;
 
-    public static void main(String[] args) {
-        GameFrame gameFrame = new GameFrame();
-    }
-
-    public GameFrame() {
+    public Game_Frame() {
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.setLocationRelativeTo(null);
         frame.setSize(800, 700);
+        frame.setLocationRelativeTo(null);
+    
         frame.setTitle("Schere Stein Papier");
 
         buttonPanel.setLayout(new GridLayout(1, 0));
@@ -84,6 +84,8 @@ public class GameFrame extends JFrame implements ActionListener {
 
         GewinnerErmitlung();
     }
+
+    
 
     public void actionPerformed(ActionEvent e) {
 
