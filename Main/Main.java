@@ -1,11 +1,8 @@
 package Main;
 
 import Pong.GameFrame;
-<<<<<<< HEAD
 import RockPaperScissor.Game_Frame;
-=======
 import RockPaperScissor.GameScreen;
->>>>>>> dc913f85afb78040671127610fb31b0025905acb
 import SnakeGame.GameFrameS;
 import SnakeGame.GamePanelS;
 
