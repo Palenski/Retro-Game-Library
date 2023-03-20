@@ -25,7 +25,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
     private final JFrame frame; // Frame
     private final JPanel panel; // Panel
     private final JButton[][] buttons; // Buttons
-    private Cell gameBoard[][]; // Game Board
+    private Felder gameBoard[][]; // Game Board
     private final GridLayout grid; // GridLayout
 
     ImageIcon empty = new ImageIcon("Images/emptycell.png");
@@ -90,10 +90,10 @@ public final class ConnectFour extends JFrame implements ActionListener {
     }
 
     public void dynamicAllocation() { // Spielfeld als 2d Array
-        gameBoard = new Cell[getBoardSize()][getBoardSize()];
+        gameBoard = new Felder[getBoardSize()][getBoardSize()];
         for (int i = 0; i < getBoardSize(); i++) {
             for (int j = 0; j < getBoardSize(); j++) {
-                gameBoard[i][j] = new Cell();
+                gameBoard[i][j] = new Felder();
             }
         }
     }
@@ -127,7 +127,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
     public void initialBoard() {
         for (int i = getBoardSize() - 2; i >= 0; --i) {
             for (int j = getBoardSize() - 1; j >= 0; --j) {
-                gameBoard[i][j].setCellState(-99);
+                gameBoard[i][j].setFeldStatus(-99);
             }
         }
         addButtonsToBoard(); // Add buttons and listener
@@ -157,20 +157,20 @@ public final class ConnectFour extends JFrame implements ActionListener {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
 
-                if (gameBoard[i][j].getCellState() == winner) {
+                if (gameBoard[i][j].getFeldStatus() == winner) {
                     if (i + 3 < getBoardSize()) { // Ob Zellen überhaupt da sind
-                        if (gameBoard[i + 1][j].getCellState() == winner && gameBoard[i + 2][j].getCellState() == winner
-                                && gameBoard[i + 3][j].getCellState() == winner) { // Von oben nach unten
+                        if (gameBoard[i + 1][j].getFeldStatus() == winner && gameBoard[i + 2][j].getFeldStatus() == winner
+                                && gameBoard[i + 3][j].getFeldStatus() == winner) { // Von oben nach unten
                             if (winner == 1) // 1 bedeutet Spieler 1
                                 showResult(1);
                             else
-                                showResult(2);
+                                showResult(2);  
                         }
                     }
 
                     if (j + 3 < getBoardSize()) { // Ob Zellen überhaupt da sind
-                        if (gameBoard[i][j + 1].getCellState() == winner && gameBoard[i][j + 2].getCellState() == winner
-                                && gameBoard[i][j + 3].getCellState() == winner) { // Von Links nach Rechts
+                        if (gameBoard[i][j + 1].getFeldStatus() == winner && gameBoard[i][j + 2].getFeldStatus() == winner
+                                && gameBoard[i][j + 3].getFeldStatus() == winner) { // Von Links nach Rechts
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -179,9 +179,9 @@ public final class ConnectFour extends JFrame implements ActionListener {
                     }
 
                     if (i < getBoardSize() - 3 && j < getBoardSize() - 3) { // Ob Zellen überhaupt da sind
-                        if (gameBoard[i + 1][j + 1].getCellState() == winner
-                                && gameBoard[i + 2][j + 2].getCellState() == winner
-                                && gameBoard[i + 3][j + 3].getCellState() == winner) { // Diagonale Links nach Rechts
+                        if (gameBoard[i + 1][j + 1].getFeldStatus() == winner
+                                && gameBoard[i + 2][j + 2].getFeldStatus() == winner
+                                && gameBoard[i + 3][j + 3].getFeldStatus() == winner) { // Diagonale Links nach Rechts
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -190,9 +190,9 @@ public final class ConnectFour extends JFrame implements ActionListener {
                     }
 
                     if (i < getBoardSize() - 3 && j - 3 >= 0) { // Ob Zellen überhaupt da sind
-                        if (gameBoard[i + 1][j - 1].getCellState() == winner
-                                && gameBoard[i + 2][j - 2].getCellState() == winner
-                                && gameBoard[i + 3][j - 3].getCellState() == winner) { // Diagonale Rechts nach Links
+                        if (gameBoard[i + 1][j - 1].getFeldStatus() == winner
+                                && gameBoard[i + 2][j - 2].getFeldStatus() == winner
+                                && gameBoard[i + 3][j - 3].getFeldStatus() == winner) { // Diagonale Rechts nach Links
                             if (winner == 1)
                                 showResult(1);
                             else
@@ -224,7 +224,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
     public void startAgain() {
         for (int i = 0; i < getBoardSize(); ++i) {
             for (int j = 0; j < getBoardSize(); ++j) {
-                gameBoard[i][j].setCellState(-99); // Initial Value
+                gameBoard[i][j].setFeldStatus(-99); // Initial Value
                 buttons[i][j].setIcon(empty); // Put the empty cell icon
             }
         }
@@ -260,10 +260,10 @@ public final class ConnectFour extends JFrame implements ActionListener {
                                 for (int k = 0; k <= getBoardSize(); ++i) {
                                     // Player 1 Operations
                                     // Fill the board from down to up
-                                    if (gameBoard[i - k][j].getCellState() == 0) {
+                                    if (gameBoard[i - k][j].getFeldStatus() == 0) {
                                         buttons[i - k][j].setIcon(player1); // Change button icon
-                                        gameBoard[i - k][j].setAllPosition('X', i); // Set cell parameters
-                                        gameBoard[i - k][j].setCellState(1); // Set cell state
+                                        gameBoard[i - k][j].setAllePosition('X', i); // Set cell parameters
+                                        gameBoard[i - k][j].setFeldStatus(1); // Set cell state
                                         ++livingCellNumber; // Increase living cell number
                                         winnerPlayer(1); // Check game winning state
                                         break;
@@ -313,7 +313,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
      */
     public void setUpperCellToEmpty(int rowPos, int columnPos) {
         try {
-            gameBoard[rowPos - 1][columnPos].setCellState(0);
+            gameBoard[rowPos - 1][columnPos].setFeldStatus(0);
         } catch (Exception ex) {
         }
     }
@@ -329,10 +329,10 @@ public final class ConnectFour extends JFrame implements ActionListener {
 
         for (l = getBoardSize() - 1; (l >= 0) && !flag; --l) {
             for (m = 0; (m < getBoardSize()) && !flag; ++m) {
-                if (gameBoard[l][m].getCellState() == 0) {
+                if (gameBoard[l][m].getFeldStatus() == 0) {
                     buttons[l][m].setIcon(player2); // Set new button icon
-                    gameBoard[l][m].setAllPosition('O', rowPosition); // Set cell parameters
-                    gameBoard[l][m].setCellState(2); // Set cell state
+                    gameBoard[l][m].setAllePosition('O', rowPosition); // Set cell parameters
+                    gameBoard[l][m].setFeldStatus(2); // Set cell state
                     ++livingCellNumber;
                     winnerPlayer(2); // Check the computer winning state
                     flag = true;
@@ -362,10 +362,10 @@ public final class ConnectFour extends JFrame implements ActionListener {
                                 // Player 1 Operations
                                 // Fill the board from down to up
                                 for (int k = 0; k <= getBoardSize(); ++i) {
-                                    if (gameBoard[i - k][j].getCellState() == 0 && playerOrder % 2 == 0) {
+                                    if (gameBoard[i - k][j].getFeldStatus() == 0 && playerOrder % 2 == 0) {
                                         buttons[i - k][j].setIcon(player1); // Set new icon to player 1
-                                        gameBoard[i - k][j].setAllPosition('X', i); // Set cell parameters
-                                        gameBoard[i - k][j].setCellState(1);
+                                        gameBoard[i - k][j].setAllePosition('X', i); // Set cell parameters
+                                        gameBoard[i - k][j].setFeldStatus(1);
                                         ++livingCellNumber; // Increase living cell number
                                         winnerPlayer(1); // Check player 1 winning state
                                         flagPlayerOrder = 1;
@@ -382,10 +382,10 @@ public final class ConnectFour extends JFrame implements ActionListener {
                             // Player 2 operations
                             if (flagPlayerOrder == 0 && playerOrder % 2 == 1) {
                                 for (int k = 0; k <= getBoardSize(); ++i) {
-                                    if (gameBoard[i - k][j].getCellState() == 0 && playerOrder % 2 == 1) {
+                                    if (gameBoard[i - k][j].getFeldStatus() == 0 && playerOrder % 2 == 1) {
                                         buttons[i - k][j].setIcon(player2); // Set new icon to player 2
-                                        gameBoard[i - k][j].setAllPosition('O', i); // Set cell parameters
-                                        gameBoard[i - k][j].setCellState(2); // Set cell state
+                                        gameBoard[i - k][j].setAllePosition('O', i); // Set cell parameters
+                                        gameBoard[i - k][j].setFeldStatus(2); // Set cell state
                                         ++livingCellNumber;
                                         winnerPlayer(2);
                                         flagPlayerOrder = 1;
