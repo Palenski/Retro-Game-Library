@@ -12,18 +12,30 @@ public class Game_Frame extends JFrame implements ActionListener {
 
     Random random = new Random();
     JFrame frame = new JFrame();
+
     JButton[] buttons = new JButton[3];
     JPanel buttonPanel = new JPanel();
-    JLabel[] labels = new JLabel[2];
+
+    JButton[] labels = new JButton[2];
     JPanel labelPanel = new JPanel();
-    JLabel Ergebnis = new JLabel("Das Ergebnis ist: ");
+
+    JButton Ergebnis = new JButton("Das Ergebnis ist: ");
     JPanel Ergebniss = new JPanel();
+
     String[] stp = { "Schere", "Stein", "Papier" };
-    String[] Texte = { "Hier steht was du wählst", "Hier steht was der Computer wählt" };
+    String[] Texte = { "Hier steht was du wählst", "Hier steht was der PC wählt" };
+
+    ImageIcon papierIcon = new ImageIcon("Images/Papier.jpg");
+    ImageIcon steinIcon = new ImageIcon("Images/Stein.jpg");
+    ImageIcon schereIcon = new ImageIcon("Images/Schere.png");
+    
+    
     String Text2 = "Deine Wahl ist: ";
-    String Text4 = "Der Computer wählt: ";
-    String PlayerChoice;
+    String Text4 = "Der PC wählt: ";
+
+    Integer PlayerChoice = 0;
     String ComputerChoice;
+
 
     public Game_Frame() {
 
@@ -31,12 +43,13 @@ public class Game_Frame extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 700);
         frame.setLocationRelativeTo(null);
+        frame.setBackground(Color.white);
     
         frame.setTitle("Schere Stein Papier");
 
         buttonPanel.setLayout(new GridLayout(1, 0));
         buttonPanel.setBackground(new Color(150, 150, 150));
-        buttonPanel.setSize(300, 100);
+        buttonPanel.setPreferredSize(new Dimension(266, 220));
 
         for (int i = 0; i < 3; i++) {
             buttons[i] = new JButton();
@@ -45,20 +58,53 @@ public class Game_Frame extends JFrame implements ActionListener {
             buttons[i].setFocusable(true);
             buttons[i].addActionListener(this);
             buttons[i].setEnabled(true);
-            buttons[i].setBackground(new Color(0, 0, 0));
+            buttons[i].setContentAreaFilled(true);
+            buttons[i].setBorderPainted(false);;
             buttons[i].setVisible(true);
-            buttons[i].setText(stp[i]);
+            //buttons[i].setText(stp[i]);
+            buttons[i].setBackground(Color.WHITE);
+            if(i == 0){
+                buttons[i].setIcon(schereIcon);
+            }
+            if(i == 1){
+                buttons[i].setIcon(steinIcon);
+            }
+            if(i == 2){
+                buttons[i].setIcon(papierIcon);
+            }
 
         }
 
         labelPanel.setLayout(new GridLayout(1, 0));
+        labelPanel.setPreferredSize(new Dimension(400, 200));
 
         for (int i = 0; i < 2; i++) {
 
-            labels[i] = new JLabel();
+            labels[i] = new JButton();
             labelPanel.add(labels[i]);
             labels[i].setText(Texte[i]);
+            labels[i].setBorderPainted(false);
+            labels[i].setContentAreaFilled(true);
+            if(i == 0){
+                labels[i].setBackground(Color.RED);
+            }
+            else{
+                labels[i].setBackground(Color.BLUE);
+            }
+            labels[i].setFocusable(false);
+            labels[i].setEnabled(true);
+            labels[i].setForeground(Color.BLACK);
+            labels[i].setFont(new Font("SansSerif", Font.BOLD, 25));
+
         }
+
+        Ergebnis.setBorderPainted(false);
+        Ergebnis.setEnabled(true);
+        Ergebnis.setFocusable(false);
+        Ergebnis.setForeground(Color.BLACK);
+        Ergebnis.setContentAreaFilled(false);
+        Ergebnis.setFont(new Font("SansSerif", Font.BOLD, 50));
+
 
         Ergebniss.add(Ergebnis);
 
@@ -91,21 +137,21 @@ public class Game_Frame extends JFrame implements ActionListener {
 
         if (e.getSource() == buttons[0]) {
             labels[0].setText(Text2 + stp[0]);
-            PlayerChoice = buttons[0].getText();
+            PlayerChoice = 1; //Wahl Schere
             for (int i = 0; i < 3; i++) {
                 buttons[i].setEnabled(false);
             }
         }
         if (e.getSource() == buttons[1]) {
             labels[0].setText(Text2 + stp[1]);
-            PlayerChoice = buttons[1].getText();
+            PlayerChoice = 2; //Wahl Stein
             for (int i = 0; i < 3; i++) {
                 buttons[i].setEnabled(false);
             }
         }
         if (e.getSource() == buttons[2]) {
             labels[0].setText(Text2 + stp[2]);
-            PlayerChoice = buttons[2].getText();
+            PlayerChoice = 3; //Wahl Papier
             for (int i = 0; i < 3; i++) {
                 buttons[i].setEnabled(false);
             }
@@ -116,31 +162,31 @@ public class Game_Frame extends JFrame implements ActionListener {
     }
 
     public void GewinnerErmitlung() {
-        if (PlayerChoice.equals("Schere") && ComputerChoice.equals("Schere")) {
+        if (PlayerChoice.equals(1) && ComputerChoice.equals("Schere")) {
             Ergebnis.setText("Unentschieden");
         }
-        if (PlayerChoice.equals("Schere") && ComputerChoice.equals("Papier")){
+        if (PlayerChoice.equals(1) && ComputerChoice.equals("Papier")){
             Ergebnis.setText("Du gewinnst");
         }
-        if (PlayerChoice.equals("Schere") && ComputerChoice.equals("Stein")){
+        if (PlayerChoice.equals(1) && ComputerChoice.equals("Stein")){
             Ergebnis.setText("Der Computer gewinnt");
         }
-        if (PlayerChoice.equals("Stein") && ComputerChoice.equals("Schere")){
+        if (PlayerChoice.equals(2) && ComputerChoice.equals("Schere")){
             Ergebnis.setText("Du gewinnst");
         }
-        if (PlayerChoice.equals("Stein") && ComputerChoice.equals("Papier")){
+        if (PlayerChoice.equals(2) && ComputerChoice.equals("Papier")){
             Ergebnis.setText("Der Computer gewinnt");
         }
-        if (PlayerChoice.equals("Stein") && ComputerChoice.equals("Stein")){
+        if (PlayerChoice.equals(2) && ComputerChoice.equals("Stein")){
             Ergebnis.setText("Unentschieden");
         }
-        if (PlayerChoice.equals("Papier") && ComputerChoice.equals("Schere")){
+        if (PlayerChoice.equals(3) && ComputerChoice.equals("Schere")){
             Ergebnis.setText("Der Computer gewinnt");
         }
-        if (PlayerChoice.equals("Papier") && ComputerChoice.equals("Papier")){
+        if (PlayerChoice.equals(3) && ComputerChoice.equals("Papier")){
             Ergebnis.setText("Unentschieden");
         }
-        if (PlayerChoice.equals("Papier") && ComputerChoice.equals("Stein")){
+        if (PlayerChoice.equals(3) && ComputerChoice.equals("Stein")){
             Ergebnis.setText("Du gewinnst");
         }
     }
