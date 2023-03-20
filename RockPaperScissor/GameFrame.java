@@ -16,7 +16,7 @@ public class GameFrame extends JFrame implements ActionListener {
     String[] stp = { "Schere", "Stein", "Papier" };
     String Text1 = "Hier steht was du wählst";
     String Text2 = "Deine Wahl ist: ";
-    String Text3 = "Hier steht was der Computer wählt";
+    String Text3 = "Hier steht was der Computer wählt       ";
     String Text4 = "Der Computer wählt: ";
 
     public static void main(String[] args) {
@@ -35,13 +35,14 @@ public class GameFrame extends JFrame implements ActionListener {
         buttonPanel.setBackground(new Color(150, 150, 150));
         buttonPanel.setSize(300, 100);
 
-        label.setHorizontalAlignment(JLabel.CENTER);
-        label.setVerticalAlignment(JLabel.LEFT);
+        label.setHorizontalAlignment(JLabel.LEFT);
+        label.setVerticalAlignment(JLabel.CENTER);
         label.setText(Text1);
 
-        //PCLabel.setText(Text3);
-        //PCLabel.setVerticalAlignment(JLabel.RIGHT);
-        //PCLabel.setHorizontalAlignment(JLabel.CENTER);
+        PCLabel.setText(Text3);
+        PCLabel.setVerticalAlignment(JLabel.CENTER);
+        PCLabel.setHorizontalAlignment(JLabel.RIGHT);
+        PCLabel.setSize(400,50);
 
         for (int i = 0; i < 3; i++) {
             buttons[i] = new JButton();
@@ -58,14 +59,14 @@ public class GameFrame extends JFrame implements ActionListener {
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
         frame.add(label);
-        //frame.add(PCLabel);
+        frame.add(PCLabel);
     }
 
-    /*
+    
     public void PCTurn(){
         int PCWahl = random.nextInt(3);
         if(PCWahl == 0){
-            PCLabel.setText(Text3 + stp[0]);
+            PCLabel.setText(Text4 + stp[0]);
         }
         if(PCWahl == 1){
             PCLabel.setText(Text4 + stp[1]);
@@ -75,7 +76,6 @@ public class GameFrame extends JFrame implements ActionListener {
         }
         
     }
-     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -84,7 +84,7 @@ public class GameFrame extends JFrame implements ActionListener {
                 label.setText(Text2 + stp[i]);
             }
             buttons[i].setEnabled(false);
-            //PCTurn();
+            PCTurn();
         }
     }
 }
