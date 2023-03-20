@@ -20,6 +20,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
     private int size; // Board size
     private int playerOrder = 0; // First player 1 will play the game
     private int numberOfPlayer; // Player number
+    private int feldGröße;
     private static int livingCellNumber = 0; // Number of living cells
 
     private final JFrame frame; // Frame
@@ -45,7 +46,6 @@ public final class ConnectFour extends JFrame implements ActionListener {
 
         // Initialization board
         initialBoard();
-        frame.addKeyListener(new MyKeyAdapter());
         frame.setContentPane(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -70,14 +70,43 @@ public final class ConnectFour extends JFrame implements ActionListener {
      */
     public void playerNumberAndBoardSize() {
         // User inputs from input dialogs
-        String playerNumber = JOptionPane.showInputDialog("Spieler Anzahl (1 oder 2)");
-        String boardSize = JOptionPane.showInputDialog("Spielfeldgröße (mind. 4) ");
-
-        numberOfPlayer = Integer.parseInt(playerNumber); // Anzahl der Spieler
-
-        int sizeOfBoard = Integer.parseInt(boardSize); // Größe des Feldes
-
-        if (sizeOfBoard < 4) {
+        String playerNumber = JOptionPane.showInputDialog("Spieler Anzahl (1 oder 2)");     //Anzahl der Spieler
+       
+        try {       //Falls der User keine Zahl eingibt
+            numberOfPlayer = Integer.parseInt(playerNumber); 
+        } catch (Exception e) {
+            JFrame frameInputError = new JFrame();
+            JOptionPane.showMessageDialog(frameInputError,
+                    "Wähle zwischen 1 oder 2 Spielern !!!",
+                    "Spieler Anzahl Fehler",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+        
+        if (numberOfPlayer != 1 && numberOfPlayer != 2) {       //Falls der User nicht 1 oder 2 Auswählt
+            JFrame frameInputError = new JFrame();
+            JOptionPane.showMessageDialog(frameInputError,
+                    "Wähle zwischen 1 oder 2 Spielern !!!",
+                    "Spieler Anzahl Fehler",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+        
+        String boardSize = JOptionPane.showInputDialog("Spielfeldgröße (mind. 4) ");    //Größe des Feldes
+       
+        try {       //Falls der User keine Zahl eingibt
+            feldGröße = Integer.parseInt(boardSize);  
+          
+        } catch (Exception e) {
+            JFrame frameInputError = new JFrame();
+            JOptionPane.showMessageDialog(frameInputError,
+                    "Spielfeld muss größer sein als 4 !!!",
+                    "Spiel Feld Fehler",
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
+        
+        if (feldGröße < 4) {      //Falls der User eine kleinere Zahl als 4 wählt
             JFrame frameInputError = new JFrame();
             JOptionPane.showMessageDialog(frameInputError,
                     "Spielfeld muss größer sein als 4 !!!",
@@ -86,7 +115,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
             System.exit(0);
         }
 
-        setBoardSize(sizeOfBoard);
+        setBoardSize(feldGröße);
     }
 
     public void dynamicAllocation() { // Spielfeld als 2d Array
@@ -133,6 +162,21 @@ public final class ConnectFour extends JFrame implements ActionListener {
         addButtonsToBoard(); // Add buttons and listener
     }
 
+    
+    public void draw(int p) {
+        for (int i = getBoardSize() - 2; i >= 0; --i) {
+            for (int j = getBoardSize() - 1; j >= 0; --j) {
+                if(gameBoard[i][j].getFeldStatus() == 1 || gameBoard[i][j].getFeldStatus() == 2){
+                    System.out.println(p);
+                    p++;
+                }
+                
+            }
+        }
+    }
+
+
+
     /**
      * Game winning state
      * If the four cell is same, user 1 will win the game
@@ -140,17 +184,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
      * @param winner integer If the player 1 is equal to 1, otherwise 2
      */
 
-    public class MyKeyAdapter extends KeyAdapter {
-        public void keyPressed(KeyEvent e) {
-            System.out.println();
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_Q:
-                    close();
-                    Main.startingWindow2();
-                    break;
-            }
-        }
-    }
+    
 
 
     public void winnerPlayer(int winner) {
@@ -335,6 +369,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
                     gameBoard[l][m].setFeldStatus(2); // Set cell state
                     ++livingCellNumber;
                     winnerPlayer(2); // Check the computer winning state
+                    //draw(0);
                     flag = true;
                     setUpperCellToEmpty(l, m);
                 }
@@ -368,6 +403,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
                                         gameBoard[i - k][j].setFeldStatus(1);
                                         ++livingCellNumber; // Increase living cell number
                                         winnerPlayer(1); // Check player 1 winning state
+                                        
                                         flagPlayerOrder = 1;
                                         eventFlag = 1;
                                         break;
@@ -375,6 +411,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
                                 }
 
                                 setUpperCellToEmpty(i, j); // Set upper cell to empty
+                                draw(1);
                                 ++playerOrder; // Change order from player 1 to player 2
                                 break;
                             }
@@ -388,6 +425,7 @@ public final class ConnectFour extends JFrame implements ActionListener {
                                         gameBoard[i - k][j].setFeldStatus(2); // Set cell state
                                         ++livingCellNumber;
                                         winnerPlayer(2);
+                                        draw(1);
                                         flagPlayerOrder = 1;
                                         eventFlag = 1;
                                         break;
