@@ -140,7 +140,7 @@ public class StartingWindow2 implements ActionListener {
 
         if (e.getSource() == RockPaperScissor) {
             frame.dispose();
-            Main.RockPaperScissor();
+            Main.rockPaperScissor();
         }
 
         if (e.getSource() == snakeButton) {

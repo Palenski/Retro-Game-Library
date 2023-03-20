@@ -1,6 +1,7 @@
 package Main;
 
 import Pong.GameFrame;
+import RockPaperScissor.GameScreen;
 import SnakeGame.GameFrameS;
 import SnakeGame.GamePanelS;
 
@@ -44,8 +45,8 @@ public class Main {
 
 
 
-    public static void RockPaperScissor(){
-        
+    public static void rockPaperScissor(){
+        GameScreen frame = new GameScreen();
     }
     
 
