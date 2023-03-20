@@ -45,6 +45,7 @@ public class TicTacToeGame implements ActionListener {
         frame.addKeyListener(new MyKeyAdapter());
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setTitle("Tic Tac Toe");
         
 
         /*

@@ -65,8 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
         ball.move();
     }
 
-    public void checkCollision() {
-        // Falls der Bal die Kante oben oder unten berührt
+    public void checkCollision() {  // Falls der Bal die Kante oben oder unten berührt
         if (ball.y < 0) {
             ball.setYDirection(ball.yRichtung * -1);
             ball.setSpeed(ball.speed + 0.4);
@@ -75,8 +74,8 @@ public class GamePanel extends JPanel implements Runnable {
             ball.setSpeed(ball.speed + 0.4);
         }
 
-        // Falls der Ball die Paddles berührt
-        if (ball.x <= 75 && ball.x > paddle1.x && ball.y > paddle1.y && ball.y < paddle1.y + paddle1.PaddleHöhe) {
+       
+        if (ball.x <= 75 && ball.x > paddle1.x && ball.y > paddle1.y && ball.y < paddle1.y + paddle1.PaddleHöhe) {  // Falls der Ball die Paddles berührt
             ball.setXDirection(ball.xRichtung * -1);
             ball.setSpeed(ball.speed + 0.4);
         } else if (ball.x >= paddle2.x - ball.ballBreite && ball.x < paddle2.x + paddle2.PaddleBreite
@@ -85,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
             ball.setSpeed(ball.speed + 0.4);
         }
 
-        if (ball.x <= 0) {
+        if (ball.x <= 0) {      //Falls der Ball in der Endzone ist
             score.spieler2++;
             newPaddles();
             newBall();
@@ -99,7 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
-    public void run() { // Standart Gameloop
+    public void run() {     // Standart Gameloop
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.00;
         double nanoSeconds = 1000000000 / amountOfTicks;

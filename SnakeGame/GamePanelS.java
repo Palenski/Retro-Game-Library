@@ -46,7 +46,7 @@ public class GamePanelS extends JPanel implements ActionListener{
 	}
 	public void draw(Graphics g) {
 		
-		if(running) {
+		if(running) {		//Wird am Anfang auf True gesetzt. Einfach Option zu gucken, wann das Spiel vorbei ist
 			/*
 			for(int i=0;i<SCREEN_HEIGHT/UNIT_SIZE;i++) {
 				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
@@ -77,7 +77,7 @@ public class GamePanelS extends JPanel implements ActionListener{
 		}
 		
 	}
-	public void newApple(){
+	public void newApple(){		//Bestimmt die X und Y Koordinaten, auf denen die jeweils neuen Äpfel platziert werden
 		appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
 		appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
 	}
@@ -87,7 +87,7 @@ public class GamePanelS extends JPanel implements ActionListener{
 			y[i] = y[i-1];
 		}
 		
-		switch(direction) {
+		switch(direction) {		//Steuerung der Snake per Switch Statement
 		case 'U':
 			y[0] = y[0] - UNIT_SIZE;
 			break;
@@ -103,49 +103,46 @@ public class GamePanelS extends JPanel implements ActionListener{
 		}
 		
 	}
-	public void checkApple() {
+	public void checkApple() {		//Falls ein Apfel mit den Koordinaten der Snake übereinstimmt, wird dieser gegessen und der Körper der Schlange wächst
 		if((x[0] == appleX) && (y[0] == appleY)) {
 			bodyParts++;
 			applesEaten++;
 			newApple();
 		}
 	}
-	public void checkCollisions() {
-		//checks if head collides with body
+	public void checkCollisions() {		//Checkt, ob der Kopf mit dem Körper kollidiert
 		for(int i = bodyParts;i>0;i--) {
 			if((x[0] == x[i])&& (y[0] == y[i])) {
 				running = false;
 			}
 		}
-		//check if head touches left border
-		if(x[0] < 0) {
-			running = false;
-		}
-		//check if head touches right border
-		if(x[0] > SCREEN_WIDTH) {
-			running = false;
-		}
-		//check if head touches top border
-		if(y[0] < 0) {
-			running = false;
-		}
-		//check if head touches bottom border
-		if(y[0] > SCREEN_HEIGHT) {
+		
+		if(x[0] < 0) {		//Ckeckt, ob die linke Wand berührt wird
 			running = false;
 		}
 		
-		if(!running) {
+		if(x[0] > SCREEN_WIDTH) {		// Ckeckt, ob die rechte Wand berührt wird
+			running = false;
+		}
+		
+		if(y[0] < 0) {			// Ckeckt, ob die obere Wand berührt wird
+			running = false;	
+		}
+		
+		if(y[0] > SCREEN_HEIGHT) {		// Ckeckt, ob die untere Wand berührt wird
+			running = false;
+		}
+		
+		if(!running) {		//Abbruchmethode
 			timer.stop();
 		}
 	}
 	public void gameOver(Graphics g) {
-		//Score
-		g.setColor(Color.red);
+		g.setColor(Color.red);		//Score beim verlieren
 		g.setFont( new Font("Ink Free",Font.BOLD, 40));
 		FontMetrics metrics1 = getFontMetrics(g.getFont());
 		g.drawString("Score: "+applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Score: "+applesEaten))/2, g.getFont().getSize());
-		//Game Over text
-		g.setColor(Color.red);
+		g.setColor(Color.red); 		//Text beim verlieren
 		g.setFont( new Font("Lucida Fax",Font.BOLD, 95));
 		FontMetrics metrics2 = getFontMetrics(g.getFont());
 		g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
@@ -153,7 +150,7 @@ public class GamePanelS extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(running) {
+		if(running) {		//Basic Gameloop
 			move();
 			checkApple();
 			checkCollisions();
@@ -163,7 +160,7 @@ public class GamePanelS extends JPanel implements ActionListener{
 	
 	public class MyKeyAdapter extends KeyAdapter{
 		@Override
-		public void keyPressed(KeyEvent e) {
+		public void keyPressed(KeyEvent e) {		//KeyListener, um die Snake steuern zu können und auch um das Spiel zu verlassen
 			switch(e.getKeyCode()) {
 			case KeyEvent.VK_LEFT:
 				if(direction != 'R') {

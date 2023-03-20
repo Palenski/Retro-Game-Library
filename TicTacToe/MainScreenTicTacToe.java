@@ -33,6 +33,7 @@ public class MainScreenTicTacToe implements ActionListener {
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setTitle("Tic Tac Toe");
 
         ButtonsGrid.setLayout(new GridLayout(3,3));
         

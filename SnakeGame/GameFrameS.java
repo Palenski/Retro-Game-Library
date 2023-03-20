@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 
 public class GameFrameS extends JFrame{
 
-	public GameFrameS(){
+	public GameFrameS(){		//Erstellt den Hintergrund als JFrame
 			
 		this.add(new GamePanelS());
 		this.setTitle("Snake");

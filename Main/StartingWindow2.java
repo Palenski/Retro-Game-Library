@@ -23,10 +23,18 @@ public class StartingWindow2 implements ActionListener {
 
     JFrame frame = new JFrame();
 
-    JButton titleButton = new JButton("<html><p><font color = Black>Wähle dein Spiel </font> </p></html>");
+    JButton titleButton = new JButton("<html><p><font color = Black>Wähle dein Spiel </font> </p></html>"); // HTML
+                                                                                                            // Befehle
+                                                                                                            // für eine
+                                                                                                            // bessere
+                                                                                                            // Gesatltung
+                                                                                                            // der
+                                                                                                            // Schrift
 
-    ImageIcon iconPong = new ImageIcon("Images/discover.png");
-    JButton pongButton = new JButton(iconPong);
+    ImageIcon iconPong = new ImageIcon("Images/discover.png"); // Bild aus dem Ordner Images wird hier dem Icon
+                                                               // zugewiesen
+    JButton pongButton = new JButton(iconPong); // Beim erstellen der Buttons wird jedem ein Icon mit passendem Bild
+                                                // zugewiesen
 
     ImageIcon iconConnectFourButton = new ImageIcon("Images/369922d484c072edefc5a27ce992ea79.png");
     JButton connectFourButton = new JButton(iconConnectFourButton);
@@ -41,13 +49,13 @@ public class StartingWindow2 implements ActionListener {
     ImageIcon iconSnake = new ImageIcon("Images/Snake-Title.png");
     JButton snakeButton = new JButton(iconSnake);
 
-    ImageIcon iconSpaceInvaders = new ImageIcon("Images/360_F_433466592_JpXOCCvbV3kMKTWo3jZKhGBnqEafnmfw.jpg");
-    JButton spaceInvadersButton = new JButton(iconSpaceInvaders);
+    ImageIcon iconTypingGame = new ImageIcon("Images/360_F_433466592_JpXOCCvbV3kMKTWo3jZKhGBnqEafnmfw.jpg");
+    JButton TypingGameButton = new JButton(iconTypingGame);
 
     ImageIcon iconExit = new ImageIcon("Images/81ZEliCxW5L._AC_UL320_.jpg");
     JButton logOutButton = new JButton(iconExit);
 
-    StartingWindow2() {
+    StartingWindow2() {     //Platzieren und Modifizieren der einzelnen Buttons auf dem Startfenster
 
         pongButton.setBounds(8, 110, 398, 125);
         pongButton.setFocusable(false);
@@ -75,10 +83,10 @@ public class StartingWindow2 implements ActionListener {
         snakeButton.addActionListener(this);
         snakeButton.setBorderPainted(false);
 
-        spaceInvadersButton.setBounds(415, 380, 398, 125);
-        spaceInvadersButton.setFocusable(false);
-        spaceInvadersButton.addActionListener(this);
-        spaceInvadersButton.setBorderPainted(false);
+        TypingGameButton.setBounds(415, 380, 398, 125);
+        TypingGameButton.setFocusable(false);
+        TypingGameButton.addActionListener(this);
+        TypingGameButton.setBorderPainted(false);
 
         logOutButton.setBounds(8, 515, 805, 125);
         logOutButton.setFocusable(false);
@@ -99,7 +107,7 @@ public class StartingWindow2 implements ActionListener {
         frame.add(pongButton);
         frame.add(tictactoeButton);
         frame.add(RockPaperScissor);
-        frame.add(spaceInvadersButton);
+        frame.add(TypingGameButton);
         frame.add(snakeButton);
         frame.add(connectFourButton);
         frame.add(logOutButton);
