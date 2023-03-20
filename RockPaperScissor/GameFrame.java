@@ -7,80 +7,84 @@ import java.util.*;
 
 public class GameFrame extends JFrame implements ActionListener {
 
-    private JButton rockButton, paperButton, scissorsButton;
-    private JTextField textField, textField2;
+    Random random = new Random();
+    JFrame frame = new JFrame();
+    JButton[] buttons = new JButton[3];
+    JPanel buttonPanel = new JPanel();
+    JLabel label = new JLabel();
+    JLabel PCLabel = new JLabel();
+    String[] stp = { "Schere", "Stein", "Papier" };
+    String Text1 = "Hier steht was du wählst";
+    String Text2 = "Deine Wahl ist: ";
+    String Text3 = "Hier steht was der Computer wählt       ";
+    String Text4 = "Der Computer wählt: ";
 
     public static void main(String[] args) {
-        JFrame paper = new JFrame();
-        paper.setSize(250,150); 
-        ((GameFrame) paper).createGUI();
-        paper.show();
+        GameFrame gameFrame = new GameFrame();
     }
 
-    private void createGUI() {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Container window = getContentPane();
-        window.setLayout(new FlowLayout());
+    public GameFrame() {
 
-        textField = new JTextField(15); // Setting up the buttons/fields
-        window.add(textField);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // frame.setLocationRelativeTo(null);
+        frame.setSize(800, 700);
+        frame.setTitle("Schere Stein Papier");
 
-        textField2 = new JTextField(15);
-        window.add(textField2);
+        buttonPanel.setLayout(new GridLayout(1, 0));
+        buttonPanel.setBackground(new Color(150, 150, 150));
+        buttonPanel.setSize(300, 100);
 
-        rockButton = new JButton("Rock");
-        window.add(rockButton);
-        rockButton.addActionListener(this);
+        label.setHorizontalAlignment(JLabel.LEFT);
+        label.setVerticalAlignment(JLabel.CENTER);
+        label.setText(Text1);
 
-        paperButton = new JButton("Paper");
-        window.add(paperButton);
-        paperButton.addActionListener(this);
+        PCLabel.setText(Text3);
+        PCLabel.setVerticalAlignment(JLabel.CENTER);
+        PCLabel.setHorizontalAlignment(JLabel.RIGHT);
+        PCLabel.setSize(400,50);
 
-        scissorsButton = new JButton("Scissors");
-        window.add(scissorsButton);
-        scissorsButton.addActionListener(this);
+        for (int i = 0; i < 3; i++) {
+            buttons[i] = new JButton();
+            buttonPanel.add(buttons[i]);
+            buttons[i].setFont(new Font("SansSerif", Font.BOLD, 50));
+            buttons[i].setFocusable(true);
+            buttons[i].addActionListener(this);
+            buttons[i].setEnabled(true);
+            buttons[i].setBackground(new Color(0, 0, 0));
+            buttons[i].setVisible(true);
+            buttons[i].setText(stp[i]);
 
+        }
+
+        frame.add(buttonPanel, BorderLayout.SOUTH);
+        frame.add(label);
+        frame.add(PCLabel);
     }
 
-    public void actionPerformed(ActionEvent event) {
-        Object source = event.getSource();
-        int playerChoice; 
-        int compChoice;   
-        String winner;
-        Random randomSeed = new Random(); 
-        if (source == rockButton) { 
-            playerChoice = 0;
+    
+    public void PCTurn(){
+        int PCWahl = random.nextInt(3);
+        if(PCWahl == 0){
+            PCLabel.setText(Text4 + stp[0]);
         }
-        else if (source == paperButton){ 
-            playerChoice = 1;
-        } else {
-            playerChoice = 2; 
+        if(PCWahl == 1){
+            PCLabel.setText(Text4 + stp[1]);
         }
-        compChoice = randomSeed.nextInt(3); 
-        winner = findWinner(playerChoice, compChoice);
-        textField.setText("Winner is " + winner + "!"); 
-
-        if (compChoice == 0) { 
-            textField2.setText("Computer choice is rock");
-        } else if (compChoice == 1) {
-            textField2.setText("Computer choice is paper");
-        } else {
-            textField2.setText("Computer choice is scissors");
+        if(PCWahl == 2){
+            PCLabel.setText(Text4 + stp[2]);
         }
-
+        
     }
-    private String findWinner(int playerChoice, int compChoice) {
-        String winner;
-        if (playerChoice == compChoice) { 
-            winner = "Noone, it's a tie";
-        } else if (playerChoice == 0 && compChoice == 1) {
-            winner = "Computer"; 
-        } else if (playerChoice == 1 && compChoice == 2) {
-            winner = "Computer"; 
-        } else if (playerChoice == 2 && compChoice == 0) {
-            winner = "Computer"; 
-        } else {
-            winner = "Player"; 
-        } return winner; 
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < 3; i++) {
+            if (e.getSource() == buttons[i]) {
+                label.setText(Text2 + stp[i]);
+            }
+            buttons[i].setEnabled(false);
+            PCTurn();
+        }
     }
 }
