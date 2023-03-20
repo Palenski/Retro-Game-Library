@@ -17,17 +17,17 @@ import java.awt.event.KeyEvent;
 
 public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
-    private int größe; // Board größe
-    private int reihenfolge = 0; // First player 1 will play the game
-    private int spielerAnzahl; // Player number
+    private int größe; 
+    private int reihenfolge = 0; //Entscheidet, wer später als erstes beginnt
+    private int spielerAnzahl;
     private int feldGröße;
-    private static int leereFelder = 0; // Number of living cells
+    private static int leereFelder = 0; 
 
-    private final JFrame frame; // Frame
-    private final JPanel panel; // Panel
-    private final JButton[][] buttons; // Buttons
-    private Felder spielfeld[][]; // Game Board
-    private final GridLayout grid; // GridLayout
+    private final JFrame frame; 
+    private final JPanel panel; 
+    private final JButton[][] buttons; 
+    private Felder spielfeld[][];
+    private final GridLayout grid; 
 
     ImageIcon leer = new ImageIcon("Images/emptycell.png");
     ImageIcon spieler1 = new ImageIcon("Images/player1.png");
@@ -37,15 +37,15 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         frame = new JFrame("Vier Gewinnt");
         panel = new JPanel();
 
-        spielerUndFeld(); // Get the game parameters
-        spielErstellen(); // Create 2D dynamic Cell array
+        spielerUndFeld(); 
+        spielErstellen(); 
 
         buttons = new JButton[getBordGröße()][getBordGröße()]; // Button als Array
         grid = new GridLayout(getBordGröße(), getBordGröße()); // Erzeugt Gridlayout
         panel.setLayout(grid);
 
-        // Initialization board
         bordInitialisieren();
+
         frame.setContentPane(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -53,7 +53,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void setBordGröße(int neueGröße) {
+    public void setBordGröße(int neueGröße) {       //Allgemeine Set und Get Methoden
         größe = neueGröße;
     }
 
@@ -65,14 +65,11 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         return leereFelder;
     }
 
-    /**
-     * Get the player number and board größe from the user
-     */
+
     public void spielerUndFeld() {
-        // User inputs from input dialogs
         String anzahlSpieler = JOptionPane.showInputDialog("Spieler Anzahl (1 oder 2)"); // Anzahl der Spieler
 
-        try { // Falls der User keine Zahl eingibt
+        try {       // Falls der User keine Zahl eingibt
             spielerAnzahl = Integer.parseInt(anzahlSpieler);
         } catch (Exception e) {
             JFrame frameInputError = new JFrame();
@@ -83,7 +80,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
             System.exit(0);
         }
 
-        if (spielerAnzahl != 1 && spielerAnzahl != 2) { // Falls der User nicht 1 oder 2 Auswählt
+        if (spielerAnzahl != 1 && spielerAnzahl != 2) {     // Falls der User nicht 1 oder 2 Auswählt
             JFrame frameInputError = new JFrame();
             JOptionPane.showMessageDialog(frameInputError,
                     "Wähle zwischen 1 oder 2 Spielern !!!",
@@ -92,9 +89,9 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
             System.exit(0);
         }
 
-        String größeFeld = JOptionPane.showInputDialog("Spielfeldgröße (mind. 4) "); // Größe des Feldes
+        String größeFeld = JOptionPane.showInputDialog("Spielfeldgröße (mind. 4) ");    // Größe des Feldes
 
-        try { // Falls der User keine Zahl eingibt
+        try {    // Falls der User keine Zahl eingibt
             feldGröße = Integer.parseInt(größeFeld);
 
         } catch (Exception e) {
@@ -106,7 +103,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
             System.exit(0);
         }
 
-        if (feldGröße < 4) { // Falls der User eine kleinere Zahl als 4 wählt
+        if (feldGröße < 4) {    // Falls der User eine kleinere Zahl als 4 wählt
             JFrame frameInputError = new JFrame();
             JOptionPane.showMessageDialog(frameInputError,
                     "Spielfeld muss größer sein als 4 !!!",
@@ -118,7 +115,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         setBordGröße(feldGröße);
     }
 
-    public void spielErstellen() { // Spielfeld als 2d Array
+    public void spielErstellen() {      // Spielfeld als 2d Array
         spielfeld = new Felder[getBordGröße()][getBordGröße()];
         for (int i = 0; i < getBordGröße(); i++) {
             for (int j = 0; j < getBordGröße(); j++) {
@@ -127,17 +124,15 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Add buttons to game board
-     */
+
     public void buttonHinzufügen() {
         for (int i = 0; i < getBordGröße(); ++i) {
             for (int j = 0; j < getBordGröße(); ++j) {
-                buttons[i][j] = new JButton(leer); // leer button
+                buttons[i][j] = new JButton(leer);      //Dem Button werden hier die Icons hinzugefügt
 
                 if (spielerAnzahl == 1) // Computer vs Spieler
                 {
-                    buttons[i][j].addActionListener(new einSpielerListener());
+                    buttons[i][j].addActionListener(new einSpielerListener());      //Fügt den Buttons die ActionListener hinzu
                 }
 
                 if (spielerAnzahl == 2) // Spieler vs Spieler
@@ -150,10 +145,8 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Initial all cells to leer
-     */
-    public void bordInitialisieren() {
+
+    public void bordInitialisieren() {      //Alle Felder sind am Anfang auf leer gesetzt
         for (int i = getBordGröße() - 2; i >= 0; --i) {
             for (int j = getBordGröße() - 1; j >= 0; --j) {
                 spielfeld[i][j].setFeldStatus(-99);
@@ -176,14 +169,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Game winning state
-     * If the four cell is same, user 1 will win the game
-     * 
-     * @param gewinner integer If the player 1 is equal to 1, otherwise 2
-     */
-
-    public void gewinnen(int gewinner) {
+    public void gewinnen(int gewinner) {        //Entscheidet wer gewonnen hat. Bei 1 ist es Spieler 1, ansonten Spieler 2
         for (int i = 0; i < getBordGröße(); ++i) {
             for (int j = 0; j < getBordGröße(); ++j) {
 
@@ -244,7 +230,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
                     "\nGewinner : Spieler 1\n\nDas neue Spiel startet.\n\n",
                     "Spiel Benden",
                     JOptionPane.INFORMATION_MESSAGE);
-            erneutSpielen();
+            erneutSpielen();        //Spiel wird wieder von vorne gestartet
         } else if (sieger == 0) {
             JOptionPane.showMessageDialog(
                     endergebnisFrame,
@@ -266,105 +252,74 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
     public void erneutSpielen() {
         for (int i = 0; i < getBordGröße(); ++i) {
             for (int j = 0; j < getBordGröße(); ++j) {
-                spielfeld[i][j].setFeldStatus(-99); // Initial Value
-                buttons[i][j].setIcon(leer); // Put the leer cell icon
+                spielfeld[i][j].setFeldStatus(-99);         // Felder werden wieder auf Leer gesetzt
+                buttons[i][j].setIcon(leer);        //Die Anfangs Icons werden wieder hergestellt
             }
         }
 
-        frame.setVisible(false); // Unvisible previous game board
-        Main.vierGewinnt();
+        frame.dispose();    //Löscht den alten Frame
+        Main.vierGewinnt(); //Und erstellt den Neuen
     }
-
-    /**
-     *
-     * Action listener to game button
-     * Computer vs Player 1
-     * 
-     */
-
-    public class einSpielerListener implements ActionListener {
+    public class einSpielerListener implements ActionListener {     //Spieler vs Computer
         @Override
         public void actionPerformed(ActionEvent e) {
 
             try {
-                for (int i = getBordGröße() - 1; i >= 0; --i) // Check the buttons up to down position
-                {
+                for (int i = getBordGröße() - 1; i >= 0; --i){ // Ckeckt von oben nach unten
                     for (int j = 0; j <= getBordGröße() - 1; ++j) {
-                        // Get the button component that was clicked
                         if (buttons[i][j] == e.getSource()) {
-
-                            if (0 == reihenfolge % 2) // Player 1 operations
-                            {
+                            if (0 == reihenfolge % 2){   //Spieler 1 ist dann am Zug
                                 for (int k = 0; k <= getBordGröße(); ++i) {
-                                    // Player 1 Operations
-                                    // Fill the board from down to up
-                                    if (spielfeld[i - k][j].getFeldStatus() == 0) {
-                                        buttons[i - k][j].setIcon(spieler1); // Change button icon
-                                        spielfeld[i - k][j].setAllePosition('X', i); // Set cell parameters
-                                        spielfeld[i - k][j].setFeldStatus(1); // Set cell state
-                                        ++leereFelder; // Increase living cell number
-                                        gewinnen(1); // Check game winning state
-                                        unentschieden(1);
+                                    if (spielfeld[i - k][j].getFeldStatus() == 0) {     //Sorgt im allgemeinen dafür, dass das Bord von unten nach oben gefüllt wird
+                                        buttons[i - k][j].setIcon(spieler1);     // Button Icon wird verändert
+                                        spielfeld[i - k][j].setAllePosition('X', i);    // Wichtig für Gewinn-Methode
+                                        spielfeld[i - k][j].setFeldStatus(1);
+                                        ++leereFelder; 
+                                        gewinnen(1);        // Überprüft, ob Spieler 1 gewonnen hat
+                                        unentschieden(1);           //Überprüft ob Unentschieden besteht
                                         break;
                                     }
                                 }
 
-                                obereReihe(i, j); // Set the upper cells to leer cell to listen button
-                                ++reihenfolge; // Change player order from player 1 to computer
+                                obereReihe(i, j); 
+                                reihenfolge++;      //Nach dem Zug ist der Computer dran
                                 break;
                             }
 
-                            // Computer Operations
-                            // Basic idea is filling the cells left to right
-
-                            if (1 == reihenfolge % 2) {
+                            if (1 == reihenfolge % 2) {     //Dumme KI, welche von links nach rechts die Reihen auffüllt
                                 computerZug(i);
                                 unentschieden(1);
-                                ++reihenfolge; // Change player order from computer to player 1
+                                reihenfolge++;      // Reihenfolge wird wieder geändert
                                 break;
                             } else {
-                                warnung();
+                                warnung();      //Falls der Spieler auf ein falsches Feld geklickt hat
                             }
-                        } // END EVENT SOURCE
-                    } // END SECOND FOR LOOP
-                } // END FIRST FOR LOOP
-
-            } // END TRY
+                        }
+                    } 
+                }
+            } 
             catch (Exception ex) {
                 warnung();
             }
+        }
+    }
 
-        } // END ACTION PERFORMED
-
-    } // END listenButtonOnePlayer CLASS
-
-    public void warnung() {
-        JFrame warnungFrame = new JFrame();
+    public void warnung() {     //Für den Fall, dass der Spieler ein schon besetztes Feld angecklickt hat
+        JFrame warnungFrame = new JFrame();     //Frame wird erstellt und mit Inhalt gefüllt
         JOptionPane.showMessageDialog(
                 warnungFrame,
                 "Nicht möglicher Zug !!\nDas Feld ist besetzt!", "Verwarnung",
                 JOptionPane.WARNING_MESSAGE);
     }
 
-    /**
-     * Set the upper cells to leer cell to listen button
-     * 
-     * @param rowPos    integer row position to board
-     * @param columnPos integer column position to board
-     */
-    public void obereReihe(int rowPos, int columnPos) {
+    public void obereReihe(int rowPos, int columnPos) {     //Damit der Computer weiß, wann die Reihen gefüllt sind
         try {
             spielfeld[rowPos - 1][columnPos].setFeldStatus(0);
         } catch (Exception ex) {
         }
     }
 
-    /**
-     * Computer's logic fills cells from left to right
-     * 
-     * @param rowPosition Cell row position
-     */
-    public void computerZug(int reihenPosition) {
+    public void computerZug(int reihenPosition) {       //Erstellung der "KI"
         int l;
         int m;
         boolean platzhalter = false;
@@ -372,11 +327,11 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         for (l = getBordGröße() - 1; (l >= 0) && !platzhalter; --l) {
             for (m = 0; (m < getBordGröße()) && !platzhalter; ++m) {
                 if (spielfeld[l][m].getFeldStatus() == 0) {
-                    buttons[l][m].setIcon(spieler2); // Set new button icon
-                    spielfeld[l][m].setAllePosition('O', reihenPosition); // Set cell parameters
-                    spielfeld[l][m].setFeldStatus(2); // Set cell state
-                    ++leereFelder;
-                    gewinnen(2); // Check the computer winning state
+                    buttons[l][m].setIcon(spieler2); 
+                    spielfeld[l][m].setAllePosition('O', reihenPosition); 
+                    spielfeld[l][m].setFeldStatus(2);       //Setzt den Status auf besetzt durch Spieler 2
+                    leereFelder++;
+                    gewinnen(2);     //Zur Ermittlung des Siegers    
                     platzhalter = true;
                     obereReihe(l, m);
                 }
@@ -384,12 +339,8 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         }
     }
 
-    /**
-     * Action listener to game button
-     * Player 1 vs Player 2
-     */
-    public class zweiSpielerListener implements ActionListener {
-        @Override
+    public class zweiSpielerListener implements ActionListener {        //Selbes Prinzip wie oben, nur Spieler vs Spieler
+        @Override       
         public void actionPerformed(ActionEvent e) {
             try {
                 int spielerZugIcon = 0;
@@ -397,36 +348,32 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
                 for (int i = getBordGröße() - 1; i >= 0; --i) {
                     for (int j = 0; j <= getBordGröße() - 1; ++j) {
-                        if (spielerZugIcon == 0 && buttons[i][j] == e.getSource()) { // Get the button component that
-                                                                                     // was clicked
-                            if (spielerZug == 0 && reihenfolge % 2 == 0) {
-                                // Player 1 Operations
-                                // Fill the board from down to up
+                        if (spielerZugIcon == 0 && buttons[i][j] == e.getSource()) {    //Zeigt dem Computer, welches Feld angeklickt wurde
+                            if (spielerZug == 0 && reihenfolge % 2 == 0) {      //ermittlung, wer am Zug ist
                                 for (int k = 0; k <= getBordGröße(); ++i) {
                                     if (spielfeld[i - k][j].getFeldStatus() == 0 && reihenfolge % 2 == 0) {
-                                        buttons[i - k][j].setIcon(spieler1); // Set new icon to player 1
-                                        spielfeld[i - k][j].setAllePosition('X', i); // Set cell parameters
+                                        buttons[i - k][j].setIcon(spieler1); 
+                                        spielfeld[i - k][j].setAllePosition('X', i); 
                                         spielfeld[i - k][j].setFeldStatus(1);
-                                        ++leereFelder; // Increase living cell number
-                                        gewinnen(1); // Check player 1 winning state
+                                        leereFelder++;
+                                        gewinnen(1); // Checkt ob der Spieler gewonnen hat
                                         spielerZug = 1;
                                         spielerZugIcon = 1;
                                         break;
                                     }
                                 }
-                                obereReihe(i, j); // Set upper cell to leer
+                                obereReihe(i, j); 
                                 unentschieden(1);
-                                ++reihenfolge; // Change order from player 1 to player 2
+                                reihenfolge++;      //Ändert die Reihenfolge
                                 break;
                             }
 
-                            // Player 2 operations
-                            if (spielerZug == 0 && reihenfolge % 2 == 1) {
+                            if (spielerZug == 0 && reihenfolge % 2 == 1) {      //Spieler 2 ist hier am Zug
                                 for (int k = 0; k <= getBordGröße(); ++i) {
                                     if (spielfeld[i - k][j].getFeldStatus() == 0 && reihenfolge % 2 == 1) {
-                                        buttons[i - k][j].setIcon(spieler2); // Set new icon to player 2
-                                        spielfeld[i - k][j].setAllePosition('O', i); // Set cell parameters
-                                        spielfeld[i - k][j].setFeldStatus(2); // Set cell state
+                                        buttons[i - k][j].setIcon(spieler2); 
+                                        spielfeld[i - k][j].setAllePosition('O', i); 
+                                        spielfeld[i - k][j].setFeldStatus(2);
                                         ++leereFelder;
                                         gewinnen(2);
                                         unentschieden(1);
@@ -439,15 +386,14 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
                                 ++reihenfolge;
                                 break;
                             }
-                        } // END EVENT SOURCE
-                    } // END SECOND FOR LOOP
-                } // END FIRST FOR LOOP
+                        }
+                    } 
+                } 
             } catch (Exception ex) {
                 warnung();
             }
-
-        } // END ACTIONPERFORMED
-    } // END listenButtonTwoPlayers CLASS
+        } 
+    } 
 
     @Override
     public void actionPerformed(ActionEvent e) {
