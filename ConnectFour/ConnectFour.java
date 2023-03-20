@@ -163,11 +163,14 @@ public final class ConnectFour extends JFrame implements ActionListener {
     }
 
     
-    public void draw(int p) {
+    public void draw(int p) {       //Guckt, ob alle Felder ausgefüllt sind und niemand gewonnen hat
         for (int i = getBoardSize() - 2; i >= 0; --i) {
             for (int j = getBoardSize() - 1; j >= 0; --j) {
                 if(gameBoard[i][j].getFeldStatus() == 1 || gameBoard[i][j].getFeldStatus() == 2){
                     System.out.println(p);
+                    if(p == feldGröße * (feldGröße - 1)){
+                        showResult(0);
+                    }
                     p++;
                 }
                 
@@ -246,13 +249,20 @@ public final class ConnectFour extends JFrame implements ActionListener {
                     "Spiel Benden",
                     JOptionPane.INFORMATION_MESSAGE);
             startAgain();
-        } else {
+        } else if (winnerPlayer == 0){
+            JOptionPane.showMessageDialog(frameShowResult,
+                    "\nUnentschieden : Keiner hat gewonnen\n\nDas neue Spiel Startet.\n\n",
+                    "Spiel Benden",
+                    JOptionPane.INFORMATION_MESSAGE);
+            startAgain();
+        }else {
             JOptionPane.showMessageDialog(frameShowResult,
                     "\nGewinner : Spieler 2\n\nDas neue Spiel Startet.\n\n",
                     "Spiel Benden",
                     JOptionPane.INFORMATION_MESSAGE);
             startAgain();
         }
+        frameShowResult.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void startAgain() {
