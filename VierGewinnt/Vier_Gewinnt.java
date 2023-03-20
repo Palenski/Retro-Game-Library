@@ -332,10 +332,12 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
                                 obereReihe(i, j); 
                                 reihenfolge++;      //Nach dem Zug ist der Computer dran
+                                
                                 break;
                             }
 
                             if (1 == reihenfolge % 2) {     //Dumme KI, welche von links nach rechts die Reihen auffüllt
+                                java.util.concurrent.TimeUnit.SECONDS.sleep(2);
                                 computerZug(i);
                                 unentschieden(1);
                                 reihenfolge++;      // Reihenfolge wird wieder geändert
@@ -435,7 +437,7 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         }
 
     }
-    
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
