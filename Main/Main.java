@@ -3,11 +3,8 @@ package Main;
 import Pong.GameFrame;
 import RockPaperScissor.Game_Frame;
 import SnakeGame.GameFrameS;
-import SnakeGame.GamePanelS;
-
 import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.TicTacToeGame;
-import TypingGame.TypingGame;
 import VierGewinnt.Vier_Gewinnt; 
 
 public class Main {
