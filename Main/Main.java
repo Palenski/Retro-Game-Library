@@ -7,6 +7,21 @@ import TicTacToe.MainScreenTicTacToe;
 import TicTacToe.TicTacToeGame;
 import VierGewinnt.Vier_Gewinnt; 
 
+
+
+import java.awt.Desktop;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 public class Main {
 
     
@@ -69,6 +84,18 @@ public class Main {
     
     public static void SnakeClose() {
         snake.dispose();
+    }
+
+    public static void easterEgg() {
+        try {
+            Desktop.getDesktop().browse(new URL("https://www.youtube.com/watch?v=dQw4w9WgXcQ").toURI());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     

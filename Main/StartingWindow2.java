@@ -135,6 +135,10 @@ public class StartingWindow2 implements ActionListener {
         if (e.getSource() == logOutButton) {
             frame.dispose();
         }
+
+        if(e.getSource() == titleButton){
+            Main.easterEgg();
+        }
     }
 
 }
