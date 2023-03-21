@@ -1,6 +1,5 @@
 package VierGewinnt;
 
-
 public class Felder {     //Hier befinden sich die einzelnen Felder als Objekte
 
     private char feldPosition;      //Zu jedem gibt es im folgenden Set und Get Methoden um aus dem Hauptspiel darauf zuzugreifen
