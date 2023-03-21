@@ -2,7 +2,6 @@ package VierGewinnt;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.tree.DefaultTreeCellEditor;
 
 import Main.Main;
 
@@ -12,9 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
@@ -54,10 +53,9 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
         frame.addKeyListener(new keyListener());
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        
+        frame.addKeyListener((KeyListener) new MyKeyAdapter());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 
     public void setBordGröße(int neueGröße) {       //Allgemeine Set und Get Methoden
         größe = neueGröße;
@@ -128,6 +126,19 @@ public final class Vier_Gewinnt extends JFrame implements ActionListener {
 
         setBordGröße(feldGröße);
     }
+
+
+    public class MyKeyAdapter extends KeyAdapter{
+		@Override
+		public void keyPressed(KeyEvent e) {		//KeyListener, um zurück zum StartingWindow zu kommen
+			switch(e.getKeyCode()) {
+			case KeyEvent.VK_Q:
+				Main.vierGewinntClose();
+				Main.startingWindow2();
+				break;
+			}
+		}
+	}
 
 
     public void buttonHinzufügen() {
