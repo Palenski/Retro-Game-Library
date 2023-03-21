@@ -2,9 +2,7 @@ package TicTacToe;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
-import javax.management.timer.Timer;
 import javax.swing.*;
 
 import Main.Main;

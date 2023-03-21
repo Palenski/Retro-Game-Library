@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import Main.Main;
-
 import java.util.*;
 
 public class Game_Frame extends JFrame implements ActionListener {
