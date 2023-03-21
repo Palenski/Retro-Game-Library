@@ -1,10 +1,14 @@
 package RockPaperScissor;
 
 import java.awt.*;
+import java.awt.RenderingHints.Key;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.*;
 
 import java.util.*;
+
+import Main.Main;
 
 public class Game_Frame extends JFrame implements ActionListener {
 
@@ -20,7 +24,9 @@ public class Game_Frame extends JFrame implements ActionListener {
     String ErgebnissText = "Das Ergebnis ist: ";
     JButton Ergebnis = new JButton(ErgebnissText);
     JPanel Ergebniss = new JPanel();
-    
+
+    JPanel mittePanel = new JPanel(); // in diesem Panel sind: Back to start button, ErgebnisButton und der
+                                      // RestartButton
 
     String[] stp = { "Schere", "Stein", "Papier" };
     String[] Texte = { "Hier steht was du wählst", "Hier steht was der PC wählt" };
@@ -35,7 +41,8 @@ public class Game_Frame extends JFrame implements ActionListener {
     Integer PlayerChoice = 0;
     String ComputerChoice;
 
-    JButton restarButton = new JButton("Restart?");
+    JButton restarButton = new JButton("Noch eine Runde?");
+    JButton backToStart = new JButton("Wieder zurück zum Start?");
 
     public Game_Frame() {
 
@@ -44,6 +51,8 @@ public class Game_Frame extends JFrame implements ActionListener {
         frame.setSize(800, 700);
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.white);
+
+        frame.addKeyListener(new MyKeyAdapter());
 
         frame.setTitle("Schere Stein Papier");
 
@@ -62,7 +71,6 @@ public class Game_Frame extends JFrame implements ActionListener {
             buttons[i].setBorderPainted(false);
             ;
             buttons[i].setVisible(true);
-            // buttons[i].setText(stp[i]);
             buttons[i].setBackground(Color.WHITE);
             if (i == 0) {
                 buttons[i].setIcon(schereIcon);
@@ -86,6 +94,8 @@ public class Game_Frame extends JFrame implements ActionListener {
             labels[i].setText(Texte[i]);
             labels[i].setBorderPainted(false);
             labels[i].setContentAreaFilled(true);
+            labels[i].setFocusable(false);
+            labels[i].setEnabled(false);
             if (i == 0) {
                 labels[i].setBackground(Color.RED);
             } else {
@@ -103,6 +113,8 @@ public class Game_Frame extends JFrame implements ActionListener {
         Ergebnis.setFocusable(false);
         Ergebnis.setForeground(Color.BLACK);
         Ergebnis.setContentAreaFilled(false);
+        Ergebnis.setHorizontalAlignment(SwingConstants.LEFT);
+        Ergebnis.setBorderPainted(false);
         Ergebnis.setFont(new Font("SansSerif", Font.BOLD, 50));
 
         Ergebniss.add(Ergebnis);
@@ -111,6 +123,11 @@ public class Game_Frame extends JFrame implements ActionListener {
         restarButton.setVisible(true);
         restarButton.setFocusable(true);
         restarButton.addActionListener(this);
+
+        backToStart.setBackground(Color.YELLOW);
+        backToStart.setVisible(true);
+        backToStart.setFocusable(true);
+        backToStart.addActionListener(this);
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
         frame.add(labelPanel, BorderLayout.NORTH);
@@ -167,7 +184,12 @@ public class Game_Frame extends JFrame implements ActionListener {
                 labels[i].setText(Texte[i]);
                 Ergebnis.setText(ErgebnissText);
                 frame.remove(restarButton);
+                frame.remove(backToStart);
             }
+        }
+        if (e.getSource() == backToStart) {
+            frame.dispose();
+            Main.startingWindow2();
         }
 
     }
@@ -180,19 +202,19 @@ public class Game_Frame extends JFrame implements ActionListener {
             Ergebnis.setText("Du gewinnst");
         }
         if (PlayerChoice.equals(1) && ComputerChoice.equals("Stein")) {
-            Ergebnis.setText("Der Computer gewinnt");
+            Ergebnis.setText("<html> <p>Der Computer <br>  gewinnt </p></html>");
         }
         if (PlayerChoice.equals(2) && ComputerChoice.equals("Schere")) {
             Ergebnis.setText("Du gewinnst");
         }
         if (PlayerChoice.equals(2) && ComputerChoice.equals("Papier")) {
-            Ergebnis.setText("Der Computer gewinnt");
+            Ergebnis.setText("<html> <p>Der Computer <br> gewinnt </p></html>");
         }
         if (PlayerChoice.equals(2) && ComputerChoice.equals("Stein")) {
             Ergebnis.setText("Unentschieden");
         }
         if (PlayerChoice.equals(3) && ComputerChoice.equals("Schere")) {
-            Ergebnis.setText("Der Computer gewinnt");
+            Ergebnis.setText("<html> <p>Der Computer <br> gewinnt </p></html>");
         }
         if (PlayerChoice.equals(3) && ComputerChoice.equals("Papier")) {
             Ergebnis.setText("Unentschieden");
@@ -202,5 +224,23 @@ public class Game_Frame extends JFrame implements ActionListener {
         }
 
         frame.add(restarButton, BorderLayout.EAST);
+        frame.add(backToStart, BorderLayout.WEST);
+    }
+
+    public class MyKeyAdapter extends KeyAdapter {
+        public void keyPressed(KeyEvent e) { // KeyListener, um die Snake steuern zu können und auch um das Spiel zu
+                                             // verlassen
+            switch (e.getKeyCode()) {
+
+                case KeyEvent.VK_Q:
+                    Main.RockPaperScissorClose();
+                    Main.startingWindow2();
+                    break;
+            }
+        }
+    }
+
+    public void close() {
+        frame.dispose();
     }
 }
